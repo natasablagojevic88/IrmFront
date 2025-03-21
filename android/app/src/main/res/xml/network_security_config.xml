@@ -4,8 +4,7 @@
         <trust-anchors>
              <certificates src="system" />
              <certificates src="user" />
-            <certificates src="@raw/development"/>
-             <certificates src="@raw/demo"/>
+            <certificates src="@raw/certificate"/>
         </trust-anchors>
     </base-config>
 </network-security-config>
