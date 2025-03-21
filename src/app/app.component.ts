@@ -78,6 +78,8 @@ export class AppComponent {
           sessionStorage.setItem("mobile", "N");
         }
 
+        sessionStorage.setItem('lang',this.readCookie.getCookie('lang'));
+
         this.exitLabel = this.translate.transform('exit');
         this.changePasswordLabel=this.translate.transform('changePassword');
         this.userDetailLabel=this.translate.transform('detail');
