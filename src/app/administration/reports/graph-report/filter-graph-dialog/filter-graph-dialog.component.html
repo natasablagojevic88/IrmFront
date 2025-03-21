@@ -1,0 +1,58 @@
+<app-dialog-header
+[title]="'add'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="1"
+[rowHeight]="'100px'"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.code"
+        (exportValue)="value.code=$event"
+        [label]="names.code"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.columnType"
+        (exportValue)="value.columnType=$event"
+        [label]="names.columnType"
+        [required]="true"
+        [list]="listType"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-text-area
+        [value]="value.defaultValue1"
+        (exportValue)="value.defaultValue1=$event"
+        [label]="names.defaultValue1"
+        >
+        </app-text-area>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

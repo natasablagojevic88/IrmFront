@@ -1,0 +1,204 @@
+<app-dialog-header
+[title]="titleOFDialog"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="checkModel.isMobile()?1:2"
+[rowHeight]="'80px'"
+>
+
+<!-- 1. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.code"
+        (exportValue)="value.code=$event"
+        [label]="names.code"
+        [required]="true"
+        [disabled]="value.id!=0"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="!checkModel.isMobile()"></mat-grid-tile>
+
+
+<!-- 2. line -->
+<mat-grid-tile [colspan]="checkModel.isMobile()?1:2">
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.type"
+        (exportValue)="value.type=$event"
+        [label]="names.type"
+        [required]="true"
+        [list]="listTypes"
+        [disabled]="value.parentId==undefined||value.id!=0||disableType"
+        >
+
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="value.type=='TABLE' || (!checkModel.isMobile())">
+    <app-grid-tile >
+        <app-check-box
+        *ngIf="value.type=='TABLE'"
+        [value]="value.numericCode"
+        (exportValue)="value.numericCode=$event"
+        [label]="names.numericCode"
+        [disabled]="value.id!=0"
+        >
+
+        </app-check-box>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 4. line -->
+<mat-grid-tile *ngIf="value.type=='TABLE'">
+    <app-grid-tile>
+        <app-input
+        [value]="value.dialogWidth"
+        (exportValue)="value.dialogWidth=$event"
+        [label]="names.dialogWidth"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="value.type=='TABLE'">
+    <app-grid-tile>
+        <app-input
+        [value]="value.columnsNumber"
+        (exportValue)="value.columnsNumber=$event"
+        [label]="names.columnsNumber"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+
+<!-- 5. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <div style="display: flex;min-width: 100%">
+            <span style="min-width: 50px;min-height: 50px;align-content: center;font-size: 36px;text-align: center;"><i [ngClass]="value.icon"></i></span>
+            <app-select
+             style="width: 100%;"
+            [value]="value.icon"
+            (exportValue)="value.icon=$event"
+            [label]="names.icon"
+            [required]="true"
+            [list]="listIcons"
+            [icon]="true"
+            >
+            </app-select>  
+        </div>
+
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="!checkModel.isMobile()||value.type=='TABLE'">
+    <app-grid-tile *ngIf="value.type=='TABLE'">
+        <app-input
+        [value]="value.tableWidth"
+        (exportValue)="value.tableWidth=$event"
+        [label]="names.tableWidth"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 6. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+             <app-select
+            [value]="value.previewRoleId"
+            (exportValue)="value.previewRoleId=$event"
+            [label]="names.previewRoleId"
+            [required]="true"
+            [list]="listRoles"
+            [searchApi]="'/api/roles/table'"
+            >
+            </app-select>  
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+             <app-select
+            [value]="value.updateRoleId"
+            (exportValue)="value.updateRoleId=$event"
+            [label]="names.updateRoleId"
+            [required]="true"
+            [list]="listRoles"
+            [searchApi]="'/api/roles/table'"
+            >
+            </app-select>  
+    </app-grid-tile>
+</mat-grid-tile>
+
+
+<!-- 7. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+             <app-select
+            [value]="value.lockRoleId"
+            (exportValue)="value.lockRoleId=$event"
+            [label]="names.lockRoleId"
+            [required]="true"
+            [list]="listRoles"
+            [searchApi]="'/api/roles/table'"
+            >
+            </app-select>  
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+             <app-select
+            [value]="value.unlockRoleId"
+            (exportValue)="value.unlockRoleId=$event"
+            [label]="names.unlockRoleId"
+            [required]="true"
+            [list]="listRoles"
+            [searchApi]="'/api/roles/table'"
+            >
+            </app-select>  
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 8. line -->
+<mat-grid-tile>
+    <app-grid-tile>
+             <app-input
+            [value]="value.id"
+            (exportValue)="value.id=$event"
+            [label]="names.id"
+            [required]="true"
+            [width]="150"
+            [disabled]="true"
+            [type]="'number'"
+            >
+            </app-input>  
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+
+</app-dialog-header>

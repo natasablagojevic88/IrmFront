@@ -1,0 +1,151 @@
+<app-page-title [title]="reportInfo.name" [hasAdd]="false">
+    <div style="min-height: calc(100vh - 185px);max-height: calc(100vh - 185px);
+overflow: auto;width: 100%;" class="previewReportDiv">
+        <mat-grid-list [cols]="checkMobile.isMobile()?1:4" [rowHeight]="heightGrid">
+
+            <mat-grid-tile>
+
+                <div style="background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);"
+                    [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"
+                    class="mat-elevation-z8">
+                    <form (ngSubmit)="submit()">
+                        <div style="width: 100%; overflow: auto; background-color: transparent;"
+                            [ngStyle]="{'min-height':(heightGrid-160)+'px','max-height':(heightGrid-160)+'px'}">
+                            <mat-grid-list [cols]="1" [rowHeight]="'80px'" style="margin-top: 20px;margin-left: 5px;">
+                                <ng-container *ngFor="let parameter of this.reportInfo.parameters">
+                                    <mat-grid-tile>
+                                        <app-grid-tile>
+                                            <app-input *ngIf="parameter.fieldType=='String'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]=$event"
+                                                [label]="parameter.name + (parameter.searchOperation==undefined?'':' - ') + findSearchOperationName(parameter.searchOperation)">
+                                            </app-input>
+
+                                            <app-check-box *ngIf="parameter.fieldType=='Boolean'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]=$event"
+                                                [label]="parameter.name">
+                                            </app-check-box>
+
+                                            <app-input
+                                                *ngIf="parameter.fieldType=='Long'||parameter.fieldType=='Integer'||parameter.fieldType=='BigDecimal'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]=$event"
+                                                [label]="parameter.name +  (parameter.searchOperation==undefined?'':' - ') +  
+                                                (parameter.searchOperation=='between'?translate.transform('from'):findSearchOperationName(parameter.searchOperation))"
+                                                [type]="'number'">
+                                            </app-input>
+
+                                            <app-input *ngIf="parameter.fieldType=='LocalDateTime'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]=$event"
+                                                [label]="parameter.name +  (parameter.searchOperation==undefined?'':' - ') +  
+                                                (parameter.searchOperation=='between'?translate.transform('from'):findSearchOperationName(parameter.searchOperation))"
+                                                [type]="'datetime-local'">
+                                            </app-input>
+
+
+                                            <app-date-picker *ngIf="parameter.fieldType=='LocalDate'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][0]=$event"
+                                                [label]="parameter.name +  (parameter.searchOperation==undefined?'':' - ') + 
+                                                (parameter.searchOperation=='between'?translate.transform('from'):findSearchOperationName(parameter.searchOperation))"></app-date-picker>
+
+                                        </app-grid-tile>
+                                    </mat-grid-tile>
+
+                                    <mat-grid-tile *ngIf="parameter.searchOperation=='between'">
+                                        <app-grid-tile>
+                                            <app-date-picker *ngIf="parameter.fieldType=='LocalDate'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]=$event"
+                                                [label]="parameter.name + ' - '+ translate.transform('to')"></app-date-picker>
+
+                                            <app-input
+                                                *ngIf="parameter.fieldType=='Long'||parameter.fieldType=='Integer'||parameter.fieldType=='BigDecimal'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]=$event"
+                                                [label]="parameter.name + ' - '+  translate.transform('to')"
+                                                [type]="'number'">
+                                            </app-input>
+
+                                            <app-input *ngIf="parameter.fieldType=='LocalDateTime'"
+                                                [value]="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]"
+                                                (exportValue)="parameters[parameter.id]==undefined?undefined:parameters[parameter.id][1]=$event"
+                                                [label]="parameter.name + ' - '+  translate.transform('to')"
+                                                [type]="'datetime-local'">
+                                            </app-input>
+
+                                        </app-grid-tile>
+                                    </mat-grid-tile>
+
+                                </ng-container>
+                            </mat-grid-list>
+
+                        </div>
+                        <div
+                            style="min-height: 100px;max-height: 100px;background-color: transparent;display: flex;align-items: end;">
+                            <div style="text-align: center;display: flow-root;width: 100%;">
+                                <button mat-raised-button [color]="reportInfo.reportType=='EXECUTE'?'':'primary'" type="submit" style="width: calc(100% - 20px);color:white"
+                                [ngStyle]="{'background-color':reportInfo.reportType=='EXECUTE'?'red':''}"
+                                >
+                                    <span><i [ngClass]="reportInfo.reportType=='EXECUTE'?'fa fa-bolt':'fa fa-check'"></i></span>
+                                    <span style="margin-left: 10px;">{{translate.transform('execute')}}</span>
+                                </button>
+                                <button *ngIf="reportInfo.reportType=='STANDARD'||reportInfo.reportType=='SQL'" 
+                                mat-raised-button  type="button" (click)="excel()" style="width: calc(100% - 20px);background-color: green;color:white;margin-top: 10px;">
+                                    <span><i class="fa fa-file-excel-o"></i></span>
+                                    <span style="margin-left: 10px;">{{translate.transform('excel')}}</span>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" *ngIf="reportInfo.reportType!='EXECUTE'"> 
+
+                <div style="background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);"
+                    [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"
+                    class="mat-elevation-z8">
+
+                    <app-preview-report-table
+                    [reportId]="reportId"
+                    [tableHeight]="heightGrid-130"
+                    *ngIf="reportInfo.reportType=='STANDARD'||reportInfo.reportType=='SQL'"
+                    >
+                    </app-preview-report-table>
+
+                    <app-preview-report-graph
+                    [reportId]="reportId"
+                    *ngIf="reportInfo.reportType=='GRAPH'"
+                    [inHeight]="heightGrid-130"
+                    >
+                    </app-preview-report-graph>
+
+                    <app-preview-report-kpi
+                    [reportId]="reportId"
+                    *ngIf="reportInfo.reportType=='KPI'"
+                    [inHeight]="heightGrid-50"
+                    [reportName]="reportInfo.name"
+                    >
+                    </app-preview-report-kpi>
+
+                   <app-preview-report-jasper
+                    [reportId]="reportId"
+                    *ngIf="reportInfo.reportType=='JASPER'"
+                    [inHeight]="heightGrid-50"
+                    >
+                    </app-preview-report-jasper>
+
+
+                </div>
+
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </div>
+
+</app-page-title>

@@ -1,0 +1,33 @@
+<app-dialog-header
+[title]="title"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[rowHeight]="'100px'"
+[cols]="1"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-text-area
+        [value]="value.defaultValue1"
+        (exportValue)="value.defaultValue1=$event"
+        [label]="translate.transform('parameter')+'(SQL)'"
+        >
+
+        </app-text-area>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile *ngIf="searchOperation=='between'">
+    <app-grid-tile>
+        <app-text-area
+        [value]="value.defaultValue2"
+        (exportValue)="value.defaultValue2=$event"
+        [label]="translate.transform('parameter2')+'(SQL)'"
+        >
+
+        </app-text-area>
+    </app-grid-tile>
+</mat-grid-tile>
+</mat-grid-list>
+</app-dialog-header>

@@ -1,0 +1,102 @@
+<mat-grid-list [cols]="checkMobile.isMobile()?1:4" [rowHeight]="'80px'">
+    <form (ngSubmit)="submit()">
+        <mat-grid-tile *ngIf="value.type=='GRAPH'">
+            <app-grid-tile>
+                <app-select [label]="names.graphType" [value]="value.graphType" (exportValue)="value.graphType=$event"
+                    [required]="true" [list]="graphTypes">
+
+                </app-select>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [label]="names.code" [value]="value.code" (exportValue)="value.code=$event"
+                    [required]="true">
+
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+            <app-grid-tile style="display: flex;">
+                <app-input [label]="names.name" [value]="value.name" (exportValue)="value.name=$event" [required]="true"
+                    style="width: 100%;">
+                </app-input>
+                <div [ngStyle]="{'max-width':checkMobile.isMobile()?'30px':'135px','min-width':checkMobile.isMobile()?'30px':'135px'}"
+                    style="display: flex;justify-content: right;align-items: center;">
+                    <button mat-raised-button style="background-color: green;color:white" type="submit">
+                        <span><i class="fa fa-floppy-o"></i></span>
+                        <span *ngIf="!checkMobile.isMobile()"
+                            style="margin-left: 10px;">{{translate.transform('save')}}</span>
+                    </button>
+                </div>
+
+            </app-grid-tile>
+        </mat-grid-tile>
+    </form>
+</mat-grid-list>
+<div style="display: flex;min-height: calc(100vh - 262px); overflow: auto; width: 100%;" class="standardReportDiv">
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" style="width: 100%;">
+        <mat-grid-tile>
+            <div style="min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
+            max-width: calc(100% - 40px);
+            background-color: white;
+        padding-left: 15px;
+        border-radius: 20px;" class="mat-elevation-z8">
+                <div style="max-width: calc(100% - 10px);margin-top: 10px;">
+                    <mat-label style="width: 100%;">{{graphInstractions}}</mat-label>
+                </div>
+                <div style="max-width: calc(100% - 10px);margin-top: 10px;">
+                    <app-text-area [rows]="10" [value]="value.sqlQuery" (exportValue)="value.sqlQuery=$event"
+                        [label]="names.sqlQuery" [required]="true"
+                        *ngIf="value.type!='JASPER'"
+                        >
+                    </app-text-area>
+                    <input (change)="uploadFile($event)" type="file" *ngIf="value.type=='JASPER'"  />
+                </div>
+            </div>
+
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <div style="min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
+            max-width: calc(100% - 40px);
+            background-color: white;
+            padding-left: 15px;
+            border-radius: 20px;" class="mat-elevation-z8">
+                <div style="display: flex;">
+                    <h3 style="font-family: 'NotoSans';">{{translate.transform('filter')}}</h3>
+                    <span style="font-size: 20px;opacity: 75%; margin-left: 10px;align-content: center;"
+                        onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
+                            (click)="addFilter()"
+                            class="fa fa-plus"></i></span>
+                </div>
+
+                <mat-list>
+                    <ng-container *ngFor="let column of this.value.filters;let i=index">
+                        <mat-list-item style="max-height: 25px !important;">
+                            <span style="font-size: 15px;color:purple"> <i class="fa fa-filter"></i></span>
+                            <span style="font-size: 13px;margin-left: 10px;">{{column.code +' - '+column.name}}</span>
+
+                            <span style="margin-left: 5px;color:#005cbb;opacity: 75%;font-size: 15px;"
+                                onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
+                                    class="fa fa-pencil" 
+                                    (click)="editFilter(i)"
+                                    [matTooltip]="translate.transform('edit')"></i></span>
+
+                            <span style="margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;"
+                                    onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
+                                    class="fa fa-trash" 
+                                    (click)="deleteFilter(i)"
+                                    [matTooltip]="translate.transform('delete').substring(0,translate.transform('delete').length-5)"></i></span>
+                        </mat-list-item>
+                    </ng-container>
+
+                </mat-list>
+
+
+            </div>
+
+        </mat-grid-tile>
+    </mat-grid-list>

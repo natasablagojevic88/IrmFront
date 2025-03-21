@@ -1,0 +1,36 @@
+<app-page-title
+[title]="titles[activeLayer]"
+(addClicked)="add()"
+[paths]="paths"
+(pathClicked)="pathClicked()"
+[hasAdd]="activeLayer==0"
+>
+<div [ngStyle]="{'display':activeLayer==0?'':'none'}">
+    <app-table
+    [api]="'/api/dashboard/table'"
+    (namesExport)="names=$event"
+    (titleExport)="titles[0]=$event"
+    (editClicked)="edit($event)"
+    (enterClicked)="edit($event)"
+    (f2clicked)="add()"
+    [deleteapi]="'/api/dashboard'"
+    [width]="800"
+    [addButtons]="[reports,rolesButton]"
+    (actionExport)="addTableClicked($event)"
+    >
+    
+    </app-table>
+</div>
+
+<app-dashboard-reports
+*ngIf="activeLayer==1"
+[inDashboard]="selectedRow"
+[labelOfColumn]="names.columnnumber"
+[labelOfRows]="names.rownumber"
+[listReportBox]="listReportBox"
+(saveClicked)="saveClicked()"
+[map]="mapReport"
+>
+
+</app-dashboard-reports>
+</app-page-title>

@@ -1,0 +1,14 @@
+<app-dialog-header 
+[title]="'choose'"
+(submitExport)="submit()"
+>
+<app-select
+[label]="names.type"
+[value]="selectedValue"
+(exportValue)="selectedValue=$event"
+[required]="true"
+[list]="list"
+>
+
+</app-select>
+</app-dialog-header>

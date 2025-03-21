@@ -1,0 +1,13 @@
+<div style="width:100%;overflow: hidden;border-radius: 20px;"
+[ngStyle]="{'min-height':inHeight+'px','max-height':inHeight+'px'}"
+>
+<ng2-pdfjs-viewer
+[download]="true"
+[pdfSrc]="pdfSource"
+class="jasperViewer"
+[openFile]="false"
+[downloadFileName]="'print.pdf'"
+>
+
+</ng2-pdfjs-viewer>
+</div>

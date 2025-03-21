@@ -1,0 +1,282 @@
+/* You can add global styles to this file, and also import other style files */
+@import './indigo-pink.css';
+@import '../node_modules/font-awesome/css/font-awesome.css';
+@import '../node_modules/quill/dist/quill.bubble.css';
+@import '../node_modules/quill/dist/quill.core.css';
+@import '../node_modules/quill/dist/quill.snow.css';
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url(assets/NotoSans-Medium.ttf);
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    font-family: 'NotoSans';
+    padding: 0 !important;
+    font-size: 16px;
+    overflow: auto;
+    background-color: whitesmoke;
+}
+
+.defaultColor {
+    color: #005cbb
+}
+
+.activeMenu {
+    color: #005cbb !important;
+    background-color: white !important;
+}
+
+
+
+.defaultBackground {
+    color: white;
+    background-color: #005cbb
+}
+
+.defaultBackgroundHide {
+    background-color: whitesmoke;
+    color: #005cbb
+}
+
+.mat-mdc-option {
+    font-family: 'NotoSans' !important;
+}
+
+span {
+    font-family: 'NotoSans';
+    font-size: 16px;
+}
+
+.infoErrorClass {
+    .mat-mdc-simple-snack-bar {
+        background-color: red !important;
+        border-radius: 10px;
+
+    }
+
+    --mdc-snackbar-supporting-text-font:'InfluBG';
+    --mdc-snackbar-supporting-text-color: white;
+    --mdc-snackbar-container-color:red;
+    --mat-snack-bar-button-color:white;
+}
+
+.infoInfoClass {
+    .mat-mdc-simple-snack-bar {
+        background-color: green !important;
+        border-radius: 10px;
+
+    }
+
+    --mdc-snackbar-supporting-text-font:'InfluBG';
+    --mdc-snackbar-supporting-text-color: white;
+    --mdc-snackbar-container-color:green;
+    --mat-snack-bar-button-color:white;
+}
+
+*:focus {
+    outline: none;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mdc-button .mdc-button__label {
+    display: flex !important;
+    justify-items: center;
+    align-items: center;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+}
+
+.mdc-text-field--filled.mdc-text-field--disabled {
+    background-color: transparent !important;
+}
+
+td,
+th {
+    vertical-align: middle !important;
+}
+
+.mat-drawer-side {
+    border-width: 0px !important;
+}
+
+.mat-mdc-select {
+    font-family: 'NotoSans' !important;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+.mat-mdc-row {
+    height: 40px !important;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    cursor: pointer;
+}
+
+
+.mdc-data-table__cell {
+    font-size: 12px;
+    font-family: 'NotoSans' !important;
+}
+
+.mdc-data-table__row:last-child .mat-mdc-cell {
+    border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12)) !important;
+    border-bottom-width: var(--mat-table-row-item-outline-width, 1px) !important;
+    border-bottom-style: solid !important;
+}
+
+.demo-row-is-clicked {
+    background-color: rgb(0, 92, 187, 0.25) !important;
+}
+
+.mat-mdc-paginator {
+
+    font-size: 11px !important;
+    font-family: 'NotoSans' !important;
+
+}
+
+.filterTable {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.filterTableActive {
+    color: rgba(255, 0, 0, 0.3);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.filterTable:hover {
+    color: rgba(0, 0, 0, 0.8);
+
+}
+
+.filterTableActive:hover {
+    color: rgba(255, 0, 0, 0.8);
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__title {
+    font-family: 'NotoSans' !important;
+    background-color: #005cbb;
+    color: white !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 20px !important;
+}
+
+app-grid-tile {
+    width: calc(100% - 10px);
+    margin-right: 10px;
+}
+
+.mat-mdc-form-field-infix {
+    width: 100% !important;
+
+}
+
+.mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block !important;
+}
+
+.mat-mdc-slide-toggle {
+    width: 100%;
+}
+
+.mdc-switch {
+    margin-left: 15px !important;
+}
+
+.buttonTableOpacity {
+    opacity: 75%;
+    font-size: 20px;
+}
+
+.buttonTableOpacity:hover {
+    opacity: 100%;
+}
+
+tr.mat-mdc-footer-row td {
+    font-weight: bold;
+
+}
+
+.mat-mdc-footer-row {
+    height: 30px !important;
+
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+    border: 1px solid #005cbb;
+}
+
+.mdc-text-field--disabled .mdc-text-field__input {
+    color: black !important;
+    opacity: 75% !important;
+}
+
+.mdc-text-field--disabled .mdc-floating-label {
+    color: black !important;
+    opacity: 60% !important;
+}
+
+.mat-mdc-select-disabled {
+    color: black !important;
+    opacity: 75% !important;
+}
+
+.mat-mdc-slide-toggle .mdc-switch--disabled+label {
+    color: black !important;
+    opacity: 75% !important;
+}
+
+.sqlExecutorGrid1 {
+    max-height: calc(100vh - 230px) !important;
+    min-width: calc(40% - 20px) !important;
+    margin-right: 20px !important;
+}
+
+.sqlExecutorGrid2 {
+    max-height: calc(100vh - 230px) !important;
+    min-width: calc(60% - 10px) !important;
+    margin-right: 20px !important;
+}
+
+canvas {
+    max-width: 100%;
+}
+
+
+.responsive-text {
+    font-size: clamp(15px, 3vw, 40px);
+    width: fit-content;
+}
+
+.previewDashboardDiv canvas{
+    border-radius: 20px;
+}
+
+.mat-badge-medium.mat-badge-overlap .mat-badge-content {
+    background-color: red !important;
+  }

@@ -1,0 +1,13 @@
+<app-dialog-header
+[title]="title"
+[showSubmit]="false"
+>
+<app-table
+[api]="'/api/track/'+table+'/'+dataid"
+[buttons]="[]"
+(titleExport)="title=$event"
+[height]="400"
+>
+
+</app-table>
+</app-dialog-header>

@@ -1,0 +1,39 @@
+<app-dialog-header
+[title]="'changePassword'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="1"
+[rowHeight]="'80px'"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="password1"
+        (exportValue)="password1=$event"
+        [required]="true"
+        [type]="'password'"
+        [label]="'password'"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+
+    <app-grid-tile>
+        <app-input
+        [value]="password2"
+        (exportValue)="password2=$event"
+        [required]="true"
+        [type]="'password'"
+        [label]="'passwordAgain'"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

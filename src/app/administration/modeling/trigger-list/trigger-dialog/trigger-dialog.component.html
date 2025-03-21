@@ -1,0 +1,105 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:3"
+[rowHeight]="'80px'"
+>
+
+<!-- 1. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.code"
+        (exportValue)="value.code=$event"
+        [label]="names.code"
+        [required]="true"
+        [disabled]="value.id!=0"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 2. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.triggerTime"
+        (exportValue)="value.triggerTime=$event"
+        [label]="names.triggerTime"
+        [required]="true"
+        [list]="listTriggerTime"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.triggerEvent"
+        (exportValue)="value.triggerEvent=$event;changeEvent();"
+        [label]="names.triggerEvent"
+        [required]="true"
+        [list]="listTriggerEvent"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.triggerFunction"
+        (exportValue)="value.triggerFunction=$event"
+        [label]="names.triggerFunction"
+        [list]="listFunctions"
+        [required]="true"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3. row -->
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" *ngIf="value.triggerEvent!='LOCK'&&value.triggerEvent!='UNLOCK'">
+    <app-grid-tile>
+        <app-input
+        [value]="value.condition"
+        (exportValue)="value.condition=$event"
+        [label]="names.condition"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+
+
+<!-- 4. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [label]="names.id"
+        [disabled]="true"
+        [type]="'number'"
+        [width]="150"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

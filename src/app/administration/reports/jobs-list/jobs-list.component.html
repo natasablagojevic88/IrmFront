@@ -1,0 +1,22 @@
+<app-dialog-header
+[title]="title"
+[showSubmit]="false"
+>
+<app-page-title
+[title]="isModel?modelDTO.name: reportDTO.name"
+(addClicked)="add()"
+>
+<app-table
+[api]="api"
+[height]="280"
+(namesExport)="names=$event"
+(titleExport)="title=$event"
+(editClicked)="edit($event)"
+(enterClicked)="edit($event)"
+(f2clicked)="add()"
+[deleteapi]="'/api/report/job'"
+>
+</app-table>
+</app-page-title>
+
+</app-dialog-header>

@@ -1,0 +1,113 @@
+<div style="display: grid;">
+    <!-- toolbar -->
+    <mat-toolbar *ngIf="!loginPage" style="max-height: 51px;min-height: 51px;padding: 0">
+        <!-- toolbar first part -->
+        <div style="max-height: 50px;min-height: 50px;max-width: 400px;min-width: 400px;display: flex;border-bottom: solid 1px; ;"
+            [ngStyle]="{'min-width':(isMobile?'100%':'400px'),
+            'max-width':(isMobile?'100%':'400px'),
+            'border-color':showMenu?'#005cbb':((rootPage&&!hasDash)?'grey':'whitesmoke')
+            }"
+            [ngClass]="showMenu?'defaultBackground':'defaultBackgroundHide'"
+            >
+            <button mat-icon-button (click)="showMenu=!showMenu">
+                <span ><i class="fa fa-bars" aria-hidden="true"></i>
+                </span>
+            </button>
+            <button mat-flat-button (click)="goToHome()"
+                style="background-color: transparent; min-height: 48px;max-height: 48px;display: flex;align-items: center;justify-content: center; margin-left: 10px;
+                cursor: pointer;
+                "
+                >
+                <span style=" font-weight: bold; font-size: 30px;margin-top: 10px;"
+                [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
+                ><i
+                        class="fa fa-pie-chart"></i></span>
+                <span 
+                [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
+                style="font-weight: bold; font-size: 30px;margin-top: 10px;">IRM</span>
+            </button>
+
+            <ng-container *ngIf="isMobile">
+                <span class="example-spacer"></span>
+                <button (click)="router.navigate(['notification'])"  mat-icon-button>
+                    <span [matBadge]="unreadMessages" [matBadgeHidden]="unreadMessages==0" class="defaultColor"><i class="fa fa-bell" aria-hidden="true"></i>
+                    </span>
+                </button>
+                <button [matMenuTriggerFor]="menu" mat-icon-button>
+                    <span ><i class="fa fa-cog" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </ng-container>
+        </div>
+
+        <!-- toolbar second part -->
+        <div style="min-height: 50px;max-height: 50px; border-bottom: solid 1px;width: 100%; display: flex; justify-content: right;"
+            [ngStyle]="{'border-color':((rootPage&&!hasDash)?'grey':'whitesmoke'),
+                 'display':(isMobile?'none':'flex')}">
+
+            <button (click)="router.navigate(['notification'])"  mat-icon-button>
+                <span  [matBadge]="unreadMessages" [matBadgeHidden]="unreadMessages==0" class="defaultColor"><i class="fa fa-bell" aria-hidden="true"></i>
+                </span>
+            </button>
+
+            <button [matMenuTriggerFor]="menu" mat-icon-button>
+                <span class="defaultColor"><i class="fa fa-cog" aria-hidden="true"></i>
+                </span>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button (click)="userDetail()" mat-menu-item>
+                    <span><i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+                    <span  style="margin-left: 10px;">{{userDetailLabel}}</span>
+                </button>
+                <button (click)="changePassword()" mat-menu-item>
+                    <span><i class="fa fa-key" aria-hidden="true"></i>
+                    </span>
+                    <span  style="margin-left: 10px;">{{changePasswordLabel}}</span>
+                </button>
+                <button (click)="exit()" mat-menu-item>
+                    <span><i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </span>
+                    <span style="margin-left: 10px;">{{exitLabel}}</span>
+                </button>
+                
+            </mat-menu>
+        </div>
+
+
+    </mat-toolbar>
+    <div>
+
+    </div>
+
+    <mat-drawer-container style="min-height: calc( 100vh - 51px );max-height: calc( 100vh - 51px );width: 100%"
+        autosize>
+        <!-- menu -->
+        <mat-drawer [opened]="showMenu" #drawer mode="side" [ngStyle]="{'display':(loginPage?'none':''),
+            'min-width':(isMobile?'100%':'400px'),
+            'max-width':(isMobile?'100%':'400px')
+        }">
+            <div class="defaultBackground" style="min-height:  calc( 100vh - 51px );max-height:  calc( 100vh - 51px );
+          overflow: auto; color: white;" [ngStyle]="{
+          'min-width':(isMobile?'100%':'400px'),
+          'max-width':(isMobile?'100%':'400px')}">
+                <div style="padding: 10px;">
+                    <app-main-menu [menuDTO]="listMenu" (menuClicked)="menuClicked()"></app-main-menu>
+                </div>
+
+            </div>
+        </mat-drawer>
+
+
+        <!-- router -->
+        <div style="min-height:  calc( 100vh - 51px );max-height:  calc( 100vh - 51px );
+        width: 100;overflow: auto; background-color: whitesmoke;"
+            [ngStyle]="{'display':(isMobile&&showMenu?'none':'')}">
+            <router-outlet />
+        </div>
+
+    </mat-drawer-container>
+
+
+</div>

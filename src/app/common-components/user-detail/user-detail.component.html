@@ -1,0 +1,43 @@
+<app-dialog-header
+[showSubmit]="false"
+[title]="'detail'"
+>
+<mat-grid-list
+[cols]="1"
+[rowHeight]="'80px'"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.username"
+        [label]="value.names['username']"
+        [disabled]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        [label]="value.names['name']"
+        [disabled]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.email"
+        [label]="value.names['email']"
+        [disabled]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+</mat-grid-list>
+
+</app-dialog-header>

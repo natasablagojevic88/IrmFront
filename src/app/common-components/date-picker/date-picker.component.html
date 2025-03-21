@@ -1,0 +1,13 @@
+<mat-form-field [ngStyle]="{'width':width==0?'100%':width+'px'}"  >
+    <mat-label><span>{{translate.transform(label)}}</span>
+        <span aria-hidden="true" *ngIf="required"  style="color:red" class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c508571215-76 ng-star-inserted"></span>
+      </mat-label>
+    <input matInput [matDatepicker]="picker" [ngStyle]="{'width':width==0?'100%':width+'px'}"
+    [value]="currentValue"
+    [disabled]="disabled"
+    (dateChange)="changed($event)"
+    >
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  

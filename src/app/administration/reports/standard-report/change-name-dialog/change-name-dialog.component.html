@@ -1,0 +1,17 @@
+<app-dialog-header
+[title]="'changeName'"
+(submitExport)="submit()"
+>
+<div style="width: calc(100% - 10px);height: 80px;">
+        <app-input
+        style="width: 100%;"
+        [value]="value"
+        (exportValue)="value=$event"
+        [label]="'name'"
+        >
+    
+        </app-input>
+
+</div>
+
+</app-dialog-header>

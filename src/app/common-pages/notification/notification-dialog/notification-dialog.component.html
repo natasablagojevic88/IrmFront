@@ -1,0 +1,32 @@
+<app-dialog-header
+[showSubmit]="false"
+[title]="'detail'"
+>
+<div
+style="display: flow-root;width: 100%;"
+>
+<div style="min-width: 100%;">
+<app-input
+[value]="value.name"
+[label]="names.name"
+(exportValue)="value.name=$event"
+[disabled]="true"
+>
+</app-input>
+</div>
+
+
+<div style="min-width: 100%;">
+    <app-text-area
+    [value]="value.body"
+    [label]="names.body"
+    (exportValue)="value.body=$event"
+    [rows]="5"
+    [disabled]="true"
+    >
+    </app-text-area>
+    </div>
+    
+
+</div>
+</app-dialog-header>

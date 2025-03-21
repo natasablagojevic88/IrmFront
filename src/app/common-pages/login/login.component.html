@@ -1,0 +1,56 @@
+<div style="width: 100%; height: calc( 100vh - 51px ); display: flex; justify-content: center;align-items: center;">
+<div style="display: flow-root;text-align: center;">
+  <div >
+    <img src="assets/logo.png" width="70px" height="70px"/>
+  </div>
+  
+  <div>
+    <mat-label style="color:#005cbb; font-weight: bold; font-size: 25px;">Interface reporting  manager</mat-label>
+  </div>
+  <form (ngSubmit)="enter()">
+    <div style="margin-top: 20px;">
+      <app-input 
+      [width]="357"
+      [label]="'username'"
+      [value]="value.username"
+      (exportValue)="value.username=$event"
+      >
+      
+      </app-input>
+    </div>
+  
+  
+    <div style="margin-top: 10px;">
+      <app-input 
+      [width]="357"
+      [type]="'password'"
+      [label]="'password'"
+      [value]="value.password"
+      (exportValue)="value.password=$event"
+      >
+      
+      </app-input>
+    </div>
+  
+    <div style="margin-top: 10px;">
+      <app-select
+      [width]="357"
+      [list]="lang"
+      [label]="'language'"
+      [value]="value.language"
+      (exportValue)="value.language=$event"
+      >
+      
+      </app-select>
+    </div>
+  
+    <button color="primary" style="width: 357px;" mat-flat-button type="submit">
+      <span><i class="fa fa-sign-in" ></i></span>
+      <span style="margin-left: 5px;">{{translate.transform('login')}}</span>
+    </button>
+  
+  </form>
+</div>
+
+
+</div>

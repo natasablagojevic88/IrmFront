@@ -1,0 +1,65 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list [rowHeight]="'80px'" [cols]="1">
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.jasperFileName"
+        (exportValue)="value.jasperFileName=$event"
+        [label]="names.jasperFileName"
+        [required]="true"
+        [disabled]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <div style="overflow: auto;max-height: 80px; padding-left: 10px;padding-right: 10px;">
+            <span>{{jasperInfo}}</span>
+        </div>
+    </app-grid-tile>
+</mat-grid-tile>
+
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <input style="margin-left: 15px" type="file" (change)="changeFile($event)"/>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [label]="names.id"
+        [required]="true"
+        [disabled]="true"
+        [width]="150"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+
+</app-dialog-header>

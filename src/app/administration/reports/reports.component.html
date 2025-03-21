@@ -1,0 +1,63 @@
+<app-page-title
+[title]="titles[activeLayer]"
+(addClicked)="add()"
+[hasAdd]="activeLayer!=2"
+[paths]="paths"
+(pathClicked)="pathClicked($event)"
+[addButtons]="[refreshJasperButton]"
+(addButtonClicked)="exportJasperReport()"
+>
+
+<app-table
+    [ngStyle]="{'display':activeLayer==0?'':'none'}"
+    [api]="'/api/reportgroup/table'"
+    (namesExport)="names=$event"
+    (editClicked)="editReportGroup($event)"
+    (enterClicked)="editReportGroup($event)"
+    (f2clicked)="add()"
+    [width]="600"
+    [deleteapi]="'/api/reportgroup'"
+    [addButtons]="[reportButton,roleButton]"
+    (actionExport)="exportTableActionGroupRole($event)"
+    >
+</app-table>
+
+<app-table
+    [ngStyle]="{'display':activeLayer==1?'':'none'}"
+    [api]="'/api/report/table/'+this.activeGroup"
+    [width]="800"
+    (namesExport)="namesReport=$event"
+    (editClicked)="editReport($event)"
+    (enterClicked)="editReport($event)"
+    (f2clicked)="add()"
+    [deleteapi]="'/api/report'"
+    [addButtons]="[jobs]"
+    [reportTable]="true"
+    (actionExport)="showJobList($event)"
+    >
+</app-table>
+
+<app-standard-report
+*ngIf="activeLayer==2&&(activeGroupType=='STANDARD')"
+[value]=" this.reportDTO"
+[names]="this.namesReport"
+[listModels]="this.listModels"
+[listMetrics]="listMetrics"
+[listSortDirection]="listSortDirection"
+(save)="saveReport($event)"
+>
+
+</app-standard-report>
+
+<app-graph-report
+*ngIf="activeLayer==2&&(activeGroupType=='GRAPH'||activeGroupType=='SQL'||activeGroupType=='KPI'||activeGroupType=='JASPER'||activeGroupType=='EXECUTE')"
+[value]=" this.reportDTO"
+[names]="this.namesReport"
+[graphTypes]="listGraphTypes"
+(save)="saveReport($event)"
+[columnTypes]="listColumnType"
+>
+
+</app-graph-report>
+
+</app-page-title>

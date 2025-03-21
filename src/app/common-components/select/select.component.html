@@ -1,0 +1,28 @@
+<div style="display: flex;justify-content: center;">
+    <mat-form-field [ngStyle]="{'width':width==0?'100%':width+'px'}" style="max-width: 100%;">
+        <mat-label><span>{{translate.transform(label)}}</span>
+            <span aria-hidden="true" *ngIf="required"  style="color:red" class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c508571215-76 ng-star-inserted"></span>
+        </mat-label>
+        <mat-select [value]="currentValue" (valueChange)="changeValue($event)" [disabled]="disabled">
+        <ng-container *ngFor="let item of list"> 
+            <mat-option [value]="item.value">
+                <span *ngIf="icon" style="margin-right: 10px"><i [ngClass]="item.value"></i></span>
+                {{item.option}}
+            </mat-option>
+        </ng-container>
+    
+        </mat-select>
+      </mat-form-field>
+    <ng-container *ngIf="searchApi.length>0&&disabled==false">
+       <span style="font-size: 24px;align-content: center;margin-left: 5px;"> <i
+        onmouseleave="this.style.opacity='75%'" onmouseenter="this.style.opacity='100%'"
+        style="opacity: 75%;"
+        class="fa fa-search" (click)="find()" ></i></span>
+    </ng-container>
+    <ng-container *ngIf="hasClear&&disabled==false">
+        <span style="font-size: 24px;align-content: center;margin-left: 5px;"> <i
+         onmouseleave="this.style.opacity='75%'" onmouseenter="this.style.opacity='100%'"
+         style="opacity: 75%;"
+         class="fa fa-times" (click)="changeValue(undefined);" ></i></span>
+     </ng-container>
+</div>

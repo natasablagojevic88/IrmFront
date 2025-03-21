@@ -1,0 +1,67 @@
+<div style="display: block;">
+    <div style="min-height: 100px;max-height: 100px; border-color: grey; border-bottom: solid 1px;
+width: 100%;
+margin: 0;
+padding: 0;
+display: flex;
+"
+*ngIf="!hideTitle"
+>
+        <div style="width: 100%; min-height: 100px;max-height: 100px;
+        overflow:auto;
+        ">
+            <mat-grid-list [cols]="1" [rowHeight]="paths.length>0?'48px':'100px'">
+                <mat-grid-tile>
+                    <app-grid-tile>
+                        <span class="defaultColor" style="margin-left: 15px;"
+                    [ngStyle]="{'font-size':(checkMobile.isMobile()?'20px':'30px')}">{{translate.transform(title)}}</span>
+                    </app-grid-tile>
+                </mat-grid-tile>
+
+                <mat-grid-tile *ngIf="paths.length>0">
+                    <app-grid-tile>
+                        
+                            <div style="margin-left: 15px;overflow: auto;">
+                                <mat-chip-set >
+                                    <ng-container *ngFor="let path of paths">
+                                        <mat-chip [value]="path.value" (click)="clickPath(path.value)">
+                                            <span style="font-size: 10px;">{{path.name}}</span>
+                                        </mat-chip>
+                                    </ng-container>
+                                  </mat-chip-set>
+                            </div>
+                    </app-grid-tile>
+                </mat-grid-tile>
+                
+            </mat-grid-list>
+           
+        </div>
+        <div
+            style="min-width: 100px; min-height: 100px;max-height: 100px;display: flex;align-items: center;justify-content: right;margin-right: 15px;"
+            *ngIf="hasAdd||addButtons.length>0"
+            >
+            <button mat-raised-button color="primary" (click)="addClicked.emit(true)" *ngIf="hasAdd">
+                <span><i class="fa fa-plus"></i></span>
+                <span *ngIf="!checkMobile.isMobile()" style="margin-left: 10px;">{{translate.transform('add')+'[F2]'}}</span>
+            </button>
+            <span *ngIf="addButtons.length>0" style="text-align: center;cursor: pointer;"><i style="font-size: 26px;min-width: 25px;min-height: 25px;opacity:75%" 
+                onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
+                class="fa fa-ellipsis-v" [matMenuTriggerFor]="menu"></i></span>
+
+                <mat-menu #menu="matMenu">
+                    <ng-container *ngFor="let button of addButtons">
+                        <button mat-menu-item (click)="addButtonClicked.emit(button.code)">
+                            <span [ngStyle]="{'color':button.color}"><i class="{{button.icon}}"></i></span>
+                            <span style="margin-left: 10px">{{translate.transform(button.name)}}</span>
+                        </button>
+                    </ng-container>
+                  </mat-menu>
+        </div>
+    </div>
+
+    <div style="max-height: calc( 100vh - 182px ); overflow: auto;
+padding: 15px;
+">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<app-dialog-header
+[title]="value.id==0?'add':(disabledItems?'detail':'edit')"
+(submitExport)="submit()"
+[showSubmit]="!disabledItems"
+>
+
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:columnsNumber"
+[rowHeight]="'80px'"
+>
+    <ng-container *ngFor="let row of mapFields">
+        <ng-container *ngFor="let column of row">
+            <ng-container *ngIf="!(checkMobile.isMobile()&&column==undefined)">
+                <mat-grid-tile [colspan]="column==undefined?1:(checkMobile.isMobile()?1:column.colspan)" >
+                    <app-grid-tile *ngIf="column!=undefined">
+
+                        <app-input
+                        *ngIf="column.columnType=='STRING'&&!hasListOfValues(column.code)"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [required]="!column.nullable"
+                        [disabled]="column.disabled||disabledItems"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-input>
+
+
+                        <app-select
+                        *ngIf="hasListOfValues(column.code)&&column.columnType=='STRING'"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [required]="!column.nullable"
+                        [disabled]="column.disabled||disabledItems"
+                        [list]="this.codebooks[column.code]"
+                        [hasClear]="true"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-select>
+
+                        <app-input
+                        *ngIf="column.columnType=='INTEGER'||column.columnType=='LONG'||column.columnType=='BIGDECIMAL'"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [type]="'number'"
+                        [required]="!column.nullable"
+                        [disabled]="column.disabled||disabledItems"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-input>
+
+                        <app-date-picker
+                        *ngIf="column.columnType=='LOCALDATE'"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [required]="!column.nullable"
+                        [disabled]="column.disabled||disabledItems"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-date-picker>
+
+                        <app-input
+                        *ngIf="column.columnType=='LOCALDATETIME'"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [required]="!column.nullable"
+                        [disabled]="column.disabled||disabledItems"
+                        [type]="'datetime-local'"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-input>
+
+
+                        <app-check-box
+                        *ngIf="column.columnType=='BOOLEAN'"
+                        [value]="value[column.code]"
+                        (exportValue)="value[column.code]=$event"
+                        [label]="column.name"
+                        [disabled]="column.disabled||disabledItems"
+                        (valueInput)="inputChange(column)"
+                        >
+                        </app-check-box>
+
+                        <div *ngIf="column.columnType=='CODEBOOK'" style="display: flex;min-width: 100%;">
+                            <app-select
+                            style="width: 100%;"
+                            [value]="value[column.code]"
+                            (exportValue)="value[column.code]=$event;changeCodebook(column.code,$event)"
+                            [label]="column.name"
+                            [disabled]="column.disabled||disabledItems"
+                            [required]="!column.nullable"
+                            [hasClear]="true"
+                            [list]="codebooks[column.code]"
+                            (valueInput)="inputChange(column)"
+                            [searchApi]="column.parentCode==undefined?'/api/preview/model/codebooks/table/'+modelId+'/'+column.code+'/-1':
+                            (value[column.parentCode]==undefined?'':'/api/preview/model/codebooks/table/'+modelId+'/'+column.code+'/'+value[column.parentCode])
+                            "
+                            >
+                            </app-select>
+                            <span style="max-width: 24px;font-size: 24px;align-content: center;"
+                            *ngIf="value[column.code]!=undefined"
+                            >
+                                <i class="fa fa-info-circle"
+                                style="opacity: 75%;" onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
+                                (click)="infoClicked(value[column.code],column.code)"
+                                ></i></span>
+
+                        </div>
+
+                    </app-grid-tile>
+                </mat-grid-tile>
+            </ng-container>
+
+        </ng-container>
+    </ng-container>
+</mat-grid-list>
+
+</app-dialog-header>

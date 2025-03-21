@@ -1,0 +1,37 @@
+<app-dialog-header
+[title]="title"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[rowHeight]="'80px'"
+[cols]="1"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.ordernum"
+        (exportValue)="value.ordernum=$event"
+        [label]="'number'"
+        [type]="'number'"
+        >
+        </app-input>
+
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.sortDirection"
+        (exportValue)="value.sortDirection=$event"
+        [label]="'direction'"
+        [list]="listSortDirection"
+        [required]="true"
+        >
+        </app-select>
+
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

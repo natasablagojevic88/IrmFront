@@ -1,0 +1,66 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:2"
+[rowHeight]="'80px'"
+>
+<!-- 1. row -->
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 2. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.rownumber"
+        (exportValue)="value.rownumber=$event"
+        [label]="names.rownumber"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.columnnumber"
+        (exportValue)="value.columnnumber=$event"
+        [label]="names.columnnumber"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [label]="names.id"
+        [required]="true"
+        [type]="'number'"
+        [disabled]="true"
+        [width]="150"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

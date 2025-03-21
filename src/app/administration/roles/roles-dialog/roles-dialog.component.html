@@ -1,0 +1,31 @@
+<app-dialog-header [title]="value.id==0?'add':'edit'"
+(submitExport)="submitForm()"
+>
+    <mat-grid-list [rowHeight]="'80'" [cols]="checkMobile.isMobile()?1:2">
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.code" (exportValue)="value.code=$event" [label]="names.code"
+                    [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+            <app-grid-tile>
+                <app-input [value]="value.description" (exportValue)="value.description=$event" [label]="names.description">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.id" (exportValue)="value.id=$event" [label]="names.id" [width]="150"
+                    [width]="150" [disabled]="true" [type]="'number'"
+                    [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</app-dialog-header>

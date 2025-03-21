@@ -1,0 +1,128 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:3"
+[rowHeight]="'80px'"
+>
+<!-- 1. row -->
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:3"> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.name"
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [required]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 2. row -->
+<mat-grid-tile> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.fromMail"
+        [value]="value.fromMail"
+        (exportValue)="value.fromMail=$event"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.host"
+        [value]="value.host"
+        (exportValue)="value.host=$event"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile > 
+    <app-grid-tile>
+        <app-input
+        [label]="names.port"
+        [value]="value.port"
+        (exportValue)="value.port=$event"
+        [required]="true"
+        [type]="'number'"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3. row -->
+<mat-grid-tile> 
+    <app-grid-tile>
+        <app-check-box
+        [label]="names.authentication"
+        [value]="value.authentication"
+        (exportValue)="value.authentication=$event"
+        >
+        </app-check-box>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile> 
+    <app-grid-tile>
+        <app-select
+        [label]="names.security"
+        [value]="value.security"
+        (exportValue)="value.security=$event"
+        [list]="listSecurity"
+        [required]="true"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="!checkMobile.isMobile()"></mat-grid-tile>
+
+<!-- 4. row -->
+<mat-grid-tile *ngIf="value.authentication=='true'"> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.username"
+        [value]="value.username"
+        (exportValue)="value.username=$event"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="value.authentication=='true'"> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.password"
+        [value]="value.password"
+        (exportValue)="value.password=$event"
+        [required]="value.id==0"
+        [type]="'password'"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+<mat-grid-tile *ngIf="value.authentication=='true'&&(!checkMobile.isMobile())"></mat-grid-tile>
+
+<!-- 5. row -->
+<mat-grid-tile> 
+    <app-grid-tile>
+        <app-input
+        [label]="names.id"
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [required]="true"
+        [width]="150"
+        [type]="'number'"
+        [disabled]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

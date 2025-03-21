@@ -1,0 +1,75 @@
+<app-dialog-header [title]="'filter'" (submitExport)="submitForm()">
+    <mat-grid-list [cols]="3" [rowHeight]="'80px'">
+
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [label]="'column'" *ngIf="column.columnType!='Boolean'" [disabled]="true" [value]="column.name" [required]="true">
+
+                </app-input>
+
+                <app-check-box *ngIf="column.columnType=='Boolean'" [value]="value.parameter1" (exportValue)="value.parameter1=$event" [label]="column.name"></app-check-box>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-select [label]="'operation'" [list]="list" [value]="value.searchOperation"
+                    *ngIf="column.columnType!='Boolean'" (exportValue)="value.searchOperation=$event"
+                    [disabled]="findEnumList(column.code).length>0"
+                    [required]="true">
+
+                </app-select>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-grid-tile *ngIf="value.searchOperation!='isnull'&&value.searchOperation!='isnotnull'">
+                <app-input *ngIf="column.columnType=='String'&& findEnumList(column.code).length==0" [required]="true" [value]="value.parameter1"
+                (exportValue)="value.parameter1=$event" [label]="'parameter'">
+            </app-input>
+            
+            <app-select *ngIf="column.columnType=='String'&& findEnumList(column.code).length>0" [required]="true" [value]="value.parameter1"
+            (exportValue)="value.parameter1=$event" [label]="'parameter'" [list]="findEnumList(column.code)"></app-select>
+
+            <app-input *ngIf="column.columnType=='Long'
+        || column.columnType=='BigDecimal'
+        || column.columnType=='Integer'
+        " [required]="true" [type]="'number'" [value]="value.parameter1" (exportValue)="value.parameter1=$event"
+                [label]="'parameter'">
+            </app-input>
+
+            <app-date-picker *ngIf="column.columnType=='LocalDate'" [required]="true" [value]="value.parameter1"
+                (exportValue)="value.parameter1=$event" [label]="'parameter'"></app-date-picker>
+
+            <app-input *ngIf="column.columnType=='LocalDateTime'" [required]="true" [type]="'datetime-local'"
+                [value]="value.parameter1" (exportValue)="value.parameter1=$event" [label]="'parameter'">
+            </app-input>
+
+            </app-grid-tile>
+
+        </mat-grid-tile>
+
+        <ng-container *ngIf="value.searchOperation=='between'">
+            <mat-grid-tile><app-grid-tile></app-grid-tile></mat-grid-tile>
+            <mat-grid-tile><app-grid-tile></app-grid-tile></mat-grid-tile>
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input *ngIf="column.columnType=='Long'
+        || column.columnType=='BigDecimal'
+        || column.columnType=='Integer'
+        " [required]="true" [type]="'number'" [value]="value.parameter2" (exportValue)="value.parameter2=$event"
+                        [label]="'parameter2'"></app-input>
+
+                    <app-date-picker *ngIf="column.columnType=='LocalDate'" [required]="true" [value]="value.parameter2"
+                        (exportValue)="value.parameter2=$event" [label]="'parameter'">
+
+                    </app-date-picker>
+
+                    <app-input *ngIf="column.columnType=='LocalDateTime'" [required]="true" [type]="'datetime-local'"
+                        [value]="value.parameter2" (exportValue)="value.parameter2=$event" [label]="'parameter2'">
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</app-dialog-header>

@@ -1,0 +1,65 @@
+<app-dialog-header [title]="value.id==0?'add':'edit'" (submitExport)="submit()">
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="'80px'">
+
+        <!--  first row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.username" (exportValue)="value.username=$event" [label]="names.username"
+                    [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+
+            <app-grid-tile>
+                <app-input [value]="value.password" (exportValue)="value.password=$event" [label]="names.password"
+                    [type]="'password'" [required]="value.id==0">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+
+        <!--  second row -->
+        <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+
+            <app-grid-tile>
+                <app-input [value]="value.name" (exportValue)="value.name=$event" [label]="names.name"
+                    [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <!--  third row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.email" (exportValue)="value.email=$event" [label]="names.email"
+                    >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-check-box
+                [value]="value.active"
+                (exportValue)="value.active=$event"
+                [label]="names.active"
+                ></app-check-box>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+         <!--  fourth row -->
+
+         <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.id" (exportValue)="value.id=$event" [label]="names.id"
+                    [width]="150"
+                    [disabled]="true"
+                    [type]="'number'" [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+</app-dialog-header>

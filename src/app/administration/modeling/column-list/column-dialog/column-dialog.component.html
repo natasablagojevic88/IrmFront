@@ -1,0 +1,231 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:4"
+[rowHeight]="'100px'"
+>
+<!-- 1. row -->
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.code"
+        (exportValue)="value.code=$event"
+        [label]="names.code"
+        [required]="true"
+        [disabled]="value.id!=0"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+ <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3">
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+ <!-- 2. row -->
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-check-box
+        [value]="value.nullable"
+        (exportValue)="value.nullable=$event"
+        [label]="names.nullable"
+        [disabled]="value.id!=0||value.columnType=='BOOLEAN'"
+        >
+        </app-check-box>
+    </app-grid-tile>
+ </mat-grid-tile>
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.columnType"
+        (exportValue)="value.columnType=$event;changeType($event);changeCodebook()"
+        [label]="names.columnType"
+        [required]="true"
+        [disabled]="value.id!=0"
+        [list]="listType"
+        >
+        </app-select>
+    </app-grid-tile>
+ </mat-grid-tile>
+ <mat-grid-tile *ngIf="!checkMobile.isMobile()||value.columnType=='STRING'||value.columnType=='BIGDECIMAL'||value.columnType=='CODEBOOK'">
+    <app-grid-tile>
+        <app-input
+        *ngIf="value.columnType=='STRING'"
+        [value]="value.length"
+        (exportValue)="value.length=$event"
+        [label]="names.length"
+        [required]="true"
+        [disabled]="value.id!=0"
+        [type]="'number'"
+        >
+        </app-input>
+
+        <app-input
+        *ngIf="value.columnType=='BIGDECIMAL'"
+        [value]="value.precision"
+        (exportValue)="value.precision=$event"
+        [label]="names.precision"
+        [required]="true"
+        [disabled]="value.id!=0"
+        [type]="'number'"
+        >
+        </app-input>
+
+        <app-select
+        *ngIf="value.columnType=='CODEBOOK'"
+        [value]="value.codebookModelId"
+        (exportValue)="value.codebookModelId=$event;changeCodebook()"
+        [label]="names.codebookModelId"
+        [required]="true"
+        [disabled]="value.id!=0"
+        [list]="listCodebook"
+        [searchApi]="'/api/model/codebook/table'"
+        >
+        </app-select>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+
+ <mat-grid-tile *ngIf="!checkMobile.isMobile()||(showParent&&value['disabled']=='false')">
+    <app-grid-tile *ngIf="(showParent&&value['disabled']=='false')">
+        <app-select
+        [value]="value.parentId"
+        (exportValue)="value.parentId=$event"
+        [label]="names.parentId"
+        [required]="true"
+        [disabled]="value.id!=0"
+        [list]="listParentColumn"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3.row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.rowNumber"
+        (exportValue)="value.rowNumber=$event"
+        [label]="names.rowNumber"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.columnNumber"
+        (exportValue)="value.columnNumber=$event"
+        [label]="names.columnNumber"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.colspan"
+        (exportValue)="value.colspan=$event"
+        [label]="names.colspan"
+        [required]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-check-box
+        [value]="value.disabled"
+        (exportValue)="value.disabled=$event"
+        [label]="names.disabled"
+        >
+        </app-check-box>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+
+<!--  4. row -->
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:4">
+    <app-grid-tile>
+        <app-input
+        [value]="value.defaultValue"
+        (exportValue)="value.defaultValue=$event"
+        [label]="names.defaultValue"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+ <!--  5. row -->
+<mat-grid-tile [colspan]="checkMobile.isMobile()?1:4" *ngIf="value.columnType=='STRING'">
+    <app-grid-tile>
+        <app-text-area
+        [value]="value.listOfValues"
+        (exportValue)="value.listOfValues=$event"
+        [label]="names.listOfValues"
+        >
+        </app-text-area>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+<!--  6. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-check-box
+        [value]="value.showInTable"
+        (exportValue)="value.showInTable=$event"
+        [label]="names.showInTable"
+        >
+        </app-check-box>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+
+ <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+    <app-grid-tile>
+        <app-select
+        [value]="value.eventFunction"
+        (exportValue)="value.eventFunction=$event"
+        [label]="names.eventFunction"
+        [list]="listJsonFunction"
+        [hasClear]="true"
+        >
+        </app-select>
+    </app-grid-tile>
+
+ </mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [label]="names.id"
+        [required]="true"
+        [disabled]="true"
+        [type]="'number'"
+        >
+        </app-input>
+    </app-grid-tile>
+ </mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>

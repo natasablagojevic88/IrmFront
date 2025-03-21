@@ -1,0 +1,73 @@
+<app-page-title
+[title]="inDashboardData==undefined?title:'Interface reporting manager'"
+[hasAdd]="false"
+[addButtons]="addButtonList"
+(addButtonClicked)="addButtonClick($event)"
+>
+<div
+style="width: 100%;max-height: 50px;min-height: 50px;text-align: right;"
+>
+<button mat-raised-button
+style="background-color: green;color:white"
+(click)="refreshDashboard()"
+>
+<span><i class="fa fa-refresh"></i></span>
+<span *ngIf="!checkMobile.isMobile()" style="margin-left: 10px;">{{translate.transform('reloadData')}}</span>
+</button>
+</div>
+
+<div style="width: 100;overflow: auto;min-height: calc(100vh - 235px);max-height: calc(100vh - 235px);"
+class="previewDashboardDiv"
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:columns"
+[rowHeight]="(height/rows-5)+'px'"
+>
+<ng-container *ngFor="let item of items">
+   <mat-grid-tile [colspan]="checkMobile.isMobile()?1:item.colspan" 
+   [rowspan]="item.rowspan"
+   *ngIf="!(item.reportId==undefined&&checkMobile.isMobile())"
+   >
+    <div style="border-radius: 20px;width: calc(100% - 5px)"
+    [ngStyle]="{'height':((height/rows)*item.rowspan-10)+'px','background-color':item.reportId==undefined?'transparent':'white'}"
+    >
+   
+    <app-preview-report-table
+    *ngIf="item.reportType=='STANDARD'||item.reportType=='SQL'"
+    [reportId]="item.reportId"
+    [tableHeight]="((height/rows)*item.rowspan)-80"
+    [inParameter]="item.parameters"
+    [inData]="item.sqlResultDTO"
+    >
+    </app-preview-report-table>
+    
+    <app-preview-report-graph
+    *ngIf="item.reportType=='GRAPH'"
+    [reportId]="item.reportId"
+    [inHeight]="((height/rows)*item.rowspan)-10"
+    [inData]="item.sqlResultDTO"
+    >
+    </app-preview-report-graph>
+
+    <app-preview-report-kpi
+    *ngIf="item.reportType=='KPI'"
+    [reportId]="item.reportId"
+    [inHeight]="((height/rows)*item.rowspan)-10"
+    [inData]="item.sqlResultDTO"
+    [reportName]="item.name"
+    >
+    </app-preview-report-kpi>
+
+    <app-preview-report-jasper
+    *ngIf="item.reportType=='JASPER'"
+    [reportId]="item.reportId"
+    [inHeight]="((height/rows)*item.rowspan)-10"
+    [inData]="item.jasperBase64"
+    >
+    </app-preview-report-jasper>
+    </div>
+   </mat-grid-tile>
+</ng-container>
+</mat-grid-list>
+</div>
+</app-page-title>

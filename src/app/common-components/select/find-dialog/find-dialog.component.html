@@ -1,0 +1,17 @@
+<app-dialog-header
+[showSubmit]="false"
+[title]="'choose'"
+>
+
+<app-table
+[api]="api"
+[buttons]="[]"
+[height]="400"
+[addButtons]="[checkButton]"
+(actionExport)="checkRow($event)"
+(enterClicked)="selectRow($event)"
+>
+
+</app-table>
+
+</app-dialog-header>

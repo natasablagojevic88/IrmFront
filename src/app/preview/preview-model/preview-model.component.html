@@ -1,0 +1,34 @@
+<app-page-title [title]="title[activeLayer]"
+[hasAdd]="canChange[activeLayer]"
+(addClicked)="add()"
+[paths]="paths" (pathClicked)="back($event)"
+[addButtons]="dialogButtons[activeLayer]"
+(addButtonClicked)="pageTitleClicked($event)"
+>
+    <ng-container *ngFor="let model of models;let i=index">
+        <ng-container>
+
+            <app-table [api]="api[i]" 
+            (titleExport)="title[i]=$event"
+             (modelExport)="modelDTOS[i]=$event"
+             (fieldsExport)="fields[i]=$event"
+             (exportSubtables)="subtables[i]=$event"
+             (f2clicked)="canChange[i]?add():''"
+             (editClicked)="edit($event)"
+             (enterClicked)="edit($event)"
+             [deleteapi]="canChange[i]?deleteApis[i]:''"
+             [addButtons]="addButons[i]"
+             (actionExport)="exportAction($event)"
+             (canChange)="canChange[i]=$event"
+             [ngStyle]="{'display':activeLayer==i?'':'none'}"
+             [previewTable]="true"
+             (infoClicked)="previewCodebookInfo($event)"
+             [checkTotalApi]="checkTotalApi[i]"
+             >
+            </app-table>
+
+        </ng-container>
+
+    </ng-container>
+
+</app-page-title>

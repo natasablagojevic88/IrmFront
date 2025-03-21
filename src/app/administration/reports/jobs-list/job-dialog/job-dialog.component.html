@@ -1,0 +1,220 @@
+<app-dialog-header [title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:3" [rowHeight]="'100px'">
+        <!-- 1. row -->
+        <mat-grid-tile >
+            <app-grid-tile>
+                <app-input [value]="value.name" (exportValue)="value.name=$event" [label]="names.name"
+                    [disabled]="value.id!=0"
+                    [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.cron" 
+                (exportValue)="value.cron=$event" 
+                [label]="names.cron"
+                [required]="true">
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="(this.reportType=='STANDARD'||this.reportType=='SQL')||(!checkMobile.isMobile())">
+            <app-grid-tile>
+                <app-check-box [value]="value.conditional" 
+                (exportValue)="value.conditional=$event" 
+                [label]="names.conditional"
+                *ngIf="this.reportType=='STANDARD'||this.reportType=='SQL'"
+                >
+                </app-check-box>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <!-- 2. row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-select [value]="value.type" (exportValue)="value.type=$event;changeType($event)" [label]="names.type"
+                    [required]="true" [list]="reportJobTypeList" [disabled]="reportJobTypeList.length==1">
+                </app-select>
+            </app-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="(this.reportType!='EXECUTE'&&(value.mailType=='ATTACHMENT'||value.type=='TRANSFER'))||(!checkMobile.isMobile())">
+            <app-grid-tile>
+                <app-select [value]="value.fileType" (exportValue)="value.fileType=$event" [label]="names.fileType"               
+                    [required]="true" [list]="reportJobFileTypeList" [disabled]="reportJobFileTypeList.length==1"
+                    *ngIf="this.reportType!='EXECUTE'&&(value.mailType=='ATTACHMENT'||value.type=='TRANSFER')">
+                </app-select>
+            </app-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="(value.type=='MAIL'||value.type=='TRANSFER')||(!checkMobile.isMobile())">
+            <app-grid-tile>
+                <app-select 
+                    [value]="value.smtpServerId" 
+                    (exportValue)="value.smtpServerId=$event"
+                    [hasClear]="true"
+                    [label]="names.smtpServerId" 
+                    [required]="value.type=='MAIL'||isErrorMailActive()" 
+                    [list]="listSmtp" 
+                    >
+                </app-select>
+                
+            </app-grid-tile>
+        </mat-grid-tile>
+
+
+        <ng-container *ngIf="value.type!='EXECUTE'"> 
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input [value]="value.fileName" 
+                    (exportValue)="value.fileName=$event" 
+                    [label]="names.fileName"
+                    >
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-check-box [value]="value.addTimeStamp" 
+                    (exportValue)="value.addTimeStamp=$event" 
+                    [label]="names.addTimeStamp"
+                    *ngIf="value.type!='IMPORT'"
+                    >
+                    </app-check-box>
+
+                    <app-input 
+                    [value]="value.parentQuery" 
+                    (exportValue)="value.parentQuery=$event" 
+                    [label]="names.parentQuery"
+                    *ngIf="value.type=='IMPORT'"
+                    >
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="(value.type=='TRANSFER'||value.type=='IMPORT')||!checkMobile.isMobile()">
+                <app-grid-tile>
+                    <app-input [value]="value.filePath" 
+                    (exportValue)="value.filePath=$event" 
+                    [label]="names.filePath"
+                    *ngIf="value.type=='TRANSFER'||value.type=='IMPORT'"
+                    [required]="true">
+                    </app-input>
+                </app-grid-tile>
+               
+            </mat-grid-tile>
+
+        </ng-container>
+       
+        <ng-container *ngIf="value.type=='MAIL'">
+
+        <!-- 3. row -->
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input [value]="value.mailTo" 
+                    (exportValue)="value.mailTo=$event" 
+                    [label]="names.mailTo"
+                    [required]="true">
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input [value]="value.mailSubject" 
+                    (exportValue)="value.mailSubject=$event" 
+                    [label]="names.mailSubject"
+                    [required]="true">
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-select 
+                    [value]="value.mailType" 
+                    (exportValue)="value.mailType=$event;changeMailType($event)" 
+                    [label]="names.mailType"
+                    [disabled]="reportType=='JASPER'"
+                    [list]="reportJobMailType"
+                    [required]="true">
+                    </app-select>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+    
+
+             <!-- 5. row -->
+
+             <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" [rowspan]="2">
+                <app-grid-tile>
+                    <div style="width: 100%;max-height: 200px; overflow: auto;">
+                        <quill-editor style="width: 100%;" [(ngModel)]="value.mailBody" ></quill-editor>
+                    </div>
+                   
+                </app-grid-tile>
+            </mat-grid-tile>
+
+        </ng-container>
+
+         <!-- 6. row -->
+
+        <ng-container *ngIf="value.fileType=='CSV'&&value.mailType=='ATTACHMENT'">
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input [value]="value.csvDelimiter" 
+                    (exportValue)="value.csvDelimiter=$event" 
+                    [label]="names.csvDelimiter"
+                    [required]="true">
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-check-box [value]="value.csvHasHeader" 
+                    (exportValue)="value.csvHasHeader=$event" 
+                    [label]="names.csvHasHeader"
+                    >
+                    </app-check-box>
+                </app-grid-tile>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="!checkMobile.isMobile()"></mat-grid-tile>
+        </ng-container>
+
+         <!-- 7. row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.mailError" 
+                (exportValue)="value.mailError=$event" 
+                [label]="names.mailError"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile >
+            <app-check-box [value]="value.active" 
+                    (exportValue)="value.active=$event" 
+                    [label]="names.active"
+                    >
+                    </app-check-box>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input [value]="value.id" 
+                (exportValue)="value.id=$event" 
+                [label]="names.id"
+                [width]="150"
+                [disabled]="true"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+
+</app-dialog-header>

@@ -1,0 +1,32 @@
+ <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="background-color: #005cbb;">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <button
+      mat-flat-button
+      style="background-color: white;width: 100%;display: flex;align-items: center;justify-content: start;
+      background-color:  #005cbb;color: white;
+      "
+      (click)="$event.stopPropagation();menuClicked.emit(true)"
+      [routerLink]="node.url"
+      [routerLinkActive]="'activeMenu'"
+      [queryParams]="{'id':node.id}"
+      >
+      <span> <i style="margin-left: 5px;" [ngClass]="node.icon"> </i></span>
+      <span style="margin-left: 5px;">{{node.name}}</span>
+      </button>
+  
+    </mat-tree-node>
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
+                   >
+                   <button mat-flat-button matTreeNodeToggle
+                   [attr.aria-label]="'Toggle ' + node.name"
+                   style="background-color: white;width: 100%;display: flex;align-items: center;justify-content: start;
+                   background-color:  #005cbb;color: white;
+                   "
+                   >
+            <span> <i [ngClass]="treeControl.isExpanded(node) ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"> </i></span>
+            <span> <i style="margin-left: 5px;" [ngClass]="node.icon"> </i></span>
+            <span style="margin-left: 5px;"> {{node.name}}</span>
+           </button>
+    </mat-tree-node>
+  </mat-tree>
+  

@@ -1,0 +1,22 @@
+<app-dialog-header
+[title]="names.TestSmtpDTO"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[rowHeight]="'80px'"
+[cols]="1"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [label]="names.toAddress"
+        [value]="value.toAddress"
+        (exportValue)="value.toAddress=$event"
+        [required]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+</mat-grid-list>
+</app-dialog-header>

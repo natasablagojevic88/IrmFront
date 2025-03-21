@@ -1,0 +1,16 @@
+<app-page-title
+[title]="title"
+[hasAdd]="false"
+>
+<app-table
+[api]="'/api/notification/table'"
+[buttons]="[]"
+(titleExport)="title=$event"
+(namesExport)="names=$event"
+[addButtons]="[previewButton,unreadButton]"
+(enterClicked)="previewRow($event)"
+(actionExport)="addClick($event)"
+>
+
+</app-table>
+</app-page-title>

@@ -1,0 +1,51 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="'80px'">
+
+    <!-- 1. row -->
+    <mat-grid-tile>
+        <app-grid-tile>
+            <app-input
+            [label]="names.code"
+            [value]="value.code"
+            (exportValue)="value.code=$event"
+            [required]="true"
+            >
+            </app-input>
+        </app-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!checkMobile.isMobile()"></mat-grid-tile>
+
+    <!-- 2. row -->
+    <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
+        <app-grid-tile>
+            <app-input
+            [label]="names.name"
+            [value]="value.name"
+            (exportValue)="value.name=$event"
+            [required]="true"
+            >
+            </app-input>
+        </app-grid-tile>
+    </mat-grid-tile>
+
+    <!-- 3. row -->
+    <mat-grid-tile>
+        <app-grid-tile>
+            <app-input
+            [label]="names.id"
+            [value]="value.id"
+            (exportValue)="value.id=$event"
+            [required]="true"
+            [disabled]="true"
+            [width]="150"
+            >
+            </app-input>
+        </app-grid-tile>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+</app-dialog-header>

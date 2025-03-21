@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{translate.transform(title)}}</h2>
+<form (ngSubmit)="submitForm()">
+<mat-dialog-content style="overflow: auto;padding: 15px;">
+
+        <ng-content></ng-content>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="!yesNoDialog">
+    <button mat-raised-button (click)="exit()" type="button">
+        <span><i class="fa fa-ban"></i></span>
+        <span style="margin-left: 10px;">{{translate.transform('cancel')}}</span>
+    </button>
+    <button mat-raised-button color="primary" type="submit" *ngIf="showSubmit">
+        <span><i class="fa fa-check"></i></span>
+        <span style="margin-left: 10px;">{{translate.transform('enter')}}</span>
+    </button>
+</mat-dialog-actions>
+
+<mat-dialog-actions align="end" *ngIf="yesNoDialog">
+    <button mat-raised-button type="button" (click)="dialogRef.close()">
+        <span><i class="fa fa-times"></i></span>
+        <span style="margin-left: 10px;">{{translate.transform('no')}}</span>
+    </button>
+    <button mat-raised-button color="primary" type="button" (click)="dialogRef.close(true)" cdkFocusInitial>
+        <span><i class="fa fa-check"></i></span>
+        <span style="margin-left: 10px;">{{translate.transform('yes')}}</span>
+    </button>
+</mat-dialog-actions>
+</form>

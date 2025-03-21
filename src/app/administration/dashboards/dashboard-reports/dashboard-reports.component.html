@@ -1,0 +1,63 @@
+<div style="min-height: 50px;min-height: 50px;width: 100; text-align: right;">
+    <button (click)="save()" mat-raised-button style="background-color: green;color: white;"> <span><i class="fa fa-floppy-o"></i></span>
+        <span *ngIf="!checkMobile.isMobile()"
+            style="margin-left: 10px;">{{translate.transform('save')}}</span></button>
+</div>
+<div class="dashboardReport"
+style="min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow: auto; "
+>
+<mat-grid-list
+[cols]="checkMobile.isMobile()?1:inDashboard.columnnumber"
+[rowHeight]="((height/this.inDashboard.rownumber)-5)+'px'"
+>
+<ng-container
+*ngFor="let item of map"
+>
+    <mat-grid-tile
+    [colspan]="checkMobile.isMobile()?1:item.colspan"
+    [rowspan]="item.rowspan"
+    >
+        <div style="background-color: white;min-width: calc(100% - 5px);min-height: calc(100% - 5px);max-height: calc(100% - 5px);
+        border-radius: 20px; display: flex;justify-content: center;align-items: center;overflow: auto;
+        border:  #005cbb solid 1px;
+        ">
+            <div style="text-align: align;width: calc(100% - 10px); ">
+                <div style="display: flex;min-width: 100%">
+                    <div style="width: 50%;">
+                        <app-select
+                    [label]="labelOfRows"
+                    [value]="item.rowspan"
+                    (exportValue)="item.rowspan=$event"
+                    (valueInput)="refreshData()"
+                    [list]="item.heights"
+                    [disabled]="item.heights.length==1">
+                    </app-select>
+                    </div>
+                    <div style="width: 50%;margin-left: 10px;">
+                        <app-select
+                    [label]="labelOfColumn"
+                    [value]="item.colspan"
+                    (exportValue)="item.colspan=$event"
+                    (valueInput)="refreshData()"
+                    [list]="item.widths"
+                    [disabled]="item.widths.length==1">
+                    </app-select>
+                    </div>
+                </div>
+                <div style="text-align: center; width: 100%;">
+                    <app-select
+                    [label]="'report'"
+                    [value]="item.reportId"
+                    (exportValue)="item.reportId=$event"
+                    [list]="listReportBox"
+                    [hasClear]="true"
+                    [searchApi]="'/api/dashboard/reports/table'"
+                    ></app-select>
+                </div>
+            </div>
+           
+        </div>
+    </mat-grid-tile>
+</ng-container>
+</mat-grid-list>
+</div>

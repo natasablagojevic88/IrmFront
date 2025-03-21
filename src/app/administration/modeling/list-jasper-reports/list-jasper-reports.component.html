@@ -1,0 +1,21 @@
+<app-dialog-header [showSubmit]="false" 
+[title]="jasperReportsTitle"
+>
+    
+    <app-page-title
+    [title]="model.name"
+    (addClicked)="add()"
+    >
+        <app-table 
+        [api]="'/api/model/jasper/table/'+model.id"
+        [height]="250"
+        (namesExport)="names=$event"
+        (editClicked)="edit($event)"
+        (enterClicked)="edit($event)"
+        (f2clicked)="add()"
+        [deleteapi]="'/api/model/jasper'"
+        >
+
+        </app-table>
+    </app-page-title>
+</app-dialog-header>
