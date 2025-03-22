@@ -159,7 +159,7 @@ export class SendRequestService {
   public postFile(api: string, file: File): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       let dialogRef = this.progressDialog();
-      this.http.post(this.url() + api, file, { headers: this.httpHeader(true,file.name) })
+      this.http.post(this.url() + api, file, { headers: this.httpHeader(true,file.name),withCredentials:true })
         .subscribe({
           next: ((response) => {
             dialogRef.close();
