@@ -74,6 +74,7 @@ export class TableComponent {
   @Input() deleteapi: string = '';
   @Input() height: number = 0;
   @Input() addButtons: TableButton[] = []
+  
   @Input() previewTable: boolean =false;
   @Input() reportTable: boolean =false;
   @Input() checkTotalApi: string ='';

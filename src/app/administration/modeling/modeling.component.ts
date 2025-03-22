@@ -17,6 +17,7 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 import { TableButton } from '../../model/TableButton';
 import { ListJasperReportsComponent } from './list-jasper-reports/list-jasper-reports.component';
 import { JobsListComponent } from '../reports/jobs-list/jobs-list.component';
+import { ProcedureListComponent } from './procedure-list/procedure-list.component';
 
 
 class ModelFlatNode {
@@ -451,6 +452,14 @@ export class ModelingComponent {
 
     this.openDialog.openDialog(JobsListComponent,1000,[{},model,true],false)
        .then(()=>{}).catch(()=>{})
+
+  }
+
+  showProcedure(node:ModelFlatNode){
+    let model:ModelDTO=modelMap.get(node)!;
+
+    this.openDialog.openDialog(ProcedureListComponent,900,[model],false)
+    .then(()=>{}).catch(()=>{})
 
   }
 

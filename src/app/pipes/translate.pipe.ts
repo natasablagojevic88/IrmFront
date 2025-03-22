@@ -141,6 +141,7 @@ export class TranslatePipe implements PipeTransform {
     map.set("download", "Preuzmi");
     map.set("jobStarted", "Zadatak je pokrenut");
     map.set("setunread", "Promeni u nepročitano");
+    map.set("executeProcedure", "Izvrši proceduru");
 
     return map;
   }
@@ -242,6 +243,7 @@ export class TranslatePipe implements PipeTransform {
     map.set("download", "Преузми");
     map.set("jobStarted", "Задатак је покренут");
     map.set("setunread", "Промени у непрочитано");
+    map.set("executeProcedure", "Изврши процедуру");
 
     return map;
   }
@@ -343,6 +345,7 @@ export class TranslatePipe implements PipeTransform {
     map.set("download", "Download");
     map.set("jobStarted", "Job has started");
     map.set("setunread", "Mark as unread");
+    map.set("executeProcedure", "Execute procedure");
 
     return map;
   }

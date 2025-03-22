@@ -49,6 +49,12 @@
             [matTooltip]="translate.transform('jobScheduling')"
             (click)="$event.stopPropagation();clickNode(node);showJobs(node)"></i>
 
+            <i style="color:Fuchsia;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-code"
+            [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
+            [matTooltip]="translate.transform('executeProcedure')"
+            (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>
+
 
         </span>
       </mat-label>
@@ -100,6 +106,12 @@
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('jobScheduling')"
             (click)="$event.stopPropagation();clickNode(node);showJobs(node)"></i>
+
+            <i style="color:Fuchsia;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-code"
+            [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
+            [matTooltip]="translate.transform('executeProcedure')"
+            (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>
 
         </span>
       </mat-label>

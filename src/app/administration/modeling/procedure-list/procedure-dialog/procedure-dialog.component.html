@@ -1,0 +1,55 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list
+[cols]="1"
+[rowHeight]="'80px'"
+>
+<mat-grid-tile>
+    <app-grid-tile>
+        <mat-label>{{procedureInfo}}</mat-label>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.name"
+        (exportValue)="value.name=$event"
+        [label]="names.name"
+        [required]="true"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [value]="value.sqlProcedure"
+        (exportValue)="value.sqlProcedure=$event"
+        [label]="names.sqlProcedure"
+        [required]="true"
+        [list]="listProcedure"
+        >
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [label]="names.id"
+        [required]="true"
+        [disabled]="true"
+        [width]="150"
+        >
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+
+</mat-grid-list>
+</app-dialog-header>
