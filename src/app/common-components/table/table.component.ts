@@ -643,7 +643,7 @@ export class TableComponent {
     }else{
       if(this.tableData.rights!=undefined){
 
-        if(button.code=='delete'){
+        if(button.code=='delete'||button.code.startsWith('/procedure/')){
           if(this.tableData.rights.parentLock||(!this.tableData.rights.update)||row.lock==true){
             return 'none';
           }else{

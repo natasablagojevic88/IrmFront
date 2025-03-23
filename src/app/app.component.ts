@@ -67,7 +67,7 @@ export class AppComponent {
          if(!this.loginPage){
           this.checkNotification();
       }
-    },5000);
+    },environment.notificationDelaySeconds*1000);
 
     router.events.subscribe(r => {
       if (r instanceof NavigationEnd) {

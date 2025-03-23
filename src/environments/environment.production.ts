@@ -5,6 +5,7 @@ export const environment = {
      dateFormat:'dd.MM.yyyy',
      dateTimeFormat:'dd.MM.yyyy HH:mm',
      dateInputFormat: 'DD.MM.YYYY',
+     notificationDelaySeconds: 5,
      pushNotification: false,
      pushNotifictionChannel: 'default_channel_id'
 };

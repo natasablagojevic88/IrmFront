@@ -240,13 +240,16 @@ export class PreviewModelComponent {
 
   }
 
-  edit(row: any) {
+  edit(rowIn: any) {
+    let row:any=JSON.parse(JSON.stringify(rowIn));
     let model: ModelDTO = this.modelDTOS[this.activeLayer];
     let fields: any[] = this.fields[this.activeLayer];
     let mapFields: any[][] = this.createGrid.calculateGrid(model, fields);
     let codebook: any = this.codebooks[this.activeLayer];
     let parentId: number = this.parents[this.activeLayer];
     let disabledItems: boolean = this.canChange[this.activeLayer] ? (row.lock ? true : false) : true;
+
+    
 
     this.sendRequest.post('/api/preview/model/codebookdisabled/'+model.id,row)
     .then((response)=>{
@@ -263,6 +266,7 @@ export class PreviewModelComponent {
 
       this.openDialog.openDialog(CreateDataDialogComponent, model.dialogWidth, [mapFields, row, model.columnsNumber, codebookItem, model.id, parentId, disabledItems])
       .then((response) => {
+        console.log(disabledItems);
         let table: any = this.tables;
         table.last.editRow(response);
       }).catch(() => { })
@@ -272,7 +276,6 @@ export class PreviewModelComponent {
 
 
   }
-
   exportAction(action: ExportTableAction) {
 
     if (action.action == 'lock') {
@@ -286,12 +289,22 @@ export class PreviewModelComponent {
           this.downloadFile.download(response);
         }).catch(()=>{})
       }else{
+        
         this.sendRequest.get('/api/preview/model'+action.action+'/'+action.row.id+'/base64')
         .then((response)=>{
           this.downloadFile.downloadFileInAndroid(response);
         }).catch(()=>{})
       }
 
+    }else if (action.action.startsWith('/procedure/')) {
+      this.yesNoService.yesNo('executeProcedureYesNo')
+      .then(()=>{
+        let modelId = this.models[this.activeLayer];
+        this.sendRequest.get('/api/preview/model'+action.action+'/'+modelId+'/'+action.row.id)
+        .then(()=>{
+          this.sendInfo.open('procedureIsExecuted',false);
+        }).catch(()=>{})
+      }).catch(()=>{})
     } else {
       let path: any = {};
       path.value = this.activeLayer;
