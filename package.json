@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/Irm/ --configuration production",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration production",
     "watchandroid": "ng build --watch --configuration android",
     "test": "ng test"
