@@ -23,7 +23,7 @@ export class LoginComponent {
 
   lang:ComboboxDTO[]=[]
 
-  publicKey:string='';
+
 
   platform = inject(Platform);
 
@@ -37,13 +37,7 @@ export class LoginComponent {
 
   ngOnInit(){
 
-    this.sendRequest.get('/api/login/addsession')
-    .then((response)=>{
-
-      this.publicKey='-----BEGIN PUBLIC KEY-----'+response.publicKey+'-----END PUBLIC KEY-----';
-
-
-      this.sendRequest.get('/api/login')
+    this.sendRequest.get('/api/login')
     .then(
       (response)=>{
         this.lang=response;
@@ -55,16 +49,12 @@ export class LoginComponent {
         
     }
     ).catch(()=>{})
-    }).catch(()=>{})
-   
     
   }
 
   enter(){
 
-  const encryptor = new JSEncrypt();
-  encryptor.setPublicKey(this.publicKey);
-  this.value.encyptPassword=encryptor.encrypt(this.value.password) as string;
+
   this.sendRequest.post('/api/login',this.value)
     .then(
       ()=>{
