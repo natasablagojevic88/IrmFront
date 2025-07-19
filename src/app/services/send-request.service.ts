@@ -204,10 +204,7 @@ export class SendRequestService {
     switch (status) {
       case 401: {
         
-        this.get('/api/login/logout')
-        .then(()=>{
-          this.router.navigate(['login'])
-        }).catch(()=>{})
+       this.router.navigate(['login'])
           
         break;
       }
