@@ -99,7 +99,7 @@ export class JobDialogComponent {
   }
 
   submit(){
-    this.sendRequest.post('/api/report/job',this.value)
+    this.sendRequest.post('/api/report/report-job',this.value)
     .then((response)=>{
       this.dialogRef.close(response);
     }).catch(()=>{})
