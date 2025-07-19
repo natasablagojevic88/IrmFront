@@ -280,3 +280,27 @@ canvas {
 .mat-badge-medium.mat-badge-overlap .mat-badge-content {
     background-color: red !important;
   }
+
+  .transparent-dialog-panel {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.transparent-backdrop {
+  background: transparent !important;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: transparent;
+}
+
+.transparent-dialog-panel .mat-mdc-dialog-surface {
+  background-color: transparent !important; 
+  border-radius: 4px !important;
+  box-shadow: var(--mdc-elevation-level4) !important;
+  padding: 24px !important;
+}

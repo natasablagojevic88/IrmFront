@@ -227,7 +227,10 @@ export class SendRequestService {
   private progressDialog(): MatDialogRef<ProgressSpinnerComponent> {
 
     return this.matDialog.open(ProgressSpinnerComponent, {
-      disableClose: true
+      disableClose: true,
+      hasBackdrop: false,
+      panelClass: 'transparent-dialog-panel',
+       backdropClass: 'transparent-backdrop',
     });
   }
 
