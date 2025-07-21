@@ -2,21 +2,20 @@
 [title]="title"
 [hasAdd]="false"
 >
-<mat-form-field style="width: 100%;">
+<mat-form-field class="class1">
     <mat-label>{{translate.transform('filter')}}</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8" style="overflow: auto;min-height: calc(100vh - 350px);max-height: calc(100vh - 350px);
-  background-color: white; border-top-left-radius: 20px; border-top-right-radius: 20px;
-  ">
+  <div class="mat-elevation-z8 class2"
+  >
     <table mat-table [dataSource]="dataSource" matSort>
   
         <ng-container matColumnDef="buttons">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row">
-                <div style="display: flex;">
-                    <span style="font-size: 20px;opacity: 75%;color:green"
+                <div class="class3">
+                    <span class="class4"
                     onmouseenter="this.style.opacity='100%'"
                     onmouseleave="this.style.opacity='75%'"
                     [matTooltip]="translate.transform('execute')"
@@ -25,7 +24,7 @@
 
                     </span>
 
-                    <span style="font-size: 20px;opacity: 75%;color:magenta; margin-left: 10px;"
+                    <span class="class5"
                     onmouseenter="this.style.opacity='100%'"
                     onmouseleave="this.style.opacity='75%'"
                     [matTooltip]="translate.transform('reloadData')"
@@ -34,7 +33,7 @@
 
                     </span>
 
-                    <span style="font-size: 20px;opacity: 75%;min-width: 24px;max-height: 20px;text-align: center;"
+                    <span class="class6"
                     onmouseenter="this.style.opacity='100%'"
                     onmouseleave="this.style.opacity='75%'"
                     [matMenuTriggerFor]="menu" 
@@ -45,12 +44,12 @@
 
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="editRow(row)">
-                          <span><i style="color: #005cbb" class="fa fa-pencil"></i></span>
-                          <span style="margin-left: 10px;">{{translate.transform('edit')}}</span>
+                          <span><i  class="fa fa-pencil class7"></i></span>
+                          <span class="class8">{{translate.transform('edit')}}</span>
                         </button>
                         <button mat-menu-item  (click)="logs(row)">
-                            <span><i   style="color: orange" class="fa fa-history"></i></span>
-                            <span style="margin-left: 10px;">{{translate.transform('logs')}}</span>
+                            <span><i class="fa fa-history class9"></i></span>
+                            <span class="class10">{{translate.transform('logs')}}</span>
                           </button>
                       </mat-menu>
                 </div>
@@ -67,9 +66,7 @@
 
                 <ng-container *ngIf="column.columnType=='String'&&column.code=='fileName'">
                     <td mat-cell *matCellDef="let row" >{{row[column.code]}}
-                        <span *ngIf="row[column.code]!=undefined" style="font-size: 20px;opacity: 75%;color:purple;
-                        margin-left:5px;
-                        "
+                        <span *ngIf="row[column.code]!=undefined" class="class11"
                         onmouseenter="this.style.opacity='100%'"
                         onmouseleave="this.style.opacity='75%'"
                         [matTooltip]="translate.transform('download')"
@@ -80,15 +77,13 @@
                 </ng-container>
 
                 <ng-container *ngIf="column.columnType=='LocalDateTime'">
-                    <td mat-cell *matCellDef="let row" style="text-align: center;">{{row[column.code]|date:dateTimeFormat}}</td>
+                    <td mat-cell *matCellDef="let row" class="class12">{{row[column.code]|date:dateTimeFormat}}</td>
                 </ng-container>
 
                 <ng-container *ngIf="column.columnType=='Boolean'">
-                    <td style="text-align: center;" mat-cell *matCellDef="let element">
+                    <td class="class13" mat-cell *matCellDef="let element">
                         <span [ngStyle]="{'background-color':element[column.code]?'green':'red'}"
-                        style="color:white;max-width: 50px;min-width: 50px;display: inline flow-root;
-                        border-radius: 20px; padding-top: 5; padding-bottom: 5px;
-                        "
+                        class="class14"
                         
                         >
                          {{element[column.code]==true?translate.transform('Y'):translate.transform('N')}}
@@ -111,8 +106,8 @@
   
 
   </div>
-  <mat-paginator style="width: 100%;border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;" 
-  class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 50]" 
+  <mat-paginator
+  class="mat-elevation-z8 class15" [pageSizeOptions]="[10, 25, 50]" 
   [showFirstLastButtons]="true"
   ></mat-paginator>
   

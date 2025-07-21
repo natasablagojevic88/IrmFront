@@ -24,3 +24,40 @@
   .example-tree div[role=group] > .mat-tree-node {
     padding-left: 40px;
   }
+
+  .class1{
+    background-color: #005cbb;
+}
+
+mat-tree-node button.class2{
+  width: 100%;display: flex;align-items: center;justify-content: start;
+  background-color:  #005cbb ;color: white ;
+      
+}
+
+:host ::ng-deep button.mat-mdc-unelevated-button.class2.activeMenu {
+  background-color: white;
+  color: #005cbb;
+}
+
+.class3{
+  margin-left: 5px;
+}
+
+.class4{
+  margin-left: 5px;
+}
+
+mat-tree-node button.class5{
+  background-color: white;width: 100%;display: flex;align-items: center;justify-content: start;
+                   background-color:  #005cbb;color: white;
+}
+
+.class6{
+  margin-left: 5px;
+}
+
+.class7{
+  margin-left: 5px;
+}
+

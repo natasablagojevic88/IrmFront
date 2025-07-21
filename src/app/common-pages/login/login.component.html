@@ -1,14 +1,14 @@
-<div style="width: 100%; height: calc( 100vh - 51px ); display: flex; justify-content: center;align-items: center;">
-<div style="display: flow-root;text-align: center;">
+<div class="class1">
+<div class="class2">
   <div >
     <img src="assets/logo.png" width="70px" height="70px"/>
   </div>
   
   <div>
-    <mat-label style="color:#005cbb; font-weight: bold; font-size: 25px;">Interface reporting  manager</mat-label>
+    <mat-label class="class3">Interface reporting  manager</mat-label>
   </div>
   <form (ngSubmit)="enter()">
-    <div style="margin-top: 20px;">
+    <div class="class4">
       <app-input 
       [width]="357"
       [label]="'username'"
@@ -20,7 +20,7 @@
     </div>
   
   
-    <div style="margin-top: 10px;">
+    <div class="class5">
       <app-input 
       [width]="357"
       [type]="'password'"
@@ -32,7 +32,7 @@
       </app-input>
     </div>
   
-    <div style="margin-top: 10px;">
+    <div class="class6">
       <app-select
       [width]="357"
       [list]="lang"
@@ -44,9 +44,9 @@
       </app-select>
     </div>
   
-    <button color="primary" style="width: 357px;" mat-flat-button type="submit">
+    <button color="primary" class="class7" mat-flat-button type="submit">
       <span><i class="fa fa-sign-in" ></i></span>
-      <span style="margin-left: 5px;">{{translate.transform('login')}}</span>
+      <span class="class8">{{translate.transform('login')}}</span>
     </button>
   
   </form>

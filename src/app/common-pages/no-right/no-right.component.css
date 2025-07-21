@@ -1,0 +1,15 @@
+.class1{
+    width: 100%; height: calc( 100vh - 51px ); display: flex; justify-content: center;align-items: center
+}
+
+.class2{
+    display: flow-root;text-align: center;
+}
+
+.class3{
+    font-size: 150px
+}
+
+.class4{
+    font-size: 48px
+}

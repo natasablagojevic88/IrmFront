@@ -19,16 +19,16 @@
         </mat-grid-tile>
 
         <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
-            <app-grid-tile style="display: flex;">
+            <app-grid-tile class="class1">
                 <app-input [label]="names.name" [value]="value.name" (exportValue)="value.name=$event" [required]="true"
-                    style="width: 100%;">
+                    class="class2">
                 </app-input>
                 <div [ngStyle]="{'max-width':checkMobile.isMobile()?'30px':'135px','min-width':checkMobile.isMobile()?'30px':'135px'}"
-                    style="display: flex;justify-content: right;align-items: center;">
-                    <button mat-raised-button style="background-color: green;color:white" type="submit">
+                    class="class3">
+                    <button mat-raised-button class="class4" type="submit">
                         <span><i class="fa fa-floppy-o"></i></span>
                         <span *ngIf="!checkMobile.isMobile()"
-                            style="margin-left: 10px;">{{translate.transform('save')}}</span>
+                            class="class5">{{translate.transform('save')}}</span>
                     </button>
                 </div>
 
@@ -36,18 +36,14 @@
         </mat-grid-tile>
     </form>
 </mat-grid-list>
-<div style="display: flex;min-height: calc(100vh - 262px); overflow: auto; width: 100%;" class="standardReportDiv">
-    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" style="width: 100%;">
+<div  class="standardReportDiv class6">
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" class="class20">
         <mat-grid-tile>
-            <div style="min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
-            max-width: calc(100% - 40px);
-            background-color: white;
-        padding-left: 15px;
-        border-radius: 20px;" class="mat-elevation-z8">
-                <div style="max-width: calc(100% - 10px);margin-top: 10px;">
-                    <mat-label style="width: 100%;">{{graphInstractions}}</mat-label>
+            <div class="mat-elevation-z8 class7">
+                <div class="class8">
+                    <mat-label class="class9">{{graphInstractions}}</mat-label>
                 </div>
-                <div style="max-width: calc(100% - 10px);margin-top: 10px;">
+                <div class="class10">
                     <app-text-area [rows]="10" [value]="value.sqlQuery" (exportValue)="value.sqlQuery=$event"
                         [label]="names.sqlQuery" [required]="true"
                         *ngIf="value.type!='JASPER'"
@@ -60,14 +56,10 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <div style="min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
-            max-width: calc(100% - 40px);
-            background-color: white;
-            padding-left: 15px;
-            border-radius: 20px;" class="mat-elevation-z8">
-                <div style="display: flex;">
-                    <h3 style="font-family: 'NotoSans';">{{translate.transform('filter')}}</h3>
-                    <span style="font-size: 20px;opacity: 75%; margin-left: 10px;align-content: center;"
+            <div class="mat-elevation-z8 class11">
+                <div class="class12">
+                    <h3 class="class13">{{translate.transform('filter')}}</h3>
+                    <span class="class14"
                         onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                             (click)="addFilter()"
                             class="fa fa-plus"></i></span>
@@ -75,17 +67,17 @@
 
                 <mat-list>
                     <ng-container *ngFor="let column of this.value.filters;let i=index">
-                        <mat-list-item style="max-height: 25px !important;">
-                            <span style="font-size: 15px;color:purple"> <i class="fa fa-filter"></i></span>
-                            <span style="font-size: 13px;margin-left: 10px;">{{column.code +' - '+column.name}}</span>
+                        <mat-list-item class="class15">
+                            <span class="class16"> <i class="fa fa-filter"></i></span>
+                            <span class="class17">{{column.code +' - '+column.name}}</span>
 
-                            <span style="margin-left: 5px;color:#005cbb;opacity: 75%;font-size: 15px;"
+                            <span class="class18"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                     class="fa fa-pencil" 
                                     (click)="editFilter(i)"
                                     [matTooltip]="translate.transform('edit')"></i></span>
 
-                            <span style="margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;"
+                            <span class="class19"
                                     onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                     class="fa fa-trash" 
                                     (click)="deleteFilter(i)"

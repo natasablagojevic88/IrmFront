@@ -20,19 +20,19 @@
         </mat-grid-tile>
     
         <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
-            <app-grid-tile style="display: flex;">
+            <app-grid-tile class="class1">
                 <app-input [label]="names.name" [value]="value.name" (exportValue)="value.name=$event" [required]="true"
-                    style="width: 100%;">
+                    class="class2">
                 </app-input>
                 <div [ngStyle]="{'max-width':checkMobile.isMobile()?'30px':'135px','min-width':checkMobile.isMobile()?'30px':'135px'}"
-                    style="display: flex;justify-content: right;align-items: center;">
+                    class="class3">
                     <button mat-raised-button 
                     type="submit"
-                    style="background-color: green;color:white"
+                    class="class4"
                     >
-                        <span><i class="fa fa-floppy-o"></i></span>
+                        <span><i [ngStyle]="{'color':'white'}" class="fa fa-floppy-o"></i></span>
                         <span *ngIf="!checkMobile.isMobile()"
-                            style="margin-left: 10px;">{{translate.transform('save')}}</span>
+                           class="class5">{{translate.transform('save')}}</span>
                     </button>
                 </div>
     
@@ -44,18 +44,17 @@
 </mat-grid-list>
 
 
-<div style="display: flex;min-height: calc(100vh - 262px); overflow: auto; width: 100%;" class="standardReportDiv">
-    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" style="width: 100%;">
+<div class="standardReportDiv class6">
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" class="class7">
         <mat-grid-tile>
 
-            <div style="display: flex;min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; width: calc(100% - 30px);background-color: white;
-        border-radius: 20px;" class="mat-elevation-z8">
+            <div class="mat-elevation-z8 class8">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
                         <mat-label>
                             <span>{{node.name}}</span>
 
-                            <span style="font-size: 20px;margin-left: 10px;color: purple; opacity: 75%;"
+                            <span class="class9"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'">
                                 <i class="fa fa-columns" [matTooltip]="translate.transform('addToColumns')"
                                     (click)="addColumn(node)"></i>
@@ -63,7 +62,7 @@
 
                              <span *ngIf="node.columnType=='BigDecimal'||node.columnType=='LocalDate'
                              ||node.columnType=='LocalDateTime'
-                             " style="font-size: 20px;margin-left: 10px;color: green; opacity: 75%;"
+                             " class="class10"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'">
                                 <i class="fa fa-calculator" [matTooltip]="translate.transform('addToMetrics')"
                                 [matMenuTriggerFor]="metricMenu"
@@ -79,7 +78,7 @@
                             </span>
 
 
-                            <span style="font-size: 20px;margin-left: 10px;color: MidnightBlue; opacity: 75%;"
+                            <span class="class11"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'">
                                 <i class="fa fa-filter" [matTooltip]="translate.transform('addToFilter')"
                                 [matMenuTriggerFor]="filterMenu"
@@ -175,11 +174,11 @@
 
                     <!-- parents -->
                     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle>
-                        <button mat-flat-button matTreeNodeToggle style="background-color: transparent;">
+                        <button mat-flat-button matTreeNodeToggle class="class12">
                             <span> <i
                                     [ngClass]="treeControl.isExpanded(node) ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"></i></span>
-                            <span style="margin-left: 10px;"><i [ngClass]="node.icon"></i></span>
-                            <span style="margin-left: 5px;">{{node.name}}</span>
+                            <span class="class13"><i [ngClass]="node.icon"></i></span>
+                            <span class="class14">{{node.name}}</span>
                         </button>
 
                     </mat-tree-node>
@@ -192,36 +191,32 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <div style="min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
-            max-width: calc(100% - 40px);
-            background-color: white;
-        padding-left: 15px;
-        border-radius: 20px;" class="mat-elevation-z8">
-                <h3 style="font-family: 'NotoSans';">{{translate.transform('columns')}}</h3>
+            <div  class="mat-elevation-z8 class15">
+                <h3 class="class16">{{translate.transform('columns')}}</h3>
                 <mat-list>
                     <ng-container *ngFor="let column of this.value.columns;let i=index">
-                        <mat-list-item style="max-height: 25px !important;">
-                            <span style="font-size: 15px;color:purple" *ngIf="column.sqlMetric==undefined"> <i class="fa fa-columns"></i></span>
-                            <span style="font-size: 15px;color:green" *ngIf="column.sqlMetric!=undefined"> <i class="fa fa-calculator"></i></span>
-                            <span style="margin-left: 5px;font-size: 13px;">{{(column.customName==undefined?
+                        <mat-list-item class="class17">
+                            <span class="class18" *ngIf="column.sqlMetric==undefined"> <i class="fa fa-columns"></i></span>
+                            <span class="class19" *ngIf="column.sqlMetric!=undefined"> <i class="fa fa-calculator"></i></span>
+                            <span class="class20">{{(column.customName==undefined?
                                 (column.name+(column.sqlMetric==undefined?'':(' - '+column.sqlMetric)))
                                 :column.customName)
                                 }}</span>
-                            <span style="margin-left: 5px;font-size: 13px;">{{'['+column.columnFieldInfoDTO.columnList+']'}}</span>
+                            <span class="class21">{{'['+column.columnFieldInfoDTO.columnList+']'}}</span>
 
-                            <span style="margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;"
+                            <span class="class22"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                     class="fa fa-trash" (click)="deleteColumn(i)"
                                     [matTooltip]="translate.transform('delete').substring(0,translate.transform('delete').length-5)"></i></span>
 
-                            <span style="margin-left: 5px;opacity: 75%;font-size: 15px;"
+                            <span class="class23"
                                     [ngStyle]="{'color':hasSort(i)?'purple':'black'}"
                                      onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                          class="fa fa-sort-numeric-asc" 
                                          (click)="openSort(i)"
                                          [matTooltip]="matSortLabel(i)"></i></span>
 
-                            <span style="margin-left: 5px;opacity: 75%;font-size: 15px;"
+                            <span class="class24"
                             [ngStyle]="{'color':column.customName!=null?'purple':'black'}"
                             onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                 class="fa fa-font" 
@@ -231,31 +226,31 @@
                         </mat-list-item>
                     </ng-container>
                 </mat-list>
-                <h3 style="font-family: 'NotoSans';">{{translate.transform('filter')}}</h3>
+                <h3 class="class25">{{translate.transform('filter')}}</h3>
                 <mat-list>
                     <ng-container *ngFor="let column of this.value.filters;let i=index">
-                        <mat-list-item style="max-height: 25px !important;">
-                            <span style="font-size: 15px;color:purple"> <i class="fa fa-filter"></i></span>
-                            <span style="margin-left: 5px;font-size: 13px;">{{(column.customName==undefined?
+                        <mat-list-item class="class26">
+                            <span class="class27"> <i class="fa fa-filter"></i></span>
+                            <span class="class28">{{(column.customName==undefined?
                             (column.name+(column.sqlMetric==undefined?'':(' - '+column.sqlMetric)))
                             :column.customName)
                             }}</span>
-                            <span style="margin-left: 5px;;font-size: 13px;">{{'['+column.columnFieldInfoDTO.columnList+']'}}</span>
+                            <span class="class29">{{'['+column.columnFieldInfoDTO.columnList+']'}}</span>
 
-                            <span style="margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;"
+                            <span class="class30"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                     class="fa fa-trash" 
                                     (click)="deleteFilter(i)"
                                     [matTooltip]="translate.transform('delete').substring(0,translate.transform('delete').length-5)"></i></span>
 
-                            <span style="margin-left: 5px;opacity: 75%;font-size: 15px;"
+                            <span class="class31"
                                 [ngStyle]="{'color':(hasDefaultValueFilter(i)?'purple':'black')}"
                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                     class="fa fa-info-circle" 
                                     (click)="createDefaultParameters(i)"
                                     [matTooltip]="translate.transform('defaultParameter')"></i></span>
 
-                            <span style="margin-left: 5px;opacity: 75%;font-size: 15px;"
+                            <span class="class32"
                                     [ngStyle]="{'color':column.customName!=null?'purple':'black'}"
                                     onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"><i
                                         class="fa fa-font" 

@@ -1,17 +1,16 @@
 <app-page-title [title]="reportInfo.name" [hasAdd]="false">
-    <div style="min-height: calc(100vh - 185px);max-height: calc(100vh - 185px);
-overflow: auto;width: 100%;" class="previewReportDiv">
+    <div class="previewReportDiv class1">
         <mat-grid-list [cols]="checkMobile.isMobile()?1:4" [rowHeight]="heightGrid">
 
             <mat-grid-tile>
 
-                <div style="background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);"
+                <div
                     [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"
-                    class="mat-elevation-z8">
+                    class="mat-elevation-z8 class2">
                     <form (ngSubmit)="submit()">
-                        <div style="width: 100%; overflow: auto; background-color: transparent;"
+                        <div class="class3"
                             [ngStyle]="{'min-height':(heightGrid-160)+'px','max-height':(heightGrid-160)+'px'}">
-                            <mat-grid-list [cols]="1" [rowHeight]="'80px'" style="margin-top: 20px;margin-left: 5px;">
+                            <mat-grid-list [cols]="1" [rowHeight]="'80px'" class="class4">
                                 <ng-container *ngFor="let parameter of this.reportInfo.parameters">
                                     <mat-grid-tile>
                                         <app-grid-tile>
@@ -84,18 +83,18 @@ overflow: auto;width: 100%;" class="previewReportDiv">
 
                         </div>
                         <div
-                            style="min-height: 100px;max-height: 100px;background-color: transparent;display: flex;align-items: end;">
-                            <div style="text-align: center;display: flow-root;width: 100%;">
-                                <button mat-raised-button [color]="reportInfo.reportType=='EXECUTE'?'':'primary'" type="submit" style="width: calc(100% - 20px);color:white"
+                            class="class5">
+                            <div class="class6">
+                                <button mat-raised-button [color]="reportInfo.reportType=='EXECUTE'?'':'primary'" type="submit" class="class7"
                                 [ngStyle]="{'background-color':reportInfo.reportType=='EXECUTE'?'red':''}"
                                 >
                                     <span><i [ngClass]="reportInfo.reportType=='EXECUTE'?'fa fa-bolt':'fa fa-check'"></i></span>
-                                    <span style="margin-left: 10px;">{{translate.transform('execute')}}</span>
+                                    <span class="class8">{{translate.transform('execute')}}</span>
                                 </button>
                                 <button *ngIf="reportInfo.reportType=='STANDARD'||reportInfo.reportType=='SQL'" 
-                                mat-raised-button  type="button" (click)="excel()" style="width: calc(100% - 20px);background-color: green;color:white;margin-top: 10px;">
+                                mat-raised-button  type="button" (click)="excel()" class="class9">
                                     <span><i class="fa fa-file-excel-o"></i></span>
-                                    <span style="margin-left: 10px;">{{translate.transform('excel')}}</span>
+                                    <span class="class10">{{translate.transform('excel')}}</span>
                                 </button>
                             </div>
                             
@@ -107,9 +106,9 @@ overflow: auto;width: 100%;" class="previewReportDiv">
 
             <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" *ngIf="reportInfo.reportType!='EXECUTE'"> 
 
-                <div style="background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);"
+                <div
                     [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"
-                    class="mat-elevation-z8">
+                    class="mat-elevation-z8 class11">
 
                     <app-preview-report-table
                     [reportId]="reportId"

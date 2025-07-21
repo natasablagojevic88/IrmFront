@@ -2,12 +2,12 @@
 [title]="title"
 [showSubmit]="false"
 >
-<mat-form-field style="width: 100%;">
+<mat-form-field class="class1">
     <mat-label>{{translate.transform('filter')}}</mat-label>
     <input matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8" style="overflow: auto;"
+  <div class="mat-elevation-z8 class2" 
   [ngStyle]="{'max-height':checkMobile.isMobile()?'300px':'400px'}"
   >
     <table mat-table [dataSource]="dataSource" matSort>
@@ -15,7 +15,7 @@
       <!-- hasRight Column -->
       <ng-container matColumnDef="hasRight">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{names.hasRight}}</th>
-        <td mat-cell *matCellDef="let row" style="display: flex;justify-content: center;align-items: center;">
+        <td mat-cell *matCellDef="let row" class="class3">
            <span> <mat-checkbox 
             (change)="changeSelection($event,row)"
             (click)="$event.stopPropagation()"
@@ -48,7 +48,7 @@
 
   </div>
     
-  <mat-paginator style="width: 100%;" class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+  <mat-paginator class="mat-elevation-z8 class4" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
   
   
 </app-dialog-header>

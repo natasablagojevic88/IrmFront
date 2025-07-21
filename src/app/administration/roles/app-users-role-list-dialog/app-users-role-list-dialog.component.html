@@ -2,20 +2,19 @@
 [title]="title"
 [showSubmit]="false"
 >
-<mat-form-field style="width: 100%;">
+<mat-form-field class="class1">
     <mat-label>{{translate.transform('filter')}}</mat-label>
     <input matInput (keyup)="applyFilter($event)"  #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8" [ngStyle]="{'max-height':this.checkMobile.isMobile()?'300px':'400px'}"
-  style="overflow: auto;"
+  <div class="mat-elevation-z8 class2" [ngStyle]="{'max-height':this.checkMobile.isMobile()?'300px':'400px'}"
   >
     <table mat-table [dataSource]="dataSource" matSort>
   
       <!-- hasRight Column -->
       <ng-container matColumnDef="hasRight">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{names.hasRight}}</th>
-        <td style="text-align: center;" mat-cell *matCellDef="let row">
+        <td class="class3" mat-cell *matCellDef="let row">
             <span>
                 <mat-checkbox (change)="changeSelecton($event,row)"
                     [checked]="row['hasRight']"

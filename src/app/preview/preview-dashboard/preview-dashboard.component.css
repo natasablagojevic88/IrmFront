@@ -1,0 +1,19 @@
+.class1{
+    width: 100%;max-height: 50px;min-height: 50px;text-align: right;
+}
+
+.class2{
+    background-color: green;color:white
+}
+
+.class3{
+    margin-left: 10px;
+}
+
+.class4{
+    width: 100;overflow: auto;min-height: calc(100vh - 235px);max-height: calc(100vh - 235px);
+}
+
+.class5{
+    border-radius: 20px;width: calc(100% - 5px)
+}

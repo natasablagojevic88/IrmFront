@@ -1,0 +1,32 @@
+.class1{
+    display: flex;justify-content: center;
+}
+
+.class2{
+    max-width: 100%;
+}
+
+.class3{
+    color:red
+}
+
+.class4{
+    margin-right: 10px
+}
+
+.class5{
+    font-size: 24px;align-content: center;margin-left: 5px;
+}
+
+.class6{
+    font-size: 24px;align-content: center;margin-left: 5px;
+}
+
+.class7{
+    opacity: 75%;
+}
+
+.class8{
+    opacity: 75%;
+}
+

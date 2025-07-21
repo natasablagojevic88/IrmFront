@@ -1,0 +1,88 @@
+.class1{
+    display: flex;
+}
+
+.class2{
+    width: 100%;
+}
+
+.class3{
+    display: flex;justify-content: right;align-items: center;
+}
+
+.class4{
+    background-color: green;color:white
+}
+
+.class5{
+    margin-left: 10px;
+}
+
+.class6{
+    display: flex;min-height: calc(100vh - 262px); overflow: auto; width: 100%;
+}
+
+.class7{
+    min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
+            max-width: calc(100% - 40px);
+            background-color: white;
+        padding-left: 15px;
+        border-radius: 20px;
+}
+
+.class8{
+    max-width: calc(100% - 10px);margin-top: 10px;
+}
+
+.class9{
+    width: 100%;
+}
+
+.class10{
+    max-width: calc(100% - 10px);margin-top: 10px;
+}
+
+.class11{
+    min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
+            max-width: calc(100% - 40px);
+            background-color: white;
+            padding-left: 15px;
+            border-radius: 20px;
+}
+
+.class12{
+    display: flex;
+}
+
+.class13{
+    font-family: 'NotoSans';
+}
+
+.class14{
+    font-size: 20px;opacity: 75%; margin-left: 10px;align-content: center;
+}
+
+.class15{
+    max-height: 25px !important;
+}
+
+.class16{
+    font-size: 15px;color:purple
+}
+
+.class17{
+    font-size: 13px;margin-left: 10px;
+}
+
+.class18{
+    margin-left: 5px;color:#005cbb;opacity: 75%;font-size: 15px;
+}   
+
+.class19{
+    margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;
+}
+
+.class20{
+    width: 100%;
+}
+

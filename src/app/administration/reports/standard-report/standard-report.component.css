@@ -1,0 +1,135 @@
+.class1{
+    display: flex;
+}
+
+.class2{
+    width: 100%;
+}
+
+.class3{
+    display: flex;justify-content: right;align-items: center;
+}
+
+.class4{
+    background-color: green;
+    color:white;
+}
+
+.class5{
+    margin-left: 10px;
+    color: white;
+}
+
+.class6{
+    display: flex;min-height: calc(100vh - 262px); overflow: auto; width: 100%;
+}
+
+.class7{
+    width: 100%;
+}
+
+.class8{
+    display: flex;min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; width: calc(100% - 30px);background-color: white;
+        border-radius: 20px;
+}
+
+.class9{
+    font-size: 20px;margin-left: 10px;color: purple; opacity: 75%;
+}
+
+.class10{
+    font-size: 20px;margin-left: 10px;color: green; opacity: 75%;
+}
+
+.class11{
+    font-size: 20px;margin-left: 10px;color: MidnightBlue; opacity: 75%;
+}
+
+.class12{
+    background-color: transparent;
+}
+
+.class13{
+    margin-left: 10px;
+}
+
+.class14{
+    margin-left: 5px;
+}
+
+.class15{
+    min-height: calc(100% - 30px);max-height: calc(100% - 30px); overflow: auto; min-width: calc(100% - 40px);
+            max-width: calc(100% - 40px);
+            background-color: white;
+        padding-left: 15px;
+        border-radius: 20px;
+}
+
+.class16{
+    font-family: 'NotoSans';
+}
+
+.class17{
+    max-height: 25px !important;
+}
+
+.class18{
+    font-size: 15px;color:purple
+}
+
+.class19{
+    font-size: 15px;color:green
+}
+
+.class20{
+    margin-left: 5px;font-size: 13px;
+}
+
+.class21{
+    margin-left: 5px;font-size: 13px;
+}
+
+.class22{
+    margin-left: 5px;color:Red;opacity: 75%;font-size: 15px
+}
+
+.class23{
+    margin-left: 5px;opacity: 75%;font-size: 15px;
+}
+
+.class24{
+    margin-left: 5px;opacity: 75%;font-size: 15px;
+}
+
+.class25{
+    font-family: 'NotoSans';
+}
+
+.class26{
+    max-height: 25px !important;
+}
+
+.class27{
+    font-size: 15px;color:purple
+}
+
+.class28{
+    margin-left: 5px;font-size: 13px;
+}   
+
+.class29{
+    margin-left: 5px;;font-size: 13px;
+}
+
+.class30{
+    margin-left: 5px;color:Red;opacity: 75%;font-size: 15px;
+}
+
+.class31{
+    margin-left: 5px;opacity: 75%;font-size: 15px;
+}
+
+.class32{
+    margin-left: 5px;opacity: 75%;font-size: 15px;
+}
+

@@ -1,0 +1,11 @@
+.class1{
+    display: flex;min-width: 100%
+}
+
+.class2{
+    min-width: 50px;min-height: 50px;align-content: center;font-size: 36px;text-align: center;
+}
+
+.class3{
+    width: 100%;
+}

@@ -1,0 +1,7 @@
+.class1{
+    width: calc(100% - 10px);height: 80px;
+}
+
+.class2{
+    width: 100%;
+}

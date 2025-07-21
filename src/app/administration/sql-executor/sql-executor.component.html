@@ -2,12 +2,12 @@
     <div [ngStyle]="{'display':checkMobile.isMobile()?'flow-root':'flex'}">
         <div class="sqlExecutorGrid1">
             <div
-                style="max-height:  calc(10vh - 260px);min-height:  calc(100vh - 260px); overflow: auto;margin-top: 30px;">
+                class="class1">
                 <mat-accordion multi>
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header>
                             <mat-panel-title>{{translate.transform('tables')}}</mat-panel-title>
-                            <mat-panel-description style="justify-content: space-between;align-items: center;">
+                            <mat-panel-description class="class2">
                                 <p></p>
                                 <i class="fa fa-table" aria-hidden="true"></i>
                             </mat-panel-description>
@@ -29,7 +29,7 @@
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header>
                             <mat-panel-title>{{translate.transform('columns')}}</mat-panel-title>
-                            <mat-panel-description style="justify-content: space-between;align-items: center;">
+                            <mat-panel-description class="class3">
                                 <p></p>
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                             </mat-panel-description>
@@ -38,7 +38,7 @@
                         <mat-chip-set>
                             <ng-container *ngFor="let column of columns">
                                 <mat-chip [value]="column.code" (click)="sqlQuery=sqlQuery+' '+column['code'];focus()">
-                                    <span style="font-size: 11px;">{{column['name']}}</span>
+                                    <span class="class4">{{column['name']}}</span>
                                     <ng-container *ngIf="column.codebookName!=undefined">
                                         <span  [ngStyle]="{'font-size':'11px','margin-left':'5px'}"><i [ngClass]="column.codebookIcon"></i></span>
                                         <span
@@ -52,7 +52,7 @@
 
                 </mat-accordion>
 
-                <div style="width: 100%;background-color: white;margin-top: 10px;">
+                <div class="class5">
                     <app-text-area [value]="sqlQuery" (exportValue)="sqlQuery=$event"
                         [rows]="checkMobile.isMobile()?3:4" [label]="sqlQueryLabel"
                         (keydown.f8)="executePreview(0,true)"
@@ -60,19 +60,19 @@
                     </app-text-area>
                 </div>
 
-                <div style="display: flow-root;text-align: right;">
-                    <button mat-raised-button color="primary" (click)="executePreview(0,true)" style="margin-top: 5px;">
+                <div class="class6">
+                    <button mat-raised-button color="primary" (click)="executePreview(0,true)" class="class7">
                         <span><i class="fa fa-file-excel-o"></i></span>
                         <span
                             [ngStyle]="{'display':checkMobile.isMobile()?'none':'','margin-left':'10px'}">{{translate.transform('showData')+'[F8]'}}</span>
                     </button>
-                    <button mat-raised-button style="background-color: green;margin-left: 10px;margin-top: 5px;" (click)="exportExcel()">
-                        <span><i class="fa fa-file-excel-o" style="color: white;" ></i></span>
+                    <button mat-raised-button class="class8" (click)="exportExcel()">
+                        <span><i class="fa fa-file-excel-o class9"></i></span>
                         <span
                             [ngStyle]="{'display':checkMobile.isMobile()?'none':'','color':'white','margin-left':'10px'}">{{translate.transform('excel')}}</span>
                     </button>
-                    <button mat-raised-button style="background-color: red;margin-left: 10px;margin-top: 5px;" (click)="executeUpdate()">
-                        <span><i class="fa fa-bolt" style="color: white;"></i></span>
+                    <button mat-raised-button class="class10" (click)="executeUpdate()">
+                        <span><i class="fa fa-bolt class11"></i></span>
                         <span
                             [ngStyle]="{'display':checkMobile.isMobile()?'none':'','color':'white','margin-left':'10px'}">{{translate.transform('execute')+'[F9]'}}</span>
                     </button>
@@ -81,29 +81,24 @@
         </div>
 
         <div class="sqlExecutorGrid2">
-            <div class="mat-elevation-z8" style="overflow: auto;
-                border-top-left-radius: 20px;border-top-right-radius: 20px;min-height:  calc(100vh - 330px);max-height: calc(100vh - 330px);
-                min-width: calc(100% - 30px);margin-top: 30px;
-                background-color: white;
+            <div class="mat-elevation-z8 class12
                 ">
                 <table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)">
 
                     <ng-container *ngFor="let column of sqlResult.columns">
 
                         <ng-container matColumnDef="{{column.orderNumber}}">
-                            <th mat-sort-header style="text-align: center;" mat-header-cell *matHeaderCellDef>
-                                <div style="display: flex;text-align: center;justify-content: center;">
+                            <th mat-sort-header class="class13" mat-header-cell *matHeaderCellDef>
+                                <div class="class14">
                                     <span>{{column['name']}}</span>
                                     <span *ngIf="column.type=='BigDecimal'&&(!showSum.has(column.orderNumber))"><i
-                                            class="fa fa-calculator"
-                                            style="font-size: 16px;margin-left: 5px;opacity: 75%;"
+                                            class="fa fa-calculator class15"
                                             [matTooltip]="translate.transform('sum')"
                                             onmouseenter="this.style.opacity='100%'"
                                             onmouseleave="this.style.opacity='75%'"
                                             (click)="$event.stopPropagation();showSumInTable(column.orderNumber)"></i></span>
                                     <span *ngIf="column.type=='BigDecimal'&&(showSum.has(column.orderNumber))"><i
-                                            class="fa fa-calculator"
-                                            style="font-size: 16px;margin-left: 5px;opacity: 75%;color:red"
+                                            class="fa fa-calculator class16"
                                             [matTooltip]="translate.transform('sum')"
                                             onmouseenter="this.style.opacity='100%'"
                                             onmouseleave="this.style.opacity='75%'"
@@ -113,43 +108,42 @@
                             </th>
 
                             <ng-container *ngIf="column.type=='String'">
-                                <td style="text-align: left;" mat-cell *matCellDef="let element">
+                                <td class="class17" mat-cell *matCellDef="let element">
                                     {{element[column.orderNumber]}}</td>
                             </ng-container>
 
                             <ng-container *ngIf="column.type=='Long'||column.type=='Integer'">
-                                <td style="text-align: right;" mat-cell *matCellDef="let element">
+                                <td class="class18" mat-cell *matCellDef="let element">
                                     {{element[column.orderNumber]| number : '1.0-0':lang}}</td>
                             </ng-container>
 
                             <ng-container *ngIf="column.type=='BigDecimal'">
-                                <td style="text-align: right;" mat-cell *matCellDef="let element">
+                                <td class="class19" mat-cell *matCellDef="let element">
                                     {{element[column.orderNumber]| number : '1.2-10':lang}}</td>
                             </ng-container>
 
                             <ng-container *ngIf="column.type=='Boolean'">
-                                <td style="text-align: center;" mat-cell *matCellDef="let element"><span
+                                <td class="class20" mat-cell *matCellDef="let element"><span
                                         [ngStyle]="{'background-color':element[column.orderNumber]?'green':'red'}"
-                                        style="color:white;max-width: 50px;min-width: 50px;display: inline flow-root;
-                                    border-radius: 20px; padding-top: 5; padding-bottom: 5px;
-                                    ">
+                                        class="class21"
+                                    >
                                         {{element[column.code]==true?translate.transform('Y'):translate.transform('N')}}
                                     </span></td>
                             </ng-container>
 
                             <ng-container *ngIf="column.type=='LocalDate'">
-                                <td style="text-align: center;" mat-cell *matCellDef="let element">
+                                <td class="class22" mat-cell *matCellDef="let element">
                                     {{element[column.orderNumber]|date:dateFormat}}</td>
                             </ng-container>
 
                             <ng-container *ngIf="column.type=='LocalDateTime'">
-                                <td style="text-align: center;" mat-cell *matCellDef="let element">
+                                <td class="class23" mat-cell *matCellDef="let element">
                                     {{element[column.orderNumber]|date:dateTimeFormat}}</td>
                             </ng-container>
 
                             <!-- TOTAL -->
 
-                            <td mat-footer-cell *matFooterCellDef style="text-align: right;border-radius: 5px;"
+                            <td mat-footer-cell *matFooterCellDef class="class24"
                                 [ngStyle]="{'background-color':(showSum.has(column.orderNumber) ?'rgba(0,92,187,0.25)':'transparent')
                                 
                             }">
@@ -175,7 +169,7 @@
             <mat-paginator #paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
                 [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="false"
                 [pageIndex]="pageIndex"
-                style="border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);">
+                class="class25">
             </mat-paginator>
 
 

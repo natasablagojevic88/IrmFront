@@ -1,0 +1,15 @@
+.class1{
+    width: 100%;
+}
+
+.class2{
+    overflow: auto;
+}
+
+.class3{
+    display: flex;justify-content: center;align-items: center;
+}
+
+.class4{
+    width: 100%;
+}

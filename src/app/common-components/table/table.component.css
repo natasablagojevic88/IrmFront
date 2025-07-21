@@ -11,3 +11,77 @@ th.mat-sort-header-sorted {
 .demo-paginator {
   width: 100%;
 }
+
+.class1{
+    min-height: calc( 100vh - 273px );max-height: calc( 100vh - 273px );overflow: auto;
+background-color: white; border-top-left-radius: 15px;border-top-right-radius: 15px;
+
+}
+
+.class2{
+  color: green;font-size: 25px;
+}
+
+.class3{
+  display: flex;
+}
+
+.class4{
+  min-width: 25px;align-content: center;text-align: center;min-height: 25px;
+}
+
+.class5{
+  margin-left: 5px
+}
+
+.class6{
+  min-width: 25px;align-content: center;text-align: center;min-height: 25px;
+}
+
+.class7{
+  margin-left: 10px;
+}
+
+.class8{
+  margin-right: 10px;color:#005cbb;font-size: 20px;opacity: 75%; 
+}
+
+.class9{
+  text-align: right;
+}
+
+.class10{
+  margin-right: 10px;color:#005cbb;font-size: 20px;opacity: 75%;
+}
+
+.class11{
+  text-align: right;
+}
+
+.class12{
+  text-align: center;
+}
+
+.class13{
+  text-align: center;
+}
+
+.class14{
+  text-align: center;
+}
+
+.class15{
+  color:white;max-width: 50px;min-width: 50px;display: inline flow-root;
+  border-radius: 20px; padding-top: 5; padding-bottom: 5px;
+}
+
+.class16{
+  text-align: right;border-radius: 5px;
+}
+
+.class17{
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+     border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;
+    
+}
+

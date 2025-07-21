@@ -1,0 +1,24 @@
+.class1{
+	width: 100%; height: calc( 100vh - 51px ); display: flex; justify-content: center;align-items: center;
+}
+.class2{
+	display: flow-root;text-align: center;
+}
+.class3{
+	color:#005cbb; font-weight: bold; font-size: 25px;
+}
+.class4{
+	margin-top: 20px;
+}
+.class5{
+	margin-top: 10px;
+}
+.class6{
+	margin-top: 10px;
+}
+.class7{
+	width: 357px;
+}
+.class8{
+	margin-left: 5px;
+}

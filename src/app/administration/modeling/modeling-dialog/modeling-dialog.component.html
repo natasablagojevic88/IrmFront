@@ -95,10 +95,10 @@
 <!-- 5. line -->
 <mat-grid-tile>
     <app-grid-tile>
-        <div style="display: flex;min-width: 100%">
-            <span style="min-width: 50px;min-height: 50px;align-content: center;font-size: 36px;text-align: center;"><i [ngClass]="value.icon"></i></span>
+        <div class="class1">
+            <span class="class2"><i [ngClass]="value.icon"></i></span>
             <app-select
-             style="width: 100%;"
+             class="class3"
             [value]="value.icon"
             (exportValue)="value.icon=$event"
             [label]="names.icon"

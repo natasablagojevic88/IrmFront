@@ -85,9 +85,9 @@
                         >
                         </app-check-box>
 
-                        <div *ngIf="column.columnType=='CODEBOOK'" style="display: flex;min-width: 100%;">
+                        <div *ngIf="column.columnType=='CODEBOOK'" class="class4">
                             <app-select
-                            style="width: 100%;"
+                            class="class1"
                             [value]="value[column.code]"
                             (exportValue)="value[column.code]=$event;changeCodebook(column.code,$event)"
                             [label]="column.name"
@@ -101,11 +101,11 @@
                             "
                             >
                             </app-select>
-                            <span style="max-width: 24px;font-size: 24px;align-content: center;"
+                            <span class="class2"
                             *ngIf="value[column.code]!=undefined"
                             >
-                                <i class="fa fa-info-circle"
-                                style="opacity: 75%;" onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
+                                <i class="fa fa-info-circle class3"
+                                 onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
                                 (click)="infoClicked(value[column.code],column.code)"
                                 ></i></span>
 

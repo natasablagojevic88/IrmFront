@@ -1,12 +1,12 @@
-<div style="width: 100%; height: calc( 100vh - 51px ); display: flex; justify-content: center;align-items: center;"  *ngIf="dashData==undefined">
+<div class="class1"  *ngIf="dashData==undefined">
 
-    <div style="display: flow-root;text-align: center;">
-        <div  class="defaultColor"><i class="fa fa-pie-chart" style="font-size: 150px"></i></div>
-        <div class="defaultColor" style="font-size: 48px">Interface reporting manager</div>
+    <div class="class2">
+        <div  class="defaultColor"><i class="fa fa-pie-chart class3" ></i></div>
+        <div class="defaultColor class4">Interface reporting manager</div>
     </div>
 
 </div>
-<div style="width: 100%; height: calc( 100vh - 51px );"  *ngIf="dashData!=undefined">
+<div class="class5"  *ngIf="dashData!=undefined">
     <app-preview-dashboard
 *ngIf="dashData!=undefined"
 [inDashboardData]="dashData"

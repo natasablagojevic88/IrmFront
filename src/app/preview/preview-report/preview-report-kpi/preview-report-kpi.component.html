@@ -1,4 +1,4 @@
-<div style="width:100%;border-radius: 20px;"
+<div class="class1"
 [ngStyle]="{'background-color':(color==undefined?'white':(color.length==0?'white':color)),'min-height':inHeight+'px',
 'color':(colorFont==undefined?'black':(colorFont.length==0?'black':colorFont))
 }"
@@ -8,7 +8,7 @@
 [rowHeight]="(rowHeight-5)+'px'"
 >
 <mat-grid-tile>
-    <span style="max-width: calc(100% - 10px);min-width: calc(100% - 10px);margin-left:10px" 
+    <span class="class2" 
     [ngClass]="platform.ANDROID?'responsive-text-android':'responsive-text'"
     [ngStyle]="{'color':colorFont==undefined?'black':(colorFont.length==0?'black':colorFont)}"
     >
@@ -17,11 +17,11 @@
    
 </mat-grid-tile>
 <mat-grid-tile [rowspan]="2">
-    <div style="max-width: calc(100% - 10px);min-width: calc(100% - 10px);margin-left:10px;display: flex;align-items: center;"  [ngClass]="platform.ANDROID?'responsive-text-android':'responsive-text'"
+    <div class="class3"  [ngClass]="platform.ANDROID?'responsive-text-android':'responsive-text'"
     [ngStyle]="{'color':colorFont==undefined?'black':(colorFont.length==0?'black':colorFont)}"
     >
         <i [ngClass]="icon"></i>
-        <span style="margin-left: 10px;"  [ngClass]="platform.ANDROID?'responsive-text-android':'responsive-text'">{{value}}</span>
+        <span class="class4"  [ngClass]="platform.ANDROID?'responsive-text-android':'responsive-text'">{{value}}</span>
     </div>
 </mat-grid-tile>
 </mat-grid-list>

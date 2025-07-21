@@ -1,0 +1,15 @@
+.class1{
+    width:100%;border-radius: 20px;
+}
+
+.class2{
+    max-width: calc(100% - 10px);min-width: calc(100% - 10px);margin-left:10px
+}
+
+.class3{
+    max-width: calc(100% - 10px);min-width: calc(100% - 10px);margin-left:10px;display: flex;align-items: center;
+}
+
+.class4{
+    margin-left: 10px;
+}

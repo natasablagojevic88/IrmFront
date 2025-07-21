@@ -1,0 +1,43 @@
+.class1{
+    min-height: 50px;min-height: 50px;width: 100; text-align: right;
+}
+
+.class2{
+    background-color: green;color: white;
+}
+
+.class3{
+    margin-left: 10px;
+}
+
+.class4{
+    min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow: auto; 
+}
+
+.class5{
+    background-color: white;min-width: calc(100% - 5px);min-height: calc(100% - 5px);max-height: calc(100% - 5px);
+        border-radius: 20px; display: flex;justify-content: center;align-items: center;overflow: auto;
+        border:  #005cbb solid 1px;
+        
+}
+
+.class6{
+    text-align: align;width: calc(100% - 10px); 
+}
+
+.class7{
+    display: flex;min-width: 100%
+}
+
+.class8{
+    width: 50%;
+}
+
+.class9{
+    width: 50%;margin-left: 10px;
+}
+
+.class10{
+    text-align: center; width: 100%;
+}
+

@@ -1,0 +1,96 @@
+.class1{
+    background-color: transparent;
+}
+
+.class2{
+    cursor: pointer;padding: 10px; border-radius: 10px;display: flex;
+}
+
+.class3{
+    margin-left: 10px;
+}
+
+.class4{
+    display: flex; margin-left: 10px; justify-content: center; align-items: center;
+}
+
+.class5{
+    color:#005cbb;margin-right: 10px;opacity: 75%
+}
+
+.class6{
+    color:red;opacity: 75%;margin-right: 10px;
+}
+
+.class7{
+    color:orange;opacity: 75%;margin-right: 10px;
+}
+
+.class8{    
+    color:purple;margin-right: 10px;opacity: 75%
+}
+
+.class9{
+    color:maroon;margin-right: 10px;opacity: 75%
+}
+
+.class10{
+    color:Fuchsia;margin-right: 10px;opacity: 75%
+}
+
+.class11{
+    cursor: pointer;padding: 10px; border-radius: 10px;display: flex;
+}
+
+.class11 .demo-row-is-clicked{
+    cursor: pointer;padding: 10px; border-radius: 10px;display: flex;
+}
+
+.class12{
+    margin-left: 10px;
+}
+
+.class13{
+    margin-left: 10px;
+}
+
+.class14{
+    display: flex; margin-left: 10px; justify-content: center; align-items: center;
+}
+
+.class15{
+    color:#005cbb;margin-right: 10px;opacity: 75%
+}
+
+.class16{
+    color:orange;opacity: 75%;margin-right: 10px;
+}
+
+.class17{
+    color:green;margin-right: 10px;opacity: 75%
+}
+
+.class18{
+    color:purple;margin-right: 10px;opacity: 75%
+}
+
+.class19{
+    color:maroon;margin-right: 10px;opacity: 75%
+}
+
+.class20{
+    color:OrangeRed;margin-right: 10px;opacity: 75%
+}
+
+.class21{
+    color:Fuchsia;margin-right: 10px;opacity: 75%
+}
+
+.class22{
+    color:green;margin-right: 10px;opacity: 75%
+}
+
+.class23{
+    color:OrangeRed;margin-right: 10px;opacity: 75%
+}
+

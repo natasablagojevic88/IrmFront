@@ -1,10 +1,9 @@
-<div style="min-height: 50px;min-height: 50px;width: 100; text-align: right;">
-    <button (click)="save()" mat-raised-button style="background-color: green;color: white;"> <span><i class="fa fa-floppy-o"></i></span>
+<div class="class1">
+    <button (click)="save()" mat-raised-button class="class2"> <span><i class="fa fa-floppy-o"></i></span>
         <span *ngIf="!checkMobile.isMobile()"
-            style="margin-left: 10px;">{{translate.transform('save')}}</span></button>
+            class="class3">{{translate.transform('save')}}</span></button>
 </div>
-<div class="dashboardReport"
-style="min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow: auto; "
+<div class="dashboardReport class4"
 >
 <mat-grid-list
 [cols]="checkMobile.isMobile()?1:inDashboard.columnnumber"
@@ -17,13 +16,10 @@ style="min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow
     [colspan]="checkMobile.isMobile()?1:item.colspan"
     [rowspan]="item.rowspan"
     >
-        <div style="background-color: white;min-width: calc(100% - 5px);min-height: calc(100% - 5px);max-height: calc(100% - 5px);
-        border-radius: 20px; display: flex;justify-content: center;align-items: center;overflow: auto;
-        border:  #005cbb solid 1px;
-        ">
-            <div style="text-align: align;width: calc(100% - 10px); ">
-                <div style="display: flex;min-width: 100%">
-                    <div style="width: 50%;">
+        <div class="class5">
+            <div class="class6">
+                <div class="class7">
+                    <div class="class8">
                         <app-select
                     [label]="labelOfRows"
                     [value]="item.rowspan"
@@ -33,7 +29,7 @@ style="min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow
                     [disabled]="item.heights.length==1">
                     </app-select>
                     </div>
-                    <div style="width: 50%;margin-left: 10px;">
+                    <div class="class9">
                         <app-select
                     [label]="labelOfColumn"
                     [value]="item.colspan"
@@ -44,7 +40,7 @@ style="min-height: calc(100vh - 235px);max-height: calc(100vh - 235px); overflow
                     </app-select>
                     </div>
                 </div>
-                <div style="text-align: center; width: 100%;">
+                <div class="class10">
                     <app-select
                     [label]="'report'"
                     [value]="item.reportId"

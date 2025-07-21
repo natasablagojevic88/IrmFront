@@ -1,8 +1,8 @@
-<div style="display: grid;">
+<div class="class1">
     <!-- toolbar -->
-    <mat-toolbar *ngIf="!loginPage" style="max-height: 51px;min-height: 51px;padding: 0">
+    <mat-toolbar *ngIf="!loginPage" class="class2">
         <!-- toolbar first part -->
-        <div style="max-height: 50px;min-height: 50px;max-width: 400px;min-width: 400px;display: flex;border-bottom: solid 1px; ;"
+        <div class="class3"
             [ngStyle]="{'min-width':(isMobile?'100%':'400px'),
             'max-width':(isMobile?'100%':'400px'),
             'border-color':showMenu?'#005cbb':((rootPage&&!hasDash)?'grey':'whitesmoke')
@@ -14,17 +14,15 @@
                 </span>
             </button>
             <button mat-flat-button (click)="goToHome()"
-                style="background-color: transparent; min-height: 48px;max-height: 48px;display: flex;align-items: center;justify-content: center; margin-left: 10px;
-                cursor: pointer;
-                "
+                class="class4"
                 >
-                <span style=" font-weight: bold; font-size: 30px;margin-top: 10px;"
+                <span class="class5"
                 [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
                 ><i
                         class="fa fa-pie-chart"></i></span>
                 <span 
                 [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
-                style="font-weight: bold; font-size: 30px;margin-top: 10px;">IRM</span>
+                class="class6">IRM</span>
             </button>
 
             <ng-container *ngIf="isMobile">
@@ -41,7 +39,7 @@
         </div>
 
         <!-- toolbar second part -->
-        <div style="min-height: 50px;max-height: 50px; border-bottom: solid 1px;width: 100%; display: flex; justify-content: right;"
+        <div class="class7"
             [ngStyle]="{'border-color':((rootPage&&!hasDash)?'grey':'whitesmoke'),
                  'display':(isMobile?'none':'flex')}">
 
@@ -59,17 +57,17 @@
                 <button (click)="userDetail()" mat-menu-item>
                     <span><i class="fa fa-user-circle" aria-hidden="true"></i>
                     </span>
-                    <span  style="margin-left: 10px;">{{userDetailLabel}}</span>
+                    <span  class="class8">{{userDetailLabel}}</span>
                 </button>
                 <button (click)="changePassword()" mat-menu-item>
                     <span><i class="fa fa-key" aria-hidden="true"></i>
                     </span>
-                    <span  style="margin-left: 10px;">{{changePasswordLabel}}</span>
+                    <span  class="class9">{{changePasswordLabel}}</span>
                 </button>
                 <button (click)="exit()" mat-menu-item>
                     <span><i class="fa fa-sign-out" aria-hidden="true"></i>
                     </span>
-                    <span style="margin-left: 10px;">{{exitLabel}}</span>
+                    <span class="class10">{{exitLabel}}</span>
                 </button>
                 
             </mat-menu>
@@ -81,18 +79,17 @@
 
     </div>
 
-    <mat-drawer-container style="min-height: calc( 100vh - 51px );max-height: calc( 100vh - 51px );width: 100%"
+    <mat-drawer-container class="class11"
         autosize>
         <!-- menu -->
         <mat-drawer [opened]="showMenu" #drawer mode="side" [ngStyle]="{'display':(loginPage?'none':''),
             'min-width':(isMobile?'100%':'400px'),
             'max-width':(isMobile?'100%':'400px')
         }">
-            <div class="defaultBackground" style="min-height:  calc( 100vh - 51px );max-height:  calc( 100vh - 51px );
-          overflow: auto; color: white;" [ngStyle]="{
+            <div class="class12" [ngStyle]="{
           'min-width':(isMobile?'100%':'400px'),
           'max-width':(isMobile?'100%':'400px')}">
-                <div style="padding: 10px;">
+                <div class="class13">
                     <app-main-menu [menuDTO]="listMenu" (menuClicked)="menuClicked()"></app-main-menu>
                 </div>
 
@@ -101,8 +98,7 @@
 
 
         <!-- router -->
-        <div style="min-height:  calc( 100vh - 51px );max-height:  calc( 100vh - 51px );
-        width: 100;overflow: auto; background-color: whitesmoke;"
+        <div class="class14"
             [ngStyle]="{'display':(isMobile&&showMenu?'none':'')}">
             <router-outlet />
         </div>

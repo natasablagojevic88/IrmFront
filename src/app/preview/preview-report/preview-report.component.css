@@ -1,0 +1,45 @@
+.class1{
+    min-height: calc(100vh - 185px);max-height: calc(100vh - 185px);
+overflow: auto;width: 100%;
+}
+
+.class2{
+    background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);
+}
+
+.class3{
+    width: 100%; overflow: auto; background-color: transparent;
+}
+
+.class4{
+    margin-top: 20px;margin-left: 5px;
+}
+
+.class5{
+    min-height: 100px;max-height: 100px;background-color: transparent;display: flex;align-items: end;
+}
+
+.class6{
+    text-align: center;display: flow-root;width: 100%;
+}
+
+.class7{
+    width: calc(100% - 20px);color:white
+}
+
+.class8{
+    margin-left: 10px;
+}
+
+.class9{
+    width: calc(100% - 20px);background-color: green;color:white;margin-top: 10px;
+}
+
+.class10{
+    margin-left: 10px;
+}
+
+.class11{
+    background-color: white;border-radius: 20px; overflow: auto;width: calc(100% - 20px);
+}
+

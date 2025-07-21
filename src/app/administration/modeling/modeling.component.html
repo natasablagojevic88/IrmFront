@@ -1,56 +1,56 @@
 <app-page-title [title]="title" (addClicked)="add()"
 [addButtons]="[refreshButton,refreshJasperButton]" (addButtonClicked)="addButtonClicked($event)"
 >
-  <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" style="background-color: transparent;">
+  <mat-tree [dataSource]="dataSourceTree" [treeControl]="treeControl" class="class1">
 
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-      <mat-label mat-icon-button disabled style="cursor: pointer;padding: 10px; border-radius: 10px;display: flex;"
+      <mat-label mat-icon-button disabled class="class2"
         [class.demo-row-is-clicked]="clickedId.has(node.id)" (click)="clickNode(node)">
         <span><i [ngClass]="node.icon"></i></span>
-        <span style="margin-left: 10px;"> {{node.name}}</span>
-        <span style="display: flex; margin-left: 10px; justify-content: center; align-items: center;"
+        <span class="class3"> {{node.name}}</span>
+        <span class="class4"
           *ngIf="node.id!=-1">
 
-          <i style="color:#005cbb;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-pencil" [matTooltip]="translate.transform('edit')"
+          <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-pencil class5" [matTooltip]="translate.transform('edit')"
             (click)="$event.stopPropagation();clickNode(node);edit(node)"></i>
 
-          <i style="color:red;opacity: 75%;margin-right: 10px;" class="fa fa-trash"
+          <i class="fa fa-trash class6"
             onmouseover="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
             [matTooltip]="translate.transform('delete')"
             (click)="$event.stopPropagation();clickNode(node);delete(node)"></i>
 
-          <i style="color:orange;opacity: 75%;margin-right: 10px;" class="fa fa-history"
+          <i  class="fa fa-history class7"
             onmouseover="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
             [matTooltip]="translate.transform('history')"
             (click)="$event.stopPropagation();clickNode(node);history(node)"></i>
 
-          <i style="color:green;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-columns"
+          <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-columns class22"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('columns')"
             (click)="$event.stopPropagation();clickNode(node);columns(node)"></i>
 
-          <i style="color:purple;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-repeat"
+          <i  onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-repeat class8"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('triggers')"
             (click)="$event.stopPropagation();clickNode(node);triggers(node)"></i>
 
-            <i style="color:maroon;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-file-pdf-o"
+            <i  onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-file-pdf-o class9"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="jasperReportsTitle"
             (click)="$event.stopPropagation();clickNode(node);showJasperReports(node)"></i>
 
-            <i style="color:OrangeRed;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-clock-o"
+            <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-clock-o class23"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('jobScheduling')"
             (click)="$event.stopPropagation();clickNode(node);showJobs(node)"></i>
 
-            <i style="color:Fuchsia;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-code"
+            <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-code class10"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('executeProcedure')"
             (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>
@@ -63,52 +63,52 @@
 
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
 
-      <mat-label style="cursor: pointer;padding: 10px; border-radius: 10px;display: flex;"
+      <mat-label class="class11"
         [class.demo-row-is-clicked]="clickedId.has(node.id)" (click)="clickNode(node)">
         <span> <i matTreeNodeToggle
             [ngClass]="treeControl.isExpanded(node) ? 'fa fa-chevron-down' : 'fa fa-chevron-right'"
             (click)="checkExpand(node)"> </i></span>
-        <span style="margin-left: 10px;"><i [ngClass]="node.icon"></i></span>
-        <span style="margin-left: 10px;"> {{node.name}}</span>
-        <span style="display: flex; margin-left: 10px; justify-content: center; align-items: center;"
+        <span class="class12"><i [ngClass]="node.icon"></i></span>
+        <span class="class13"> {{node.name}}</span>
+        <span class="class14"
           *ngIf="node.id!=-1">
 
-          <i style="color:#005cbb;margin-right: 10px;opacity: 75%" *ngIf="node.id!=-1" class="fa fa-pencil"
+          <i  *ngIf="node.id!=-1" class="fa fa-pencil class15"
             onmouseover="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
             [matTooltip]="translate.transform('edit')"
             (click)="$event.stopPropagation();clickNode(node);edit(node)"></i>
 
-          <i style="color:orange;opacity: 75%;margin-right: 10px;" class="fa fa-history"
+          <i  class="fa fa-history class16"
             onmouseover="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
             [matTooltip]="translate.transform('history')"
             (click)="$event.stopPropagation();clickNode(node);history(node)"></i>
 
-          <i style="color:green;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-columns"
+          <i  onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-columns class17"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('columns')"
             (click)="$event.stopPropagation();clickNode(node);columns(node)"></i>
 
-          <i style="color:purple;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-repeat"
+          <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-repeat class18"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('triggers')"
             (click)="$event.stopPropagation();clickNode(node);triggers(node)"></i>
 
-            <i style="color:maroon;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-file-pdf-o"
+            <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-file-pdf-o class19"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="jasperReportsTitle"
             (click)="$event.stopPropagation();clickNode(node);showJasperReports(node)"></i>
 
-            <i style="color:OrangeRed;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-clock-o"
+            <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-clock-o class20"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('jobScheduling')"
             (click)="$event.stopPropagation();clickNode(node);showJobs(node)"></i>
 
-            <i style="color:Fuchsia;margin-right: 10px;opacity: 75%" onmouseover="this.style.opacity='100%'"
-            onmouseleave="this.style.opacity='75%'" class="fa fa-code"
+            <i  onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-code class21"
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('executeProcedure')"
             (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>

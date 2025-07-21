@@ -1,0 +1,63 @@
+.class1{
+	display: grid;
+}
+
+.class2{
+	max-height: 51px;min-height: 51px;padding: 0
+}
+
+.class3{
+	max-height : 50px;min-height: 50px;max-width: 400px;
+    min-width: 400px;display: flex;border-bottom: solid 1px ; ;
+}
+
+.class4{
+	background-color: transparent !important; min-height: 48px;
+    max-height: 48px;display: flex;
+    align-items: center;justify-content: center; margin-left: 10px;
+                cursor: pointer;
+}
+
+.class5{
+	font-weight: bold; font-size: 30px;margin-top: 10px;
+}
+
+.class6{
+	font-weight: bold; font-size: 30px;margin-top: 10px;
+}
+
+.class7{
+	min-height: 50px;max-height: 50px; border-bottom: solid 1px;width: 100%; display: flex; justify-content: right;
+}
+
+.class8{
+	margin-left: 10px;
+}
+
+.class9{
+	margin-left: 10px;
+}
+
+.class10{
+	margin-left: 10px;
+}
+
+.class11{
+	min-height: calc( 100vh - 51px );max-height: calc( 100vh - 51px );width: 100%
+}
+
+.class12{
+	min-height:  calc( 100vh - 51px );max-height:  calc( 100vh - 51px ) ;
+          overflow: auto ; color: white;
+            background-color: #005cbb;
+}
+
+.class13{
+	padding: 10px;
+}
+
+.class14{
+	min-height:  calc( 100vh - 51px ) ;max-height:  calc( 100vh - 51px );
+        width: 100 ;overflow: auto ; background-color: whitesmoke; 
+}
+
