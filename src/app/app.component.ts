@@ -126,10 +126,12 @@ export class AppComponent {
   checkPage(){
     
     if(!this.loginPage){
+       if (this.menuLoad) {
+
       this.sendRequest.getResponse('/api/session')
           .then(
             (responseSession:HttpResponse<any>) => {
-              if (this.menuLoad) {
+             
                 this.sendRequest.get('/api/menu')
                   .then(
                     (response) => {
@@ -139,7 +141,6 @@ export class AppComponent {
 
                       this.sendRequest.get('/api/notification/count')
                       .then((response:any)=>{
-                         console.log(response)
                         this.unreadMessages=response.count;
 
                           this.sendRequest.get('/api/menu/dashboard')
@@ -161,9 +162,10 @@ export class AppComponent {
                     }
                   ).catch((error) => { })
               }
-            }
+            
           )
           .catch((error) => { })
+        }
     }else{
       if(this.socket!=undefined){
         this.socket.close();
