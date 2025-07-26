@@ -99,7 +99,7 @@ export class AppComponent {
 
     let httpUrl=this.sendRequest.url().toString();
     httpUrl=httpUrl.replaceAll('http://','ws://')
-    httpUrl=httpUrl.replaceAll('https://','ws://');
+    httpUrl=httpUrl.replaceAll('https://','wss://');
 
     this.socket = new WebSocket(httpUrl+path);
 
