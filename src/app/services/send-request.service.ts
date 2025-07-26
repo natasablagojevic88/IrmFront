@@ -8,12 +8,13 @@ import { ProgressSpinnerComponent } from '../common-components/progress-spinner/
 import { CapacitorCookies} from '@capacitor/core';
 import { Platform } from '@angular/cdk/platform';
 import { ReadCookieService } from './read-cookie.service';
+import { concatMap, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SendRequestService {
-
+  private requestQueue = new Subject<() => Promise<any>>();
 
   platform = inject(Platform);
   constructor(
@@ -22,9 +23,22 @@ export class SendRequestService {
     public sendInfo: SendInfoService,
     public matDialog: MatDialog,
     public readCookie:ReadCookieService
-  ) { }
+  ) {
+    this.requestQueue
+    .pipe(concatMap(task => task()))
+    .subscribe();
+   }
+
+   private queueRequest<T>(requestFn: () => Promise<T>): Promise<T> {
+  return new Promise((resolve, reject) => {
+    this.requestQueue.next(() => 
+      requestFn().then(resolve).catch(reject)
+    );
+  });
+}
 
   public get(api: string): Promise<any> {
+    return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
 
       let dialogRef = this.progressDialog();
@@ -44,9 +58,11 @@ export class SendRequestService {
 
         )
     });
+  });
   }
 
   public getResponse(api: string): Promise<HttpResponse<any>> {
+    return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
 
       let dialogRef = this.progressDialog();
@@ -66,9 +82,11 @@ export class SendRequestService {
 
         )
     });
+     });
   }
 
   public getBlob(api: string): Promise<any> {
+     return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
 
       let dialogRef = this.progressDialog();
@@ -88,9 +106,11 @@ export class SendRequestService {
 
         )
     });
+    });
   }
 
   public post(api: string, body: any): Promise<any> {
+    return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
       let dialogRef = this.progressDialog();
       this.http.post(this.url() + api, body, { headers: this.httpHeader(),withCredentials:true })
@@ -108,9 +128,11 @@ export class SendRequestService {
 
         )
     });
+     });
   }
 
   public delete(api: string): Promise<any> {
+     return this.queueRequest(() => {
     let dialogRef = this.progressDialog();
     return new Promise<any>((resolve, reject) => {
       this.http.delete(this.url() + api, { headers: this.httpHeader(),withCredentials:true })
@@ -128,9 +150,11 @@ export class SendRequestService {
 
         )
     });
+    });
   }
 
   public resource(text: string): Promise<any> {
+     return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
 
       this.http.get(this.url() + '/api/session/resources/' + text, { headers: this.httpHeader(), responseType: 'text',withCredentials:true })
@@ -146,9 +170,11 @@ export class SendRequestService {
 
         )
     });
+     });
   }
 
   public postBlob(api: string, body: any): Promise<any> {
+    return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
       let dialogRef = this.progressDialog();
       this.http.post(this.url() + api, body, { headers: this.httpHeader(), responseType: 'blob', observe: 'response',withCredentials:true })
@@ -166,6 +192,7 @@ export class SendRequestService {
 
         )
     });
+    });
   }
 
 
@@ -179,6 +206,7 @@ export class SendRequestService {
   }
 
   public postFile(api: string, file: File): Promise<any> {
+    return this.queueRequest(() => {
     return new Promise<any>((resolve, reject) => {
       let dialogRef = this.progressDialog();
       this.http.post(this.url() + api, file, { headers: this.httpHeader(true,file.name),withCredentials:true })
@@ -195,6 +223,7 @@ export class SendRequestService {
         }
 
         )
+    });
     });
   }
 
