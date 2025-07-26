@@ -115,6 +115,9 @@ export class AppComponent {
       console.log('WebSocket disconneted');
     };
 
+    this.socket.onerror = (event) => {
+      console.log('WebSocket error'+event);
+    };
 
 
   }
