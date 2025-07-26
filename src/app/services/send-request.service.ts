@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { SendInfoService } from './send-info.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ProgressSpinnerComponent } from '../common-components/progress-spinner/progress-spinner.component';
-import { CapacitorCookies } from '@capacitor/core';
+import { CapacitorCookies} from '@capacitor/core';
 import { Platform } from '@angular/cdk/platform';
 import { ReadCookieService } from './read-cookie.service';
 
@@ -30,6 +30,28 @@ export class SendRequestService {
       let dialogRef = this.progressDialog();
 
       this.http.get(this.url() + api, { headers: this.httpHeader(),withCredentials:true })
+        .subscribe({
+          next: ((response) => {
+            dialogRef.close();
+            resolve(response);
+          }),
+          error: (error => {
+            dialogRef.close();
+            this.errorHandler(error);
+            reject(error.error);
+          })
+        }
+
+        )
+    });
+  }
+
+  public getResponse(api: string): Promise<HttpResponse<any>> {
+    return new Promise<any>((resolve, reject) => {
+
+      let dialogRef = this.progressDialog();
+
+      this.http.get(this.url() + api, { headers: this.httpHeader(),observe:'response', withCredentials:true })
         .subscribe({
           next: ((response) => {
             dialogRef.close();
@@ -147,7 +169,7 @@ export class SendRequestService {
   }
 
 
-  private url(): string {
+  public url(): string {
     if (environment.production) {
       return document.baseURI.substring(0, document.baseURI.toString().length - 1);
     } else {

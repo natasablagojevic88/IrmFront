@@ -14,7 +14,7 @@ import { DashboardDefaultData } from './model/DashboardDefaultData';
 import { Platform } from '@angular/cdk/platform';
 import { Preferences } from '@capacitor/preferences';
 import { PushNotificationServiceService } from './services/push-notification-service.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpResponse } from '@angular/common/http';
 import { Browser } from '@capacitor/browser';
 import { DefaultSystemBrowserOptions, DefaultWebViewOptions, InAppBrowser } from '@capacitor/inappbrowser';
 import { ReadCookieService } from './services/read-cookie.service';
@@ -47,6 +47,8 @@ export class AppComponent {
 
   hasDash:boolean=false;
 
+  private socket: WebSocket | null = null;
+
   constructor(
     public router: Router,
     public activeRouter: ActivatedRoute,
@@ -62,12 +64,6 @@ export class AppComponent {
     if (this.isMobile) {
       this.showMenu = false;
     }
-
-    setInterval(()=>{
-         if(!this.loginPage){
-          this.checkNotification();
-      }
-    },environment.notificationDelaySeconds*1000);
 
     router.events.subscribe(r => {
       if (r instanceof NavigationEnd) {
@@ -99,76 +95,65 @@ export class AppComponent {
 
   }
 
-  checkNotification(){
-    let url:string='';
-          if (environment.production) {
-            url= document.baseURI.substring(0, document.baseURI.toString().length - 1);
-          } else {
-            url= environment.api;
-          }
-          let header = {
-            'Content-Type': 'application/json',
-            'Accept': '*/*'
-          }
+  connectionToSocket(path:String){
 
-          if(!this.loginPage){
-            this.http.get(url + '/api/notification/count', { headers:header,withCredentials:true })
-            .subscribe({
-              next: ((response) => {
-              let responseBody:any=response as any;
-              this.unreadMessages=responseBody.count;
-              }),
-              error: (error => {
-                let status: number = error.status;
+    let httpUrl=this.sendRequest.url().toString();
+    httpUrl=httpUrl.replaceAll('http://','ws://')
+    httpUrl=httpUrl.replaceAll('https://','ws://');
 
-                switch(status){
-                  case 401:{
-                    this.sendRequest.get('/api/login/logout')
-                    .then(()=>{
-                      this.router.navigate(['login'])
-                    }).catch(()=>{})
-                    break;
-                  }
-                  default:{
-                    this.sendInfo.open(error);
-                    break;
-                  }
-                }
-               
-              })
-            });
-          }
+    this.socket = new WebSocket(httpUrl+path);
 
-          
+    this.socket.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    this.socket.onmessage = (event) => {
+      this.unreadMessages=event.data;
+    };
+
+    this.socket.onclose = () => {
+      console.log('WebSocket disconneted');
+    };
+
+
+
   }
          
 
   checkPage(){
     
     if(!this.loginPage){
-      this.sendRequest.get('/api/session')
+      this.sendRequest.getResponse('/api/session')
           .then(
-            () => {
+            (responseSession:HttpResponse<any>) => {
               if (this.menuLoad) {
-                this.checkNotification();
                 this.sendRequest.get('/api/menu')
                   .then(
                     (response) => {
+                      this.connectionToSocket('/socket/notify?id='+responseSession.headers.get('userid'));
                       this.listMenu = response;
                       this.menuLoad=false;
 
-                      this.sendRequest.get('/api/menu/dashboard')
-                      .then((responseDash)=>{
-                        if(responseDash!=null){
-                          DashboardDefaultData.hasDefault=true;
-                          DashboardDefaultData.dashbordInfo=responseDash;
-                          this.hasDash=true;
-                        }else{
-                          DashboardDefaultData.hasDefault=false;
-                          DashboardDefaultData.dashbordInfo=undefined;
-                          this.hasDash=false;
-                        }
+                      this.sendRequest.get('/api/notification/count')
+                      .then((response:any)=>{
+                         console.log(response)
+                        this.unreadMessages=response.count;
+
+                          this.sendRequest.get('/api/menu/dashboard')
+                          .then((responseDash)=>{
+                            if(responseDash!=null){
+                              DashboardDefaultData.hasDefault=true;
+                              DashboardDefaultData.dashbordInfo=responseDash;
+                              this.hasDash=true;
+                            }else{
+                              DashboardDefaultData.hasDefault=false;
+                              DashboardDefaultData.dashbordInfo=undefined;
+                              this.hasDash=false;
+                            }
                       }).catch(()=>{})
+                      }).catch(()=>{})
+
+                      
                      
                     }
                   ).catch((error) => { })
@@ -176,6 +161,10 @@ export class AppComponent {
             }
           )
           .catch((error) => { })
+    }else{
+      if(this.socket!=undefined){
+        this.socket.close();
+      }
     }
     
   }
@@ -190,6 +179,9 @@ export class AppComponent {
    
     this.sendRequest.get('/api/login/logout')
     .then(()=>{
+      this.socket?.close();
+      this.unreadMessages=0;
+
       this.router.navigate(['login'])
     }).catch(()=>{})
 
