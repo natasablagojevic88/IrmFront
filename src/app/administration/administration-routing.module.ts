@@ -8,6 +8,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import { MailServersComponent } from './mail-servers/mail-servers.component';
 import { JobPreviewComponent } from './job-preview/job-preview.component';
+import { JavaClassComponent } from './java-class/java-class.component';
 
 const routes: Routes = [
   {path:'appusers',component:AppUsersComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'reports',component:ReportsComponent},
   {path:'dashboards',component:DashboardsComponent},
   {path:'mailservers',component:MailServersComponent},
-  {path:'jobs',component:JobPreviewComponent}
+  {path:'jobs',component:JobPreviewComponent},
+  {path:'java-class',component:JavaClassComponent}
 ];
 
 @NgModule({

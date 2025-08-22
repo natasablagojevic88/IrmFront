@@ -16,6 +16,7 @@ export class TextAreaComponent {
   @Input() required:boolean=false;
   @Input() disabled:boolean=false;
   @Input() rows:number=2;
+  @Input() resizable:boolean=true;
 
   @Output() exportValue:EventEmitter<any>=new EventEmitter<any>();
   @Output() valueInput:EventEmitter<boolean>=new EventEmitter<boolean>();

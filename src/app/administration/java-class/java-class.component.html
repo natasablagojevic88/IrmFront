@@ -1,0 +1,16 @@
+<app-page-title
+[title]="title"
+(addClicked)="add()"
+>
+<app-table
+[api]="'/api/java-class/table'"
+[width]="1000"
+[deleteapi]="'/api/java-class'"
+(namesExport)="names=$event"
+(titleExport)="title=$event"
+(editClicked)="edit($event)"
+(f2clicked)="add()"
+>
+    
+</app-table>
+</app-page-title>

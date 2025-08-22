@@ -9,5 +9,6 @@
     [value]="currentValue"
     [disabled]="disabled"
     (input)="changeValue($event)"
+    [ngClass]="resizable?'':'resizenot'"
     ></textarea>
   </mat-form-field>

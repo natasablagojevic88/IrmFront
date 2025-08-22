@@ -56,6 +56,8 @@ import { JobLogListDialogComponent } from './job-preview/job-log-list-dialog/job
 import { QuillModule } from 'ngx-quill';
 import { ProcedureListComponent } from './modeling/procedure-list/procedure-list.component';
 import { ProcedureDialogComponent } from './modeling/procedure-list/procedure-dialog/procedure-dialog.component';
+import { JavaClassComponent } from './java-class/java-class.component';
+import { JavaClassDialogComponent } from './java-class/java-class-dialog/java-class-dialog.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { ProcedureDialogComponent } from './modeling/procedure-list/procedure-di
     JobPreviewComponent,
     JobLogListDialogComponent,
     ProcedureListComponent,
-    ProcedureDialogComponent
+    ProcedureDialogComponent,
+    JavaClassComponent,
+    JavaClassDialogComponent
   ],
   imports: [
     CommonModule,

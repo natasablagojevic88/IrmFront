@@ -1,3 +1,7 @@
 .class1{
     color:red
 }
+
+.resizenot{
+    resize: none !important;
+}

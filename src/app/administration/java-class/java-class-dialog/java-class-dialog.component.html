@@ -1,0 +1,75 @@
+<app-dialog-header [title]="value.id==0?'add':'edit'" (submitExport)="submit()">
+    <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="'100px'">
+        <!-- 1. row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input
+                [value]="value.name"
+                [label]="names.name"
+                (exportValue)="value.name=$event"
+                [required]="true"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="!checkMobile.isMobile()"></mat-grid-tile>
+
+
+         <!-- 2. row -->
+        <mat-grid-tile rowspan="3" [colspan]="checkMobile.isMobile()?1:2">
+            <app-grid-tile>
+                <app-text-area
+                [value]="value.classText"
+                [label]="names.classText"
+                (exportValue)="value.classText=$event"
+                [required]="true"
+                [rows]="11"
+                [resizable]="false"
+                >
+                </app-text-area>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+         <!-- 3. row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input
+                [value]="value.className"
+                [label]="names.className"
+                (exportValue)="value.className=$event"
+                [required]="true"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+             <app-grid-tile>
+                <app-input
+                [value]="value.methodName"
+                [label]="names.methodName"
+                (exportValue)="value.methodName=$event"
+                [required]="true"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+
+
+         <!-- 4. row -->
+        <mat-grid-tile>
+            <app-grid-tile>
+                <app-input
+                [value]="value.id"
+                [label]="names.id"
+                (exportValue)="value.id=$event"
+                [required]="true"
+                [disabled]="true"
+                [width]="100"
+                [type]="'number'"
+                >
+                </app-input>
+            </app-grid-tile>
+        </mat-grid-tile>
+    </mat-grid-list>
+</app-dialog-header>
