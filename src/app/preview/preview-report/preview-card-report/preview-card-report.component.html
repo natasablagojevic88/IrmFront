@@ -1,0 +1,32 @@
+<div class="class1"
+[ngStyle]="{ height:(inHeight-10)+'px'}"
+>
+    <mat-grid-list [cols]="1" [rowHeight]="'100px'">
+        <ng-container *ngFor="let parameter of value.parameters">
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-auto-complete-input
+                    [label]="parameter.name"
+                    [comboboxes]="parameter.values"
+                    (exportValue)="parameter.parameter=$event;submit()"
+                    [value]="parameter.parameter"
+                    >
+
+                    </app-auto-complete-input>
+                    
+                </app-grid-tile>
+            </mat-grid-tile>
+        </ng-container>
+
+        <ng-container *ngFor="let res of value.result">
+            <mat-grid-tile>
+                <app-grid-tile>
+                    <app-input [value]="res.value" [disabled]="true" [label]="res.name">
+
+                    </app-input>
+                </app-grid-tile>
+            </mat-grid-tile>
+        </ng-container>
+
+</mat-grid-list>
+</div>

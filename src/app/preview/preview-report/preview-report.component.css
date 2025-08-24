@@ -24,7 +24,7 @@ overflow: auto;width: 100%;
 }
 
 .class7{
-    width: calc(100% - 20px);color:white
+    width: calc(100% - 20px);color:white !important;
 }
 
 .class8{

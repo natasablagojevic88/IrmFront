@@ -266,7 +266,6 @@ export class PreviewModelComponent {
 
       this.openDialog.openDialog(CreateDataDialogComponent, model.dialogWidth, [mapFields, row, model.columnsNumber, codebookItem, model.id, parentId, disabledItems])
       .then((response) => {
-        console.log(disabledItems);
         let table: any = this.tables;
         table.last.editRow(response);
       }).catch(() => { })

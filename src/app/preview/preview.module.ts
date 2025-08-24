@@ -9,7 +9,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { UploadTemplateDialogComponent } from './preview-model/upload-template-dialog/upload-template-dialog.component';
 import { PreviewReportComponent } from './preview-report/preview-report.component'; 
 import {MatButtonModule} from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 import { MatTableModule} from '@angular/material/table';
 import { MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule} from '@angular/material/paginator';
@@ -21,6 +21,10 @@ import { PreviewReportKpiComponent } from './preview-report/preview-report-kpi/p
 import { PreviewReportJasperComponent } from './preview-report/preview-report-jasper/preview-report-jasper.component';
 import { PdfJsViewerModule } from "ng2-pdfjs-viewer";
 import { PreviewDashboardComponent } from './preview-dashboard/preview-dashboard.component';
+import { PreviewCardReportComponent } from './preview-report/preview-card-report/preview-card-report.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { PreviewDashboardComponent } from './preview-dashboard/preview-dashboard
     PreviewReportGraphComponent,
     PreviewReportKpiComponent,
     PreviewReportJasperComponent,
-    PreviewDashboardComponent
+    PreviewDashboardComponent,
+    PreviewCardReportComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,10 @@ import { PreviewDashboardComponent } from './preview-dashboard/preview-dashboard
     MatPaginatorModule,
     MatTooltipModule,
     CanvasJSAngularChartsModule,
-    PdfJsViewerModule
+    PdfJsViewerModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    ReactiveFormsModule
 ],
 exports:[
   PreviewDashboardComponent

@@ -7,7 +7,7 @@
                 <div
                     [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"
                     class="mat-elevation-z8 class2">
-                    <form (ngSubmit)="submit()">
+                    <form (ngSubmit)="submit()" *ngIf="reportInfo.reportType!='CARD'">
                         <div class="class3"
                             [ngStyle]="{'min-height':(heightGrid-160)+'px','max-height':(heightGrid-160)+'px'}">
                             <mat-grid-list [cols]="1" [rowHeight]="'80px'" class="class4">
@@ -100,11 +100,18 @@
                             
                         </div>
                     </form>
+
+                    <app-preview-card-report 
+                    [reportId]="reportId"
+                     [inHeight]="heightGrid-130"
+                    *ngIf="reportInfo.reportType=='CARD'">
+
+                    </app-preview-card-report>
                 </div>
 
             </mat-grid-tile>
 
-            <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" *ngIf="reportInfo.reportType!='EXECUTE'"> 
+            <mat-grid-tile [colspan]="checkMobile.isMobile()?1:3" *ngIf="reportInfo.reportType!='EXECUTE'&&reportInfo.reportType!='CARD'"> 
 
                 <div
                     [ngStyle]="{'min-height':(heightGrid-50)+'px','max-height':(heightGrid-50)+'px'}"

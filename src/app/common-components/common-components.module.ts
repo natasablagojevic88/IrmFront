@@ -40,6 +40,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { ChangePassowrdDialogComponent } from './change-passowrd-dialog/change-passowrd-dialog.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { AutoCompleteInputComponent } from './auto-complete-input/auto-complete-input.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     FindDialogComponent,
     TextAreaComponent,
     ChangePassowrdDialogComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AutoCompleteInputComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +87,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     MatMenuModule,
     PlatformModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   exports:[
     InputComponent,
@@ -98,7 +104,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     CheckBoxComponent,
     YesNoDialogComponent,
     TextAreaComponent,
-    ChangePassowrdDialogComponent
+    ChangePassowrdDialogComponent,
+    AutoCompleteInputComponent
   ],
   providers:[
     MatDatepickerModule,

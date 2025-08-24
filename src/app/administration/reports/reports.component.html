@@ -50,7 +50,9 @@
 </app-standard-report>
 
 <app-graph-report
-*ngIf="activeLayer==2&&(activeGroupType=='GRAPH'||activeGroupType=='SQL'||activeGroupType=='KPI'||activeGroupType=='JASPER'||activeGroupType=='EXECUTE')"
+*ngIf="activeLayer==2&&(activeGroupType=='GRAPH'||activeGroupType=='SQL'||activeGroupType=='KPI'||activeGroupType=='JASPER'||activeGroupType=='EXECUTE'
+||activeGroupType=='CARD')
+"
 [value]=" this.reportDTO"
 [names]="this.namesReport"
 [graphTypes]="listGraphTypes"

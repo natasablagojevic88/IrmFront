@@ -65,6 +65,15 @@ class="previewDashboardDiv class4"
     [inData]="item.jasperBase64"
     >
     </app-preview-report-jasper>
+
+    <app-preview-card-report
+    *ngIf="item.reportType=='CARD'"
+    [reportId]="item.reportId"
+    [inData]="item.cardReportResult"
+    [inHeight]="((height/rows)*item.rowspan)-10"
+    >
+
+    </app-preview-card-report>
     </div>
    </mat-grid-tile>
 </ng-container>

@@ -62,6 +62,8 @@ export class GraphReportComponent {
       infoString='sqlInfo';
     }else if(this.value.type=='EXECUTE'){
       infoString='sqlInfo';
+    }else if(this.value.type=='CARD'){
+      infoString='sqlInfo';
     }
 
     this.sendRequest.resource(infoString)

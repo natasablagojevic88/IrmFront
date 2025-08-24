@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width">
+   <mat-label>{{label}}</mat-label>
+   <input matInput [matAutocomplete]="auto" [formControl]="myControl" [value]="selectedValue">
+   <mat-autocomplete (optionSelected)="change($event)" [displayWith]="displayFn" autoActiveFirstOption
+      #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option; let i=$index) {
+      <mat-option
+         [value]="option.value">{{option.option}}</mat-option>
+      }
+   </mat-autocomplete>
+</mat-form-field>
