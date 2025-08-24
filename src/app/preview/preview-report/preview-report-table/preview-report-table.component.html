@@ -39,7 +39,7 @@
                         <td class="class8" mat-cell *matCellDef="let element"><span
                                 [ngStyle]="{'background-color':element[column.orderNumber]?'green':'red'}"
                                 class="class9">
-                                {{element[column.code]==true?translate.transform('Y'):translate.transform('N')}}
+                                {{element[column.orderNumber]==true?translate.transform('Y'):translate.transform('N')}}
                             </span></td>
                     </ng-container>
 
