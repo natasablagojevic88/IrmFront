@@ -1,9 +1,12 @@
 <div class="class1">
-    <mat-form-field [ngStyle]="{'width':width==0?'100%':width+'px'}" class="class2">
+    <mat-form-field #formField [ngStyle]="{'width':width==0?'100%':width+'px'}" class="class2"  *ngIf="!showSearch">
         <mat-label><span>{{translate.transform(label)}}</span>
             <span aria-hidden="true" *ngIf="required"  class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c508571215-76 ng-star-inserted class3"></span>
         </mat-label>
-        <mat-select [value]="currentValue" (valueChange)="changeValue($event)" [disabled]="disabled">
+        <mat-select
+        #selectInput
+        (keydown)="checkKey($event);"
+        [value]="currentValue" (valueChange)="changeValue($event)" [disabled]="disabled">
         <ng-container *ngFor="let item of list"> 
             <mat-option [value]="item.value">
                 <span *ngIf="icon" class="class4"><i [ngClass]="item.value"></i></span>
@@ -12,6 +15,29 @@
         </ng-container>
     
         </mat-select>
+
+      </mat-form-field>
+       <mat-form-field #formField [ngStyle]="{'width':width==0?'100%':width+'px'}" class="class2"  *ngIf="showSearch">
+        <mat-label><span>{{translate.transform(label)}}</span>
+            <span aria-hidden="true" *ngIf="required"  class="mat-mdc-form-field-required-marker mdc-floating-label--required ng-tns-c508571215-76 ng-star-inserted class3"></span>
+        </mat-label>
+       
+        <input type="text"
+           matInput
+           (keydown.escape)="$event.stopPropagation();escapeSearchField()"
+           #searchInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           (focusout)="escapeSearchField()"
+           
+           >
+    <mat-autocomplete (optionSelected)="selectAutoCompete($event)" autoActiveFirstOption #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option) {
+        <mat-option 
+         (mousedown)="$event.preventDefault()"
+        [value]="option.value">{{option.option}}</mat-option>
+      }
+    </mat-autocomplete>
       </mat-form-field>
     <ng-container *ngIf="searchApi.length>0&&disabled==false">
        <span class="class5"> <i
