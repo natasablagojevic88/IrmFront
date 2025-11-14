@@ -18,6 +18,7 @@ import { TableButton } from '../../model/TableButton';
 import { ListJasperReportsComponent } from './list-jasper-reports/list-jasper-reports.component';
 import { JobsListComponent } from '../reports/jobs-list/jobs-list.component';
 import { ProcedureListComponent } from './procedure-list/procedure-list.component';
+import { JavaClassListComponent } from './java-class-list/java-class-list.component';
 
 
 class ModelFlatNode {
@@ -459,6 +460,14 @@ export class ModelingComponent {
     let model:ModelDTO=modelMap.get(node)!;
 
     this.openDialog.openDialog(ProcedureListComponent,900,[model],false)
+    .then(()=>{}).catch(()=>{})
+
+  }
+
+   showJavaClasses(node:ModelFlatNode){
+    let model:ModelDTO=modelMap.get(node)!;
+
+    this.openDialog.openDialog(JavaClassListComponent,900,[model],false)
     .then(()=>{}).catch(()=>{})
 
   }

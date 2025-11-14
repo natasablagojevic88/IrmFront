@@ -1,0 +1,54 @@
+<app-dialog-header
+[title]="value.id==0?'add':'edit'"
+(submitExport)="submit()"
+>
+<mat-grid-list [cols]="1" [rowHeight]="'100px'">
+
+<!-- 1. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [list]="listJavaClasses"
+        [label]="names.javaClassId"
+        [value]="value.javaClassId"
+        (exportValue)="value.javaClassId=$event"
+        [required]="true"
+        >
+
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 2. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-select
+        [list]="listActions"
+        [label]="names.event"
+        [value]="value.event"
+        (exportValue)="value.event=$event"
+        [required]="true"
+        >
+
+        </app-select>
+    </app-grid-tile>
+</mat-grid-tile>
+
+<!-- 3. row -->
+<mat-grid-tile>
+    <app-grid-tile>
+        <app-input
+        [label]="names.id"
+        [value]="value.id"
+        (exportValue)="value.id=$event"
+        [required]="true"
+        [type]="'number'"
+        [width]="100"
+        [disabled]="true"
+        >
+
+        </app-input>
+    </app-grid-tile>
+</mat-grid-tile>
+</mat-grid-list>
+</app-dialog-header>

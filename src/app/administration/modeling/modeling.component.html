@@ -55,6 +55,12 @@
             [matTooltip]="translate.transform('executeProcedure')"
             (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>
 
+            <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-coffee class24"
+            [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
+            [matTooltip]="translate.transform('javaClasses')"
+            (click)="$event.stopPropagation();clickNode(node);showJavaClasses(node)"></i>
+
 
         </span>
       </mat-label>
@@ -112,6 +118,12 @@
             [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
             [matTooltip]="translate.transform('executeProcedure')"
             (click)="$event.stopPropagation();clickNode(node);showProcedure(node)"></i>
+
+          <i onmouseover="this.style.opacity='100%'"
+            onmouseleave="this.style.opacity='75%'" class="fa fa-coffee class24"
+            [ngStyle]="{'display':node.type=='TABLE'?'':'none'}"
+            [matTooltip]="translate.transform('javaClasses')"
+            (click)="$event.stopPropagation();clickNode(node);showJavaClasses(node)"></i>
 
         </span>
       </mat-label>

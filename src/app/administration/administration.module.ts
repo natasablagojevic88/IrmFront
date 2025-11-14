@@ -58,6 +58,8 @@ import { ProcedureListComponent } from './modeling/procedure-list/procedure-list
 import { ProcedureDialogComponent } from './modeling/procedure-list/procedure-dialog/procedure-dialog.component';
 import { JavaClassComponent } from './java-class/java-class.component';
 import { JavaClassDialogComponent } from './java-class/java-class-dialog/java-class-dialog.component';
+import { JavaClassListComponent } from './modeling/java-class-list/java-class-list.component';
+import { ModelJavaClassDialogComponent } from './modeling/java-class-list/model-java-class-dialog/model-java-class-dialog.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +100,9 @@ import { JavaClassDialogComponent } from './java-class/java-class-dialog/java-cl
     ProcedureListComponent,
     ProcedureDialogComponent,
     JavaClassComponent,
-    JavaClassDialogComponent
+    JavaClassDialogComponent,
+    JavaClassListComponent,
+    ModelJavaClassDialogComponent
   ],
   imports: [
     CommonModule,
