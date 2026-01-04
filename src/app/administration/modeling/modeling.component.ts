@@ -451,7 +451,7 @@ export class ModelingComponent {
   showJobs(node:ModelFlatNode){
     let model:ModelDTO=modelMap.get(node)!;
 
-    this.openDialog.openDialog(JobsListComponent,1000,[{},model,true],false)
+    this.openDialog.openDialog(JobsListComponent,1000,[{},model,true,false,{}],false)
        .then(()=>{}).catch(()=>{})
 
   }

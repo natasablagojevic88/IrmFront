@@ -265,7 +265,7 @@ export class ReportsComponent {
   }
 
   showJobList(event:ExportTableAction){
-    this.openDialog.openDialog(JobsListComponent,1000,[event.row,{},false],false)
+    this.openDialog.openDialog(JobsListComponent,1000,[event.row,{},false,false,{}],false)
     .then(()=>{}).catch(()=>{})
   }
 }

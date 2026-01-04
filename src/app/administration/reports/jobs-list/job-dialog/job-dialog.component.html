@@ -63,7 +63,7 @@
         </mat-grid-tile>
 
 
-        <ng-container *ngIf="value.type!='EXECUTE'"> 
+        <ng-container *ngIf="value.type!='EXECUTE'&&value.type!='JAVACLASS'"> 
             <mat-grid-tile>
                 <app-grid-tile>
                     <app-input [value]="value.fileName" 

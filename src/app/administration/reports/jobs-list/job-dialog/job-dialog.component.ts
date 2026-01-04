@@ -48,6 +48,18 @@ export class JobDialogComponent {
       if(findIndex>-1){
         this.reportJobTypeList.splice(findIndex,1);
       }
+
+      if(this.reportType=='JAVACLASS'){
+        let findIndex=this.reportJobTypeList.findIndex(a=>a.value=='JAVACLASS');
+        let valueItem:ComboboxDTO=this.reportJobTypeList[findIndex];
+        this.reportJobTypeList=[valueItem];
+      }else{
+
+        findIndex=this.reportJobTypeList.findIndex(a=>a.value=='JAVACLASS');
+        if(findIndex>-1){
+          this.reportJobTypeList.splice(findIndex,1);
+        }
+      }
      
     }else{
       let findIndex=this.reportJobTypeList.findIndex(a=>a.value=='IMPORT');

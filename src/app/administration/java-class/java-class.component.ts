@@ -3,6 +3,9 @@ import { OpenDialogService } from '../../services/open-dialog.service';
 import { SendRequestService } from '../../services/send-request.service';
 import { JavaClassDialogComponent } from './java-class-dialog/java-class-dialog.component';
 import { TableComponent } from '../../common-components/table/table.component';
+import { TableButton } from '../../model/TableButton';
+import { ExportTableAction } from '../../model/ExportTableAction';
+import { JobsListComponent } from '../reports/jobs-list/jobs-list.component';
 
 @Component({
   selector: 'app-java-class',
@@ -14,6 +17,15 @@ export class JavaClassComponent {
   title:string='';
 
   names:any;
+
+  addButtons: TableButton[] = [
+    {
+      code: 'jobs',
+      icon: 'fa fa-clock-o',
+      name: 'jobScheduling',
+      color: 'OrangeRed'
+    }
+  ]
 
   @ViewChild(TableComponent) table!:TableComponent;
 
@@ -43,6 +55,17 @@ export class JavaClassComponent {
         this.table.editRow(response);
       }
     }).catch(()=>{})
+  }
+
+  addClicked(event:ExportTableAction){
+    if(event.action=='jobs'){
+      this.jobs(event.row);
+    }
+  }
+
+  jobs(row:any){
+    this.openDialog.openDialog(JobsListComponent,1000,[{},{},false,true,row],false)
+           .then(()=>{}).catch(()=>{})
   }
 
 }

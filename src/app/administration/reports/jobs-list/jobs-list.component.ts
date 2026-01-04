@@ -17,8 +17,10 @@ export class JobsListComponent {
 
   reportDTO:any={};
   modelDTO:any={};
+  javaClassDTO:any={};
   api:string='';
   isModel:boolean=false;
+  isJavaClass:boolean=false;
   names:any={};
   title:string='';
 
@@ -40,7 +42,17 @@ export class JobsListComponent {
     this.reportDTO=data[0];
     this.modelDTO=data[1];
     this.isModel=data[2];
-    this.api=this.isModel?'/api/model/jobs/'+this.modelDTO.id:'/api/report/jobs/table/'+this.reportDTO.id;
+    this.isJavaClass=data[3];
+    this.javaClassDTO=data[4];
+
+    this.api=this.isModel?'/api/model/jobs/'+this.modelDTO.id
+    :
+    (
+      this.isJavaClass ? '/api/java-class/job-list/'+this.javaClassDTO.id 
+      :
+      '/api/report/jobs/table/'+this.reportDTO.id
+    )
+    ;
 
     this.sendRequest.get('/api/session/enumbox/rs.irm.administration.enums.ReportJobType')
     .then((response)=>{this.reportJobTypeList=response}).catch(()=>{})
@@ -63,7 +75,11 @@ export class JobsListComponent {
     value.modelId=this.isModel?this.modelDTO.id:undefined;
     if(this.isModel){
       value.type='IMPORT';
-    }else{
+    }else if(this.javaClassDTO){
+      value.type='JAVACLASS';
+      value.javaClassId=this.javaClassDTO.id;
+    }
+    else{
       if(this.reportDTO.type!='EXECUTE'){
         value.type='MAIL';
         
@@ -87,7 +103,7 @@ export class JobsListComponent {
     value.csvHasHeader=true;
     value.conditional=false;
 
-    this.openDialog.openDialog(JobDialogComponent,1100,[value,this.isModel?'MODEL': this.reportDTO.type,this.names,
+    this.openDialog.openDialog(JobDialogComponent,1100,[value,this.isModel?'MODEL': (this.isJavaClass?'JAVACLASS': this.reportDTO.type),this.names,
       this.reportJobTypeList,this.reportJobFileTypeList,this.listSmtp,this.reportJobMailType])
     .then((response)=>{
       this.table.addRow(response.id);
@@ -97,7 +113,7 @@ export class JobsListComponent {
   }
 
   edit(row:any){
-    this.openDialog.openDialog(JobDialogComponent,1100,[row,this.isModel?'MODEL': this.reportDTO.type,this.names,
+    this.openDialog.openDialog(JobDialogComponent,1100,[row,this.isModel?'MODEL': (this.isJavaClass?'JAVACLASS': this.reportDTO.type),this.names,
       this.reportJobTypeList,this.reportJobFileTypeList,this.listSmtp,this.reportJobMailType])
     .then((response)=>{
       this.table.editRow(response);
