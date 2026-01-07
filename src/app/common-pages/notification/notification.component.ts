@@ -23,7 +23,7 @@ export class NotificationComponent {
     code: 'preview',
     icon: 'fa fa-eye',
     name: 'detail',
-    color: '#005cbb'
+    color: '#2e3c64'
   }
 
   unreadButton:TableButton={

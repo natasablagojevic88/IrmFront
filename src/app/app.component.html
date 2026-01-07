@@ -5,7 +5,7 @@
         <div class="class3"
             [ngStyle]="{'min-width':(isMobile?'100%':'400px'),
             'max-width':(isMobile?'100%':'400px'),
-            'border-color':showMenu?'#005cbb':((rootPage&&!hasDash)?'grey':'whitesmoke')
+            'border-color':showMenu?'#2e3c64':((rootPage&&!hasDash)?'grey':'whitesmoke')
             }"
             [ngClass]="showMenu?'defaultBackground':'defaultBackgroundHide'"
             >
@@ -17,11 +17,11 @@
                 class="class4"
                 >
                 <span class="class5"
-                [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
+                [ngStyle]="{'color':showMenu?'white':'#2e3c64'}"
                 ><i
                         class="fa fa-pie-chart"></i></span>
                 <span 
-                [ngStyle]="{'color':showMenu?'white':'#005cbb'}"
+                [ngStyle]="{'color':showMenu?'white':'#2e3c64'}"
                 class="class6">IRM</span>
             </button>
 
@@ -40,7 +40,7 @@
 
         <!-- toolbar second part -->
         <div class="class7"
-            [ngStyle]="{'border-color':((rootPage&&!hasDash)?'grey':'whitesmoke'),
+            [ngStyle]="{'border-color':((rootPage&&!hasDash)?'#dcdbe4':'whitesmoke'),
                  'display':(isMobile?'none':'flex')}">
 
             <button (click)="router.navigate(['notification'])"  mat-icon-button>

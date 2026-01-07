@@ -12,18 +12,21 @@
                 </mat-grid-tile>
 
                 <mat-grid-tile *ngIf="paths.length>0">
-                    <app-grid-tile>
-                        
-                            <div class="class5">
+                    <div class="class15">
+                        <div class="class5">
                                 <mat-chip-set >
-                                    <ng-container *ngFor="let path of paths">
-                                        <mat-chip [value]="path.value" (click)="clickPath(path.value)">
+                                    <ng-container *ngFor="let path of paths;let i=index">
+                                         <ng-container *ngIf="i!=0">
+                                            <span class="class16">//</span>
+                                         </ng-container>
+                                        <mat-chip class="noborderchip" [value]="path.value" (click)="clickPath(path.value)">
                                             <span class="class6">{{path.name}}</span>
                                         </mat-chip>
                                     </ng-container>
                                   </mat-chip-set>
-                            </div>
-                    </app-grid-tile>
+                        </div>
+                    </div>
+                            
                 </mat-grid-tile>
                 
             </mat-grid-list>
@@ -33,22 +36,28 @@
             class="class7"
             *ngIf="hasAdd||addButtons.length>0"
             >
-            <button mat-raised-button color="primary" (click)="addClicked.emit(true)" *ngIf="hasAdd">
+            <button mat-raised-button class="class13" (click)="addClicked.emit(true)" *ngIf="hasAdd">
                 <span><i class="fa fa-plus"></i></span>
-                <span *ngIf="!checkMobile.isMobile()" class="class8">{{translate.transform('add')+'[F2]'}}</span>
-            </button>
-            <span *ngIf="addButtons.length>0" class="class9"><i 
-                onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
-                class="fa fa-ellipsis-v class12" [matMenuTriggerFor]="menu"></i></span>
+                <span *ngIf="!checkMobile.isMobile()" class="class8">{{translate.transform('add')}}</span>
 
-                <mat-menu #menu="matMenu">
+                <span *ngIf="addButtons.length>0" class="class9"
+                    (click)="$event.stopPropagation()"
+                    ><i 
+                onmouseenter="this.style.opacity='100%'" onmouseleave="this.style.opacity='75%'"
+                class="fa fa-chevron-down class12" [matMenuTriggerFor]="menu"></i></span>
+
+                <mat-menu #menu="matMenu"
+                class="class14"
+                >
                     <ng-container *ngFor="let button of addButtons">
-                        <button mat-menu-item (click)="addButtonClicked.emit(button.code)">
+                        <button mat-menu-item (click)="$event.stopPropagation();addButtonClicked.emit(button.code)">
                             <span [ngStyle]="{'color':button.color}"><i class="{{button.icon}}"></i></span>
                             <span class="class10">{{translate.transform(button.name)}}</span>
                         </button>
                     </ng-container>
                   </mat-menu>
+            </button>
+            
         </div>
     </div>
 

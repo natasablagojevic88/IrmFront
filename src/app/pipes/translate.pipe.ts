@@ -145,6 +145,8 @@ export class TranslatePipe implements PipeTransform {
     map.set("executeProcedureYesNo", "Da li izvršiti proceduru?");
     map.set("procedureIsExecuted", "Procedura je izvršena!");
     map.set("javaClasses", "Java klase");
+    map.set("locked", "Zaključano");
+    map.set("unlocked", "Otključano");
 
     return map;
   }
@@ -250,6 +252,8 @@ export class TranslatePipe implements PipeTransform {
     map.set("executeProcedureYesNo", "Да ли извршити процедуру?");
     map.set("procedureIsExecuted", "Процедура је извршена!");
     map.set("javaClasses", "Java класе");
+    map.set("locked", "Закључано");
+    map.set("unlocked", "Откључано");
 
     return map;
   }
@@ -355,6 +359,8 @@ export class TranslatePipe implements PipeTransform {
     map.set("executeProcedureYesNo", "Do you want to execute procedure?");
     map.set("procedureIsExecuted", "Procedure is executed!");
     map.set("javaClasses", "Java classes");
+    map.set("locked", "Locked");
+    map.set("unlocked", "Unlocked");
 
     return map;
   }

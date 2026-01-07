@@ -7,7 +7,7 @@
     <input matInput (keyup)="applyFilter($event)"  #input>
   </mat-form-field>
   
-  <div class="mat-elevation-z8 class2" [ngStyle]="{'max-height':this.checkMobile.isMobile()?'300px':'400px'}"
+  <div class="table-with-shadow class2" [ngStyle]="{'max-height':this.checkMobile.isMobile()?'300px':'400px'}"
   >
     <table mat-table [dataSource]="dataSource" matSort>
   
@@ -49,6 +49,6 @@
   
    
   </div>
-  <mat-paginator class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 100]" ></mat-paginator>
+  <mat-paginator class="table-with-shadow" [pageSizeOptions]="[10, 25, 100]" ></mat-paginator>
   
 </app-dialog-header>

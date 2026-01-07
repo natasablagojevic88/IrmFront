@@ -111,7 +111,7 @@ export class TableComponent {
   clickedRows = new Set<any>();
 
   commonButtons: TableButton[] = [
-    { code: 'edit', icon: 'fa fa-pencil', name: 'edit', color: '#005cbb'},
+    { code: 'edit', icon: 'fa fa-pencil', name: 'edit', color: '#2e3c64'},
     { code: 'delete', icon: 'fa fa-trash', name: 'delete', color: 'red'},
     { code: 'history', icon: 'fa fa-history', name: 'history', color: 'orange'}
   ]

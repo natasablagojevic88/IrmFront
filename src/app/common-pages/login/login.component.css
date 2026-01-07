@@ -5,7 +5,7 @@
 	display: flow-root;text-align: center;
 }
 .class3{
-	color:#005cbb; font-weight: bold; font-size: 25px;
+	color:#2e3c64; font-weight: bold; font-size: 25px;
 }
 .class4{
 	margin-top: 20px;
@@ -18,6 +18,8 @@
 }
 .class7{
 	width: 357px;
+	 background-color: #3b71c0 !important;
+  color: white !important;
 }
 .class8{
 	margin-left: 5px;

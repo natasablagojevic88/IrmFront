@@ -28,6 +28,9 @@ table {
 
 .class7{
   margin-top: 5px;
+  background-color: #3b71c0 !important;
+  color: white !important;
+
 }
 
 .class8{
@@ -107,6 +110,6 @@ table {
 } 
 
 .class25{
-  border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-bottom-left-radius: 20px;border-bottom-right-radius: 20px;
 }
 

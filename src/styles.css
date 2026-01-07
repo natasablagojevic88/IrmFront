@@ -23,18 +23,18 @@ body {
 }
 
 .defaultColor {
-    color: #005cbb
+    color: #2e3c64
 }
 
 
 .defaultBackground {
     color: white;
-    background-color: #005cbb
+    background-color: #2e3c64
 }
 
 .defaultBackgroundHide {
     background-color: whitesmoke;
-    color: #005cbb
+    color: #2e3c64
 }
 
 .mat-mdc-option {
@@ -172,7 +172,7 @@ th {
 
 .mat-mdc-dialog-container .mdc-dialog__title {
     font-family: 'NotoSans' !important;
-    background-color: #005cbb;
+    background-color: #2e3c64;
     color: white !important;
 }
 
@@ -222,7 +222,14 @@ tr.mat-mdc-footer-row td {
 }
 
 .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
-    border: 1px solid #005cbb;
+    border: 1px solid #dcdbe4;
+}
+
+.noborderchip  {
+    background-color: transparent !important;
+    border: 0px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
 }
 
 .mdc-text-field--disabled .mdc-text-field__input {
@@ -297,4 +304,14 @@ canvas {
   border-radius: 4px !important;
   box-shadow: var(--mdc-elevation-level4) !important;
   padding: 24px !important;
+}
+
+.table-with-shadow{
+    box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.mat-mdc-header-row{
+    background-color: #dad9db!important;
 }

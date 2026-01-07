@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8 class1" [ngStyle]="{'width':(width==0?'100%':width+'px'),'max-width':'100%'}">
+<div class="class1" [ngStyle]="{'width':(width==0?'100%':width+'px'),'max-width':'100%'}">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
 
         <!-- Buttons -->
@@ -95,10 +95,10 @@
                 </ng-container>
 
                 <!-- Boolean -->
-                <ng-container *ngIf="column.columnType=='Boolean'">
+                <ng-container *ngIf="column.columnType=='Boolean'&&column.code!='lock'">
 
                     <td class="class14" mat-cell *matCellDef="let element">
-                       <span [ngStyle]="{'background-color':element[column.code]?'green':'red'}"
+                       <span [ngStyle]="{'background-color':element[column.code]?'#5d9b82':'#c63c3c'}"
                        class="class15"
                        >
                         {{element[column.code]==true?translate.transform('Y'):translate.transform('N')}}
@@ -106,10 +106,22 @@
                     </td>
                 </ng-container>
 
+                <ng-container *ngIf="column.columnType=='Boolean'&&column.code=='lock'">
+
+                    <td class="class14" mat-cell *matCellDef="let element">
+                       <span [ngStyle]="{'background-color':element[column.code]?'#5d9b82':'#c63c3c'}"
+                       class="class18"
+                       >
+                       <span><i  [ngClass]="element[column.code]==true?'fa fa-lock':'fa fa-unlock'" ></i></span>
+                       <span> {{element[column.code]==true?translate.transform('locked'):translate.transform('unlocked')}}</span>
+                       </span>
+                    </td>
+                </ng-container>
+
                 <!-- TOTAL -->
 
                 <td mat-footer-cell *matFooterCellDef class="class16"
-                [ngStyle]="{'background-color':(column.columnType=='BigDecimal'?'rgba(0,92,187,0.25)':'transparent')
+                [ngStyle]="{'background-color':(column.columnType=='BigDecimal'?'rgba(46,60,100,0.3)':'transparent')
                     
                 }"
                 >

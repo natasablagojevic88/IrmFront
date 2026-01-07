@@ -17,7 +17,7 @@
 .class5{
     background-color: white;min-width: calc(100% - 5px);min-height: calc(100% - 5px);max-height: calc(100% - 5px);
         border-radius: 20px; display: flex;justify-content: center;align-items: center;overflow: auto;
-        border:  #005cbb solid 1px;
+        border:  #2e3c64 solid 1px;
         
 }
 

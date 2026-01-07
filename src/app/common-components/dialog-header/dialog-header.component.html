@@ -10,7 +10,7 @@
         <span><i class="fa fa-ban"></i></span>
         <span class="class2">{{translate.transform('cancel')}}</span>
     </button>
-    <button mat-raised-button color="primary" type="submit" *ngIf="showSubmit">
+    <button mat-raised-button  class="class6" type="submit" *ngIf="showSubmit">
         <span><i class="fa fa-check"></i></span>
         <span class="class3">{{translate.transform('enter')}}</span>
     </button>
@@ -21,7 +21,7 @@
         <span><i class="fa fa-times"></i></span>
         <span class="class4">{{translate.transform('no')}}</span>
     </button>
-    <button mat-raised-button color="primary" type="button" (click)="dialogRef.close(true)" cdkFocusInitial>
+    <button mat-raised-button class="class6" type="button" (click)="dialogRef.close(true)" cdkFocusInitial>
         <span><i class="fa fa-check"></i></span>
         <span class="class5">{{translate.transform('yes')}}</span>
     </button>

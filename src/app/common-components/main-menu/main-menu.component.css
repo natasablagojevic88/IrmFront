@@ -26,18 +26,18 @@
   }
 
   .class1{
-    background-color: #005cbb;
+    background-color: #2e3c64;
 }
 
 mat-tree-node button.class2{
   width: 100%;display: flex;align-items: center;justify-content: start;
-  background-color:  #005cbb ;color: white ;
+  background-color:  #2e3c64 ;color: white ;
       
 }
 
 :host ::ng-deep button.mat-mdc-unelevated-button.class2.activeMenu {
   background-color: white;
-  color: #005cbb;
+  color: #2e3c64;
 }
 
 .class3{
@@ -50,7 +50,7 @@ mat-tree-node button.class2{
 
 mat-tree-node button.class5{
   background-color: white;width: 100%;display: flex;align-items: center;justify-content: start;
-                   background-color:  #005cbb;color: white;
+                   background-color:  #2e3c64;color: white;
 }
 
 .class6{

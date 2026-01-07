@@ -16,7 +16,7 @@
                             <ng-container *ngFor="let table of tables">
                                 <mat-chip [value]="table.code" (click)="clickTable(table)"
                                     (dblclick)="sqlQuery=sqlQuery+' '+table.code;focus()"
-                                    [ngStyle]="{'background-color':clickedTable.has(table.code)?'#005cbb':''}">
+                                    [ngStyle]="{'background-color':clickedTable.has(table.code)?'#2e3c64':''}">
                                     <span  [ngStyle]="{'color':clickedTable.has(table.code)?'white':'','font-size':'11px'}"><i [ngClass]="table.icon"></i></span>
                                     <span
                                         [ngStyle]="{'color':clickedTable.has(table.code)?'white':'','font-size':'11px','margin-left':'5px'}">{{table['name']}}</span>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="class6">
-                    <button mat-raised-button color="primary" (click)="executePreview(0,true)" class="class7">
+                    <button mat-raised-button (click)="executePreview(0,true)" class="class7">
                         <span><i class="fa fa-file-excel-o"></i></span>
                         <span
                             [ngStyle]="{'display':checkMobile.isMobile()?'none':'','margin-left':'10px'}">{{translate.transform('showData')+'[F8]'}}</span>
@@ -81,7 +81,7 @@
         </div>
 
         <div class="sqlExecutorGrid2">
-            <div class="mat-elevation-z8 class12
+            <div class="table-with-shadow class12
                 ">
                 <table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)">
 
@@ -169,7 +169,7 @@
             <mat-paginator #paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
                 [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="false"
                 [pageIndex]="pageIndex"
-                class="class25">
+                class="class25 table-with-shadow">
             </mat-paginator>
 
 

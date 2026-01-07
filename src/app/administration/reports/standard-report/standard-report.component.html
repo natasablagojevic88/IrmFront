@@ -48,7 +48,7 @@
     <mat-grid-list [cols]="checkMobile.isMobile()?1:2" [rowHeight]="heightTree" class="class7">
         <mat-grid-tile>
 
-            <div class="mat-elevation-z8 class8">
+            <div class="table-with-shadow class8">
                 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
                     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
                         <mat-label>
@@ -191,7 +191,7 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <div  class="mat-elevation-z8 class15">
+            <div  class="table-with-shadow class15">
                 <h3 class="class16">{{translate.transform('columns')}}</h3>
                 <mat-list>
                     <ng-container *ngFor="let column of this.value.columns;let i=index">
