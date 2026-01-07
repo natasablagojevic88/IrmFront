@@ -57,6 +57,7 @@ export class ColumnListComponent {
     value.nullable=true;
     value.colspan=1;
     value.showInTable=true;
+    value.description=false;
     value.disabled='false';
 
     this.sendRequest.get('/api/model/nextrowcolumn/'+this.model.id)

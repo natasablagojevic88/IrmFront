@@ -198,6 +198,17 @@
     </app-grid-tile>
  </mat-grid-tile>
 
+ <mat-grid-tile>
+    <app-grid-tile>
+        <app-check-box
+        [value]="value.description"
+        (exportValue)="value.description=$event"
+        [label]="names.description"
+        >
+        </app-check-box>
+    </app-grid-tile>
+ </mat-grid-tile>
+
 
  <mat-grid-tile [colspan]="checkMobile.isMobile()?1:2">
     <app-grid-tile>
@@ -213,7 +224,10 @@
 
  </mat-grid-tile>
 
-<mat-grid-tile>
+
+
+ <!--  7. row -->
+   <mat-grid-tile>
     <app-grid-tile>
         <app-input
         [value]="value.id"
