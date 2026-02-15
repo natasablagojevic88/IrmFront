@@ -75,7 +75,7 @@ export class JobsListComponent {
     value.modelId=this.isModel?this.modelDTO.id:undefined;
     if(this.isModel){
       value.type='IMPORT';
-    }else if(this.javaClassDTO){
+    }else if(this.isJavaClass){
       value.type='JAVACLASS';
       value.javaClassId=this.javaClassDTO.id;
     }

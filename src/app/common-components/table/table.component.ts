@@ -630,7 +630,7 @@ export class TableComponent {
         return '';
       }else{
         if(button.code=='jobs'){
-          if(row.type=='GRAPH'||row.type=='KPI'){
+          if(row.type=='GRAPH'||row.type=='KPI'||row.type=='CARD'){
             return 'none';
           }else{
             return '';
