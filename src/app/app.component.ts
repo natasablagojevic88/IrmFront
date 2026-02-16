@@ -107,7 +107,6 @@ export class AppComponent {
   tabTitle: string = 'IRM';
 
   change(index:number) {
-    console.log(index);
     let titleWithUncount = this.tabTitle + " (" + this.unreadMessages + ")";
     this.delay(1).then(() => {
       document.title = document.title==this.tabTitle?titleWithUncount:this.tabTitle;
