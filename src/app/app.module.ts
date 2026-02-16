@@ -20,7 +20,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTreeNestedDataSource, MatTreeModule} from '@angular/material/tree';
 import {MatMenuModule} from '@angular/material/menu';
 import { DatePipe, DecimalPipe, registerLocaleData } from '@angular/common';
-import { LOCALE_ID } from '@angular/core';
+import { LOCALE_ID, isDevMode } from '@angular/core';
 import localesrLatn from '@angular/common/locales/sr-Latn';
 registerLocaleData(localesrLatn);
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
@@ -30,6 +30,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatBadgeModule} from '@angular/material/badge';
 import { QuillModule } from 'ngx-quill';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export const DATE_FORMATS = {
   parse: {
@@ -70,6 +71,12 @@ export const DATE_FORMATS = {
     MatGridListModule,
     MatBadgeModule,
     QuillModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     provideAnimationsAsync(),
