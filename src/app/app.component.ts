@@ -106,10 +106,29 @@ export class AppComponent {
 
   tabTitle: string = 'IRM';
 
+  changeFavicon(path: string) {
+  let link = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  console.log(link);
+  link.href = path;
+}
+
+
+
   change(index:number) {
-    let titleWithUncount = this.tabTitle + " (" + this.unreadMessages + ")";
+    let titleWithUncount = "[" + this.unreadMessages + "] "+this.tabTitle;
     this.delay(1).then(() => {
       document.title = document.title==this.tabTitle?titleWithUncount:this.tabTitle;
+      if(document.title!=this.tabTitle){
+        this.changeFavicon('assets/favicon-alert.png');
+      }else{
+        this.changeFavicon('favicon.ico');
+      }
 
       index=index+1;
 
@@ -134,14 +153,15 @@ export class AppComponent {
 
     this.socket.onmessage = (event) => {
       this.unreadMessages = event.data;
-      if (this.unreadMessages == 0) {
-        document.title = this.tabTitle;
-      } else {
+      document.title = this.tabTitle;
+      this.changeFavicon('favicon.ico');
+      if (this.unreadMessages != 0) {
         let index:number=0;
         document.title=this.tabTitle;
-        this.change(index);
-
-      }
+        if(!document.hasFocus()){
+            this.change(index);
+        }
+      } 
     };
 
     this.socket.onclose = () => {
