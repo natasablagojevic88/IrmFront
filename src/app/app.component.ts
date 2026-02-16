@@ -18,6 +18,7 @@ import { HttpClient, HttpClientModule, HttpResponse } from '@angular/common/http
 import { Browser } from '@capacitor/browser';
 import { DefaultSystemBrowserOptions, DefaultWebViewOptions, InAppBrowser } from '@capacitor/inappbrowser';
 import { ReadCookieService } from './services/read-cookie.service';
+import { delay } from 'rxjs';
 
 
 @Component({
@@ -36,16 +37,16 @@ export class AppComponent {
 
   translate: TranslatePipe = new TranslatePipe();
   exitLabel: string = '';
-  changePasswordLabel:string='';
-  userDetailLabel:string='';
+  changePasswordLabel: string = '';
+  userDetailLabel: string = '';
   rootPage: boolean = false;
   isMobile: boolean = false;
 
   platform = inject(Platform);
 
-  unreadMessages:number=0;
+  unreadMessages: number = 0;
 
-  hasDash:boolean=false;
+  hasDash: boolean = false;
 
   private socket: WebSocket | null = null;
 
@@ -54,11 +55,11 @@ export class AppComponent {
     public activeRouter: ActivatedRoute,
     public sendRequest: SendRequestService,
     public deviceService: DeviceDetectorService,
-    public openDialog:OpenDialogService,
-    public sendInfo:SendInfoService,
-    public pushNotification:PushNotificationServiceService,
+    public openDialog: OpenDialogService,
+    public sendInfo: SendInfoService,
+    public pushNotification: PushNotificationServiceService,
     public http: HttpClient,
-    public readCookie:ReadCookieService
+    public readCookie: ReadCookieService
   ) {
     this.isMobile = deviceService.isMobile();
     if (this.isMobile) {
@@ -74,15 +75,15 @@ export class AppComponent {
           sessionStorage.setItem("mobile", "N");
         }
 
-        sessionStorage.setItem('lang',this.readCookie.getCookie('lang'));
+        sessionStorage.setItem('lang', this.readCookie.getCookie('lang'));
 
         this.exitLabel = this.translate.transform('exit');
-        this.changePasswordLabel=this.translate.transform('changePassword');
-        this.userDetailLabel=this.translate.transform('detail');
+        this.changePasswordLabel = this.translate.transform('changePassword');
+        this.userDetailLabel = this.translate.transform('detail');
         this.loginPage = r.url == '/login';
         this.rootPage = r.url == '/';
-        if(r.url == '/noright'){
-          this.menuLoad=true;
+        if (r.url == '/noright') {
+          this.menuLoad = true;
         }
 
         this.checkPage();
@@ -95,20 +96,53 @@ export class AppComponent {
 
   }
 
-  connectionToSocket(path:String){
+  public delay(numberOfSeconds: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true,)
+      }, numberOfSeconds * 1000);
+    });
+  }
 
-    let httpUrl=this.sendRequest.url().toString();
-    httpUrl=httpUrl.replaceAll('http://','ws://')
-    httpUrl=httpUrl.replaceAll('https://','wss://');
+  tabTitle: string = 'IRM';
 
-    this.socket = new WebSocket(httpUrl+path);
+  change(index:number) {
+    console.log(index);
+    let titleWithUncount = this.tabTitle + " (" + this.unreadMessages + ")";
+    this.delay(1).then(() => {
+      document.title = document.title==this.tabTitle?titleWithUncount:this.tabTitle;
+
+      index=index+1;
+
+      if(index<=10){
+        this.change(index);
+      }
+        
+    })
+  }
+
+  connectionToSocket(path: String) {
+
+    let httpUrl = this.sendRequest.url().toString();
+    httpUrl = httpUrl.replaceAll('http://', 'ws://')
+    httpUrl = httpUrl.replaceAll('https://', 'wss://');
+
+    this.socket = new WebSocket(httpUrl + path);
 
     this.socket.onopen = () => {
       console.log('WebSocket connected');
     };
 
     this.socket.onmessage = (event) => {
-      this.unreadMessages=event.data;
+      this.unreadMessages = event.data;
+      if (this.unreadMessages == 0) {
+        document.title = this.tabTitle;
+      } else {
+        let index:number=0;
+        document.title=this.tabTitle;
+        this.change(index);
+
+      }
     };
 
     this.socket.onclose = () => {
@@ -116,62 +150,62 @@ export class AppComponent {
     };
 
     this.socket.onerror = (event) => {
-      console.log('WebSocket error'+event);
+      console.log('WebSocket error' + event);
     };
 
 
   }
-         
 
-  checkPage(){
-    
-    if(!this.loginPage){
-       if (this.menuLoad) {
 
-      this.sendRequest.getResponse('/api/session')
+  checkPage() {
+
+    if (!this.loginPage) {
+      if (this.menuLoad) {
+
+        this.sendRequest.getResponse('/api/session')
           .then(
-            (responseSession:HttpResponse<any>) => {
-             
-                this.sendRequest.get('/api/menu')
-                  .then(
-                    (response) => {
-                      this.connectionToSocket('/socket/notify?id='+responseSession.headers.get('userid'));
-                      this.listMenu = response;
-                      this.menuLoad=false;
+            (responseSession: HttpResponse<any>) => {
 
-                      this.sendRequest.get('/api/notification/count')
-                      .then((response:any)=>{
-                        this.unreadMessages=response.count;
+              this.sendRequest.get('/api/menu')
+                .then(
+                  (response) => {
+                    this.connectionToSocket('/socket/notify?id=' + responseSession.headers.get('userid'));
+                    this.listMenu = response;
+                    this.menuLoad = false;
 
-                          this.sendRequest.get('/api/menu/dashboard')
-                          .then((responseDash)=>{
-                            if(responseDash!=null){
-                              DashboardDefaultData.hasDefault=true;
-                              DashboardDefaultData.dashbordInfo=responseDash;
-                              this.hasDash=true;
-                            }else{
-                              DashboardDefaultData.hasDefault=false;
-                              DashboardDefaultData.dashbordInfo=undefined;
-                              this.hasDash=false;
+                    this.sendRequest.get('/api/notification/count')
+                      .then((response: any) => {
+                        this.unreadMessages = response.count;
+
+                        this.sendRequest.get('/api/menu/dashboard')
+                          .then((responseDash) => {
+                            if (responseDash != null) {
+                              DashboardDefaultData.hasDefault = true;
+                              DashboardDefaultData.dashbordInfo = responseDash;
+                              this.hasDash = true;
+                            } else {
+                              DashboardDefaultData.hasDefault = false;
+                              DashboardDefaultData.dashbordInfo = undefined;
+                              this.hasDash = false;
                             }
-                      }).catch(()=>{})
-                      }).catch(()=>{})
+                          }).catch(() => { })
+                      }).catch(() => { })
 
-                      
-                     
-                    }
-                  ).catch((error) => { })
-              }
-            
+
+
+                  }
+                ).catch((error) => { })
+            }
+
           )
           .catch((error) => { })
-        }
-    }else{
-      if(this.socket!=undefined){
+      }
+    } else {
+      if (this.socket != undefined) {
         this.socket.close();
       }
     }
-    
+
   }
 
   goToHome() {
@@ -181,14 +215,14 @@ export class AppComponent {
 
   exit() {
     this.menuLoad = true;
-   
-    this.sendRequest.get('/api/login/logout')
-    .then(()=>{
-      this.socket?.close();
-      this.unreadMessages=0;
 
-      this.router.navigate(['login'])
-    }).catch(()=>{})
+    this.sendRequest.get('/api/login/logout')
+      .then(() => {
+        this.socket?.close();
+        this.unreadMessages = 0;
+
+        this.router.navigate(['login'])
+      }).catch(() => { })
 
 
   }
@@ -199,20 +233,20 @@ export class AppComponent {
     }
   }
 
-  changePassword(){
-    this.openDialog.openDialog(ChangePassowrdDialogComponent,400,[])
-    .then(()=>{
-      this.sendInfo.open('passwordIsChanged',false);
-    }).catch(()=>{});
+  changePassword() {
+    this.openDialog.openDialog(ChangePassowrdDialogComponent, 400, [])
+      .then(() => {
+        this.sendInfo.open('passwordIsChanged', false);
+      }).catch(() => { });
 
   }
 
-  userDetail(){
+  userDetail() {
     this.sendRequest.get('/api/appuser/userinfo')
-    .then((response)=>{
-      this.openDialog.openDialog(UserDetailComponent,400,[response])
-      .then(()=>{}).catch(()=>{});
-    }).catch(()=>{})
+      .then((response) => {
+        this.openDialog.openDialog(UserDetailComponent, 400, [response])
+          .then(() => { }).catch(() => { });
+      }).catch(() => { })
 
 
   }
