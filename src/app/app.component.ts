@@ -114,7 +114,6 @@ export class AppComponent {
     link.rel = 'icon';
     document.head.appendChild(link);
   }
-  console.log(link);
   link.href = path;
 }
 
